@@ -7,9 +7,9 @@ import com.example.ering.trekinsync.customviews.LabelDescriptionView;
 import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
-
     private String label;
     private String description;
+
     /**
      * creates a view holder for a static label and description form field
      */

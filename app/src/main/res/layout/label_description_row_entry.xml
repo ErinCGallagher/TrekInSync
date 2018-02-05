@@ -4,4 +4,5 @@
     xmlns:attr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    attr:viewLabel="Full Name" />
+    attr:viewLabel="Full Name"
+    attr:viewDescription="Description"/>
