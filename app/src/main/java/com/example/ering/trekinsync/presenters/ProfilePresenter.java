@@ -1,4 +1,4 @@
-package com.example.ering.trekinsync;
+package com.example.ering.trekinsync.presenters;
 
 public class ProfilePresenter {
     /**

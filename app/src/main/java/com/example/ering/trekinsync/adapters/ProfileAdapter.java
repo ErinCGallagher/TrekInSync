@@ -1,6 +1,10 @@
-package com.example.ering.trekinsync;
+package com.example.ering.trekinsync.adapters;
 
 import android.content.Context;
+
+import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
+import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
 import java.util.ArrayList;
 import java.util.List;

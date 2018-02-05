@@ -1,7 +1,10 @@
-package com.example.ering.trekinsync;
+package com.example.ering.trekinsync.databinders;
 
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
 

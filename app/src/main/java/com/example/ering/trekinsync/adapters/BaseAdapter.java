@@ -1,7 +1,9 @@
-package com.example.ering.trekinsync;
+package com.example.ering.trekinsync.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.example.ering.trekinsync.databinders.BaseDataBinder;
 
 import java.util.List;
 

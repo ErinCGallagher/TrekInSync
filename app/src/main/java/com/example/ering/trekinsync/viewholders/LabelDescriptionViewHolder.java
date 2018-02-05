@@ -1,8 +1,10 @@
-package com.example.ering.trekinsync;
+package com.example.ering.trekinsync.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.ering.trekinsync.R;
 
 public class LabelDescriptionViewHolder extends RecyclerView.ViewHolder {
     public LinearLayout view1;
