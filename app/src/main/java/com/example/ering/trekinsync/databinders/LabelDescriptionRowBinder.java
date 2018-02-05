@@ -3,7 +3,7 @@ package com.example.ering.trekinsync.databinders;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.customviews.LabelDescriptionView;
 import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
@@ -27,6 +27,8 @@ public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionVi
 
     @Override
     public void bindViewHolder(LabelDescriptionViewHolder holder) {
-
+        final LabelDescriptionView labelDescriptionView = holder.labelDescriptionView;
+        labelDescriptionView.setLabel(label);
+        labelDescriptionView.setDescription(description);
     }
 }

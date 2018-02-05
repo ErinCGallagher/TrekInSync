@@ -31,8 +31,21 @@ public class ProfileAdapter extends BaseAdapter {
      */
     public void buildRows() {
         listItems.clear();
-        listItems.add(new LabelDescriptionRowBinder("name", "Erin Gallagher"));
+        //General Info
+        listItems.add(new LabelDescriptionRowBinder("Full Name", "Erin Gallagher"));
+        listItems.add(new LabelDescriptionRowBinder("Birth Date", "March 24, 1994"));
+        listItems.add(new LabelDescriptionRowBinder("Age", "23"));
+        listItems.add(new LabelDescriptionRowBinder("Citizenship", "Canadian"));
 
+        //Health info
+        listItems.add(new LabelDescriptionRowBinder("Allergies", "Scented Creme, Heat"));
+
+        //Emergency Contact Info
+        listItems.add(new LabelDescriptionRowBinder("Mother", "416-383-3947"));
+        listItems.add(new LabelDescriptionRowBinder("Father", "416-888-4836"));
+
+        //Insurance Info
+        listItems.add(new LabelDescriptionRowBinder("Manulife", "313-293-2948"));
     }
 
     @Override
