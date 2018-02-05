@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
+import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
@@ -48,9 +49,8 @@ public class ProfileAdapter extends BaseAdapter {
 
         //Emergency Contact Info
         listItems.add(new SectionDividerTitleRowBinder("EMERGENCY CONTACT INFO"));
-        //TODO: create phone number cell
-        listItems.add(new LabelDescriptionRowBinder("Mother", "416-383-3947"));
-        listItems.add(new LabelDescriptionRowBinder("Father", "416-888-4836"));
+        listItems.add(new PhoneNumberRowBinder("Mother", "416-747-3625", "Cell"));
+        listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", "Work"));
 
         //Insurance Info
         listItems.add(new SectionDividerTitleRowBinder("INSURANCE INFO"));

@@ -4,4 +4,9 @@
         <attr name="viewLabel" format="string"/>
         <attr name="viewDescription" format="string"/>
     </declare-styleable>
+    <declare-styleable name="PhoneNumberView">
+        <attr name="viewPhoneLabel" format="string"/>
+        <attr name="viewPhoneNumber" format="string"/>
+        <attr name="viewPhoneNumberType" format="string"/>
+    </declare-styleable>
 </resources>
