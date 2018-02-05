@@ -1,7 +1,5 @@
 package com.example.ering.trekinsync;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements ProfileView {
+public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     private ProfilePresenter presenter;
     private ProfileAdapter adapter;
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements ProfileView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
         context = getApplicationContext();
         actionBar =  getSupportActionBar();
         startPersonalProfileFlow();
