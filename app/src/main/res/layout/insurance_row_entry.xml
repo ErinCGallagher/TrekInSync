@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.ering.trekinsync.customviews.InsuranceView android:id="@+id/insurance_cell"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    attr:viewInsuranceLabel="Insurance Company"
+    attr:viewInsuranceNumber="416-234-2345"
+    attr:viewCheckboxLabel="Call First"
+    attr:viewCheckboxState="false"
+    attr:viewDetailsLabel1="Cert #"
+    attr:viewDetailsLabel2="Policy #"
+    attr:viewDetailsLabel3="Group #"
+    attr:viewDetailsNumber1="1276"
+    attr:viewDetailsNumber2="12345"
+    attr:viewDetailsNumber3="09876"/>

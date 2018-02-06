@@ -1,6 +1,8 @@
 package com.example.ering.trekinsync.databinders;
 
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,7 +17,7 @@ public class PhoneNumberRowBinder extends BaseDataBinder<PhoneNumberViewHolder> 
     /**
      * creates a view holder for phone number cell with phone number type
      */
-    public PhoneNumberRowBinder(String label, String phoneNumber, String phoneNumberType) {
+    public PhoneNumberRowBinder(@NonNull String label, @NonNull String phoneNumber, @Nullable String phoneNumberType) {
         this.label = label;
         this.phoneNumber = phoneNumber;
         this.phoneNumberType = phoneNumberType;

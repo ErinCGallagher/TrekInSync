@@ -3,6 +3,7 @@ package com.example.ering.trekinsync.adapters;
 import android.content.Context;
 
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.databinders.InsuranceRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
@@ -35,7 +36,7 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.clear();
         //General Info
         listItems.add(new SectionDividerTitleRowBinder("GENERAL INFO"));
-        //TODO: create profile picture upload cell
+        //TODO: create profile picture upload cell?
         listItems.add(new LabelDescriptionRowBinder("Full Name", "Erin Gallagher"));
         listItems.add(new LabelDescriptionRowBinder("Birth Date", "March 24, 1994"));
         listItems.add(new LabelDescriptionRowBinder("Age", "23"));
@@ -51,11 +52,18 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new SectionDividerTitleRowBinder("EMERGENCY CONTACT INFO"));
         listItems.add(new PhoneNumberRowBinder("Mother", "416-747-3625", "Cell"));
         listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", "Work"));
+        listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", null));
 
         //Insurance Info
         listItems.add(new SectionDividerTitleRowBinder("INSURANCE INFO"));
         //TODO: create insurance cell with policy #, group # or cert #, call first indicator
-        listItems.add(new LabelDescriptionRowBinder("Manulife", "313-293-2948"));
+        ArrayList<String> labelsList = new ArrayList<>();
+        labelsList.add("Cert #");
+        labelsList.add("policy #");
+        ArrayList<String> numbersList = new ArrayList<>();
+        numbersList.add("12312");
+        numbersList.add("23584");
+        listItems.add(new InsuranceRowBinder("Manulife", "123-321-1234", "Call First", true, labelsList, numbersList));
     }
 
     @Override

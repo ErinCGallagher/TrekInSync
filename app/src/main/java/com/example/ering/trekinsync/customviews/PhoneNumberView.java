@@ -2,6 +2,7 @@ package com.example.ering.trekinsync.customviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -39,16 +40,21 @@ public class PhoneNumberView extends LinearLayout {
         }
     }
 
-    public void setLabel(final String label) {
+    public void setLabel(@NonNull final String label) {
         labelView.setText(label);
     }
 
     //TODO: format phone number
-    public void setPhoneNumber(final String phoneNumberText) {
+    public void setPhoneNumber(@NonNull final String phoneNumberText) {
         phoneNumber.setText(phoneNumberText);
     }
 
-    public void setPhoneNumberType(String type) {
-        phoneNumberType.setText(type);
+    public void setPhoneNumberType(@Nullable String type) {
+        if (type == null) {
+            phoneNumberType.setVisibility(GONE);
+        } else {
+            phoneNumberType.setVisibility(VISIBLE);
+            phoneNumberType.setText(type);
+        }
     }
 }
