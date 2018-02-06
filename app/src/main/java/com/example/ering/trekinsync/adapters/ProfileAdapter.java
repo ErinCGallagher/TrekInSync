@@ -35,27 +35,29 @@ public class ProfileAdapter extends BaseAdapter {
     public void buildRows() {
         listItems.clear();
         //General Info
-        listItems.add(new SectionDividerTitleRowBinder("GENERAL INFO"));
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
         //TODO: create profile picture upload cell?
-        listItems.add(new LabelDescriptionRowBinder("Full Name", "Erin Gallagher"));
-        listItems.add(new LabelDescriptionRowBinder("Birth Date", "March 24, 1994"));
-        listItems.add(new LabelDescriptionRowBinder("Age", "23"));
-        listItems.add(new LabelDescriptionRowBinder("Citizenship", "Canadian"));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getFullNameLabel(),presenter.getFullName()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getAgeLabel(), presenter.getAge()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(), presenter.getCitizenship()));
 
         //Health info
-        listItems.add(new SectionDividerTitleRowBinder("HEALTH INFO"));
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
         //TODO: create allergy cell with severity indicator
-        listItems.add(new LabelDescriptionRowBinder("Blood Type", "O Negative"));
-        listItems.add(new LabelDescriptionRowBinder("Allergies", "Scented Creme, Heat, Maple Trees"));
-        listItems.add(new LabelDescriptionRowBinder("Medication", "None"));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBloodType()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getAllergiesLabel(), presenter.getAllergies()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
 
         //Emergency Contact Info
-        listItems.add(new SectionDividerTitleRowBinder("EMERGENCY CONTACT INFO"));
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
+        //TODO: have presenter return number of contact models
         listItems.add(new PhoneNumberRowBinder("Mother", "416-747-3625", "Cell"));
         listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", "Work"));
 
         //Insurance Info
-        listItems.add(new SectionDividerTitleRowBinder("INSURANCE INFO"));
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
+        //TODO: have presenter return number of insurance company models
         ArrayList<String> labelsList = new ArrayList<>();
         labelsList.add("Cert #");
         labelsList.add("policy #");
