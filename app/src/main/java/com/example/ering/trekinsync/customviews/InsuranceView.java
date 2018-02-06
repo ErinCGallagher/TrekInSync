@@ -21,6 +21,7 @@ public class InsuranceView extends LinearLayout {
     private CheckBox checkBox;
 
     //insurance detail fields details
+    private LinearLayout[] detailContainerArray;
     private LinearLayout container1;
     private LinearLayout container2;
     private LinearLayout container3;
@@ -47,13 +48,9 @@ public class InsuranceView extends LinearLayout {
         checkBoxLabel = (TextView) container.findViewById(R.id.checkbox_label);
         checkBox = (CheckBox) container.findViewById(R.id.checkbox);
 
-        container1 = (LinearLayout) container.findViewById(R.id.details_container1);
-        container2 = (LinearLayout) container.findViewById(R.id.details_container2);
-        container3 = (LinearLayout) container.findViewById(R.id.details_container3);
-
+        setUpListOfContainers(container);
         setUpListOfLabels(container);
         setUpListOfNumbers(container);
-
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.InsuranceView, 0, 0);
@@ -103,11 +100,12 @@ public class InsuranceView extends LinearLayout {
      */
     public void setDetailsLabels(ArrayList<String> labelsList) {
         for (int i = 0; i < detailLabelsArray.length-1; i++) {
-            if (i > labelsList.size()) {
+            if (i >= labelsList.size()) {
                 detailLabelsArray[i].setText(null);
-                //TODO: hide container
+                detailContainerArray[i].setVisibility(GONE);
             } else {
                 detailLabelsArray[i].setText(labelsList.get(i));
+                detailContainerArray[i].setVisibility(VISIBLE);
             }
         }
     }
@@ -118,10 +116,12 @@ public class InsuranceView extends LinearLayout {
      */
     public void setDetailNumbers(ArrayList<String> numbersList) {
         for (int i = 0; i < detailNumbersArray.length-1; i++) {
-            if (i > numbersList.size()) {
+            if (i >= numbersList.size()) {
                 detailNumbersArray[i].setText(null);
+                detailContainerArray[i].setVisibility(GONE);
             } else {
                 detailNumbersArray[i].setText(numbersList.get(i));
+                detailContainerArray[i].setVisibility(VISIBLE);
             }
         }
     }
@@ -144,5 +144,15 @@ public class InsuranceView extends LinearLayout {
         detailNumbersArray[0] = detailsNumber1;
         detailNumbersArray[1] = detailsNumber2;
         detailNumbersArray[2] = detailsNumber3;
+    }
+
+    private void setUpListOfContainers(View container) {
+        detailContainerArray = new LinearLayout[3];
+        container1 = (LinearLayout) container.findViewById(R.id.details_container1);
+        container2 = (LinearLayout) container.findViewById(R.id.details_container2);
+        container3 = (LinearLayout) container.findViewById(R.id.details_container3);
+        detailContainerArray[0] = container1;
+        detailContainerArray[1] = container2;
+        detailContainerArray[2] = container3;
     }
 }
