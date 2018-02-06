@@ -45,6 +45,7 @@ public class ProfileAdapter extends BaseAdapter {
         //Health info
         listItems.add(new SectionDividerTitleRowBinder("HEALTH INFO"));
         //TODO: create allergy cell with severity indicator
+        listItems.add(new LabelDescriptionRowBinder("Blood Type", "O Negative"));
         listItems.add(new LabelDescriptionRowBinder("Allergies", "Scented Creme, Heat, Maple Trees"));
         listItems.add(new LabelDescriptionRowBinder("Medication", "None"));
 
@@ -52,11 +53,9 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new SectionDividerTitleRowBinder("EMERGENCY CONTACT INFO"));
         listItems.add(new PhoneNumberRowBinder("Mother", "416-747-3625", "Cell"));
         listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", "Work"));
-        listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", null));
 
         //Insurance Info
         listItems.add(new SectionDividerTitleRowBinder("INSURANCE INFO"));
-        //TODO: create insurance cell with policy #, group # or cert #, call first indicator
         ArrayList<String> labelsList = new ArrayList<>();
         labelsList.add("Cert #");
         labelsList.add("policy #");
