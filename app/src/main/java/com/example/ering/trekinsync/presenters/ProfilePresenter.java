@@ -1,11 +1,18 @@
 package com.example.ering.trekinsync.presenters;
 
+import com.example.ering.trekinsync.models.EmergencyContact;
+import com.example.ering.trekinsync.models.InsuranceCompany;
+import com.example.ering.trekinsync.models.PolicyInfo;
+import com.example.ering.trekinsync.models.User;
+
 public class ProfilePresenter {
+    private User user;
     /**
      * Create Profile Presenter for Business logic
      */
     public ProfilePresenter () {
         //take in view interface
+        user = createTestData();
     }
 
     //Section Title Data
@@ -35,7 +42,7 @@ public class ProfilePresenter {
     }
 
     public String getFullName() {
-        return "Erin Gallagher";
+        return user.getName();
     }
 
     public String getBirthDateLabel() {
@@ -43,7 +50,7 @@ public class ProfilePresenter {
     }
 
     public String getBirthDate() {
-        return "March 24, 1994";
+        return user.getBirthDate();
     }
 
     public String getAgeLabel() {
@@ -51,7 +58,7 @@ public class ProfilePresenter {
     }
 
     public String getAge() {
-        return "23";
+        return Integer.toString(user.getAge());
     }
 
     public String getCitizenshipLabel() {
@@ -59,7 +66,7 @@ public class ProfilePresenter {
     }
 
     public String getCitizenship() {
-        return "Canadian";
+        return user.getCitizenship();
     }
 
     //Health Section
@@ -68,7 +75,7 @@ public class ProfilePresenter {
     }
 
     public String getBloodType() {
-        return "O Negative";
+        return user.getBloodType();
     }
 
     public String getAllergiesLabel() {
@@ -77,7 +84,7 @@ public class ProfilePresenter {
 
     public String getAllergies() {
         //TODO: use model to retrieve list
-        return "Scented Creme, Heat, Maple Trees";
+        return user.getAllergies();
     }
 
     public String getMedicineLabel() {
@@ -85,7 +92,36 @@ public class ProfilePresenter {
     }
 
     public String getMedicine() {
-        return "None";
+        return user.getMedicine();
+    }
+
+    private User createTestData() {
+        PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
+        PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
+        PolicyInfo[] policyInfoArray = new PolicyInfo[2];
+        policyInfoArray[0] = policyInfo;
+        policyInfoArray[1] = policyInfo2;
+
+        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", true, policyInfoArray);
+        InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
+        insuranceCompanyArray[0] = insuranceCompany;
+
+        EmergencyContact emergencyContact = new EmergencyContact("Mother", "416-747-3625", "Cell");
+        EmergencyContact emergencyContact2 = new EmergencyContact("Father", "416-888-9865", "Work");
+        EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
+        emergencyContactArray[0] = emergencyContact;
+        emergencyContactArray[1] = emergencyContact2;
+
+        User user = new User("Erin Gallagher",
+                "March 24, 1994",
+                23,
+                "Canadian",
+                "O Negative",
+                "Scented Creme, Heat, Maple Trees",
+                "none",
+                emergencyContactArray,
+                insuranceCompanyArray);
+        return user;
     }
 }
 

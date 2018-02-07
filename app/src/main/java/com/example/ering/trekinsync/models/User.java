@@ -5,7 +5,8 @@ import java.sql.Date;
 
 public class User {
     private String name;
-    private Date birthDate;
+    //TODO: convert to date object
+    private String birthDate;
     private int age;
     private String citizenship;
     private String bloodType;
@@ -14,7 +15,7 @@ public class User {
     private EmergencyContact[] emergencyContact;
     private InsuranceCompany[] insuranceInfo;
 
-    public User(String name, Date birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
+    public User(String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
         this.name = name;
         this.birthDate = birthDate;
         this.age = age;
@@ -34,11 +35,11 @@ public class User {
         this.name = name;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
