@@ -38,6 +38,7 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
         //TODO: create profile picture upload cell?
         listItems.add(new LabelDescriptionRowBinder(presenter.getFullNameLabel(),presenter.getFullName()));
+        //TODO: create birth date and age cell where they are side by side
         listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getAgeLabel(), presenter.getAge()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(), presenter.getCitizenship()));
@@ -45,7 +46,7 @@ public class ProfileAdapter extends BaseAdapter {
         //Health info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
         //TODO: create allergy cell with severity indicator
-        listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBloodType()));
+        listItems.add(new LabelDescriptionRowBinder(presenter.getBloodTypeLabel(), presenter.getBloodType()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getAllergiesLabel(), presenter.getAllergies()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
 
