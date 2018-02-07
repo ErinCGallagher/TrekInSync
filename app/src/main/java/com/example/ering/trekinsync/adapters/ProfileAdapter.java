@@ -7,6 +7,9 @@ import com.example.ering.trekinsync.databinders.InsuranceRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
+import com.example.ering.trekinsync.models.EmergencyContact;
+import com.example.ering.trekinsync.models.InsuranceCompany;
+import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
 import java.util.ArrayList;
@@ -51,21 +54,26 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
 
         //Emergency Contact Info
-        listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
-        //TODO: have presenter return number of contact models
-        listItems.add(new PhoneNumberRowBinder("Mother", "416-747-3625", "Cell"));
-        listItems.add(new PhoneNumberRowBinder("Father", "416-888-4836", "Work"));
+        if (presenter.getEmergencyContacts().length > 0) {
+            listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
+        }
+        for (EmergencyContact contact:presenter.getEmergencyContacts()) {
+            listItems.add(new PhoneNumberRowBinder(contact.getName(), contact.getPhoneNumber(), contact.getPhoneNumberType()));
+        }
 
         //Insurance Info
-        listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
-        //TODO: have presenter return number of insurance company models
-        ArrayList<String> labelsList = new ArrayList<>();
-        labelsList.add("Cert #");
-        labelsList.add("policy #");
-        ArrayList<String> numbersList = new ArrayList<>();
-        numbersList.add("12312");
-        numbersList.add("23584");
-        listItems.add(new InsuranceRowBinder("Manulife", "123-321-1234", "Call First", true, labelsList, numbersList));
+        if (presenter.getInsuranceCompanies().length > 0) {
+            listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
+        }
+        for (InsuranceCompany company:presenter.getInsuranceCompanies()) {
+            ArrayList<String> labelsList = new ArrayList<>();
+            ArrayList<String> numbersList = new ArrayList<>();
+            for(PolicyInfo info:company.getPolicyInfo()) {
+                labelsList.add(info.getName());
+                numbersList.add(info.getNumber());
+            }
+            listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), presenter.getCallFirstLabel(), company.isCallFirst(), labelsList, numbersList));
+        }
     }
 
     @Override

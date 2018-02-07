@@ -83,7 +83,7 @@ public class ProfilePresenter {
     }
 
     public String getAllergies() {
-        //TODO: use model to retrieve list
+        //TODO: use model to retrieve list, or could potentially be large string
         return user.getAllergies();
     }
 
@@ -93,6 +93,20 @@ public class ProfilePresenter {
 
     public String getMedicine() {
         return user.getMedicine();
+    }
+
+    //Emergency Contact section
+    public EmergencyContact[] getEmergencyContacts() {
+        return user.getEmergencyContacts();
+    }
+
+    //Insurance Company Section
+    public String getCallFirstLabel() {
+        return "Call First";
+    }
+
+    public InsuranceCompany[] getInsuranceCompanies() {
+        return user.getInsuranceInfo();
     }
 
     private User createTestData() {

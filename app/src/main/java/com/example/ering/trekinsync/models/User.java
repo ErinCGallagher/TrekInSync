@@ -1,8 +1,6 @@
 package com.example.ering.trekinsync.models;
 
 
-import java.sql.Date;
-
 public class User {
     private String name;
     //TODO: convert to date object
@@ -12,7 +10,7 @@ public class User {
     private String bloodType;
     private String allergies;
     private String medicine;
-    private EmergencyContact[] emergencyContact;
+    private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
     public User(String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
@@ -23,7 +21,7 @@ public class User {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.medicine = medicine;
-        this.emergencyContact = emergencyContact;
+        this.emergencyContacts = emergencyContact;
         this.insuranceInfo = insuranceInfo;
     }
 
@@ -83,12 +81,12 @@ public class User {
         this.medicine = medicine;
     }
 
-    public EmergencyContact[] getEmergencyContact() {
-        return emergencyContact;
+    public EmergencyContact[] getEmergencyContacts() {
+        return emergencyContacts;
     }
 
-    public void setEmergencyContact(EmergencyContact[] emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public void setEmergencyContacts(EmergencyContact[] emergencyContacts) {
+        this.emergencyContacts = emergencyContacts;
     }
 
     public InsuranceCompany[] getInsuranceInfo() {
