@@ -97,6 +97,7 @@ public class ProfilePresenter {
 
     //Emergency Contact section
     public EmergencyContact[] getEmergencyContacts() {
+        //TODO null check
         return user.getEmergencyContacts();
     }
 
@@ -106,9 +107,14 @@ public class ProfilePresenter {
     }
 
     public InsuranceCompany[] getInsuranceCompanies() {
+        //TODO null check
         return user.getInsuranceInfo();
     }
 
+    /**
+     * Temporary function for test data before we have real data and edit functionality
+     * @return User object
+     */
     private User createTestData() {
         PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
         PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
