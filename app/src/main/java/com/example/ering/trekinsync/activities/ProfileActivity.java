@@ -1,6 +1,7 @@
 package com.example.ering.trekinsync.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -30,8 +31,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
     }
 
     private void startPersonalProfileFlow() {
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         //setup presenter
-        presenter = new ProfilePresenter();
+        presenter = new ProfilePresenter(sharedPref, context);
         String actionBarTitle = presenter.getActionBarTitle();
         actionBar.setTitle(actionBarTitle);
 
