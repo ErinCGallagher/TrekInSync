@@ -27,28 +27,28 @@ public class ProfilePresenter {
 
     //Section Title Data
     public String getGeneralSectionTitle() {
-        return "GENERAL INFO";
+        return context.getString(R.string.general_section_title);
     }
 
     public String getHealthSectionTitle() {
-        return "HEALTH INFO";
+        return context.getString(R.string.health_section_title);
     }
 
     public String getEmergencyContactSectionTitle() {
-        return "EMERGENCY CONTACT INFO";
+        return context.getString(R.string.emergency_contact_section_title);
     }
 
     public String getInsuranceSectionTitle() {
-        return "INSURANCE INFO";
+        return context.getString(R.string.insurance_section_title);
     }
 
     //General Info Section
     public String getActionBarTitle() {
-        return "Personal profile";
+        return context.getString(R.string.profile_action_bar_title);
     }
 
     public String getFullNameLabel() {
-        return "Full Name";
+        return context.getString(R.string.full_name_label);
     }
 
     public String getFullName() {
@@ -56,7 +56,7 @@ public class ProfilePresenter {
     }
 
     public String getBirthDateLabel() {
-        return "Birth Date";
+        return context.getString(R.string.birth_date_label);
     }
 
     public String getBirthDate() {
@@ -64,7 +64,7 @@ public class ProfilePresenter {
     }
 
     public String getAgeLabel() {
-        return "Age";
+        return context.getString(R.string.age_label);
     }
 
     public String getAge() {
@@ -72,7 +72,7 @@ public class ProfilePresenter {
     }
 
     public String getCitizenshipLabel() {
-        return "Citizenship";
+        return context.getString(R.string.citizenship_label);
     }
 
     public String getCitizenship() {
@@ -81,7 +81,7 @@ public class ProfilePresenter {
 
     //Health Section
     public String getBloodTypeLabel() {
-        return "Blood Type";
+        return context.getString(R.string.blood_type_label);
     }
 
     public String getBloodType() {
@@ -89,7 +89,7 @@ public class ProfilePresenter {
     }
 
     public String getAllergiesLabel() {
-        return "Allergies";
+        return context.getString(R.string.allergies_label);
     }
 
     public String getAllergies() {
@@ -98,7 +98,7 @@ public class ProfilePresenter {
     }
 
     public String getMedicineLabel() {
-        return "Medicine";
+        return context.getString(R.string.medication_label);
     }
 
     public String getMedicine() {
@@ -113,7 +113,7 @@ public class ProfilePresenter {
 
     //Insurance Company Section
     public String getCallFirstLabel() {
-        return "Call First";
+        return context.getString(R.string.call_first_label);
     }
 
     public InsuranceCompany[] getInsuranceCompanies() {
@@ -121,8 +121,9 @@ public class ProfilePresenter {
         return user.getInsuranceInfo();
     }
 
-    private User retrieveUserData() {
+    /** Private Functions */
 
+    private User retrieveUserData() {
         //TODO: check if first time using app and create shared preferences or get them
         if (checkIfProfileExists()) {
             return convertSharedPrefsToUserModel();
@@ -152,15 +153,15 @@ public class ProfilePresenter {
         return context.getString(R.string.app_name_key) + context.getString(keyId);
     }
 
-    private String getStringValueGivenKey(@StringRes int keyId) {
-        String value = sharedPref.getString(getKey(keyId), context.getString(R.string.cannot_find_key));
-        return value;
-    }
-
-    private int getIntValueGivenKey(@StringRes int keyId) {
-        int value = sharedPref.getInt(getKey(keyId), 0);
-        return value;
-    }
+//    private String getStringValueGivenKey(@StringRes int keyId) {
+//        String value = sharedPref.getString(getKey(keyId), context.getString(R.string.cannot_find_key));
+//        return value;
+//    }
+//
+//    private int getIntValueGivenKey(@StringRes int keyId) {
+//        int value = sharedPref.getInt(getKey(keyId), 0);
+//        return value;
+//    }
 
     private User convertSharedPrefsToUserModel() {
         Gson gson = new Gson();
@@ -170,6 +171,7 @@ public class ProfilePresenter {
         return userObj;
     }
 
+    //TODO remove once create profile flow completed
     private User getTestUserObject() {
         PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
         PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");

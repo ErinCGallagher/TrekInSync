@@ -5,15 +5,22 @@
     <string name="primary_profile_key">primaryProfile</string>
     <string name="app_name_key">com.example.trekinsync.</string>
     <string name="created_profile_key">createdProfile</string>
-    <string name="full_name_key">fullName</string>
-    <string name="birth_day_key">birthDate</string>
-    <string name="age_key">age</string>
-    <string name="citizenship_key">citizenship</string>
-    <string name="blood_type_key">bloodType</string>
-    <string name="allergies_key">allergiesKey</string>
-    <string name="medication_key">medicationKey</string>
-    <string name="emergency_contact_key">emergencyContactKey</string>
-
-    //other strings
     <string name="cannot_find_key">Not Found</string>
+
+    //profile section title strings
+    <string name="general_section_title">GENERAL INFO</string>
+    <string name="health_section_title">HEALTH INFO</string>
+    <string name="emergency_contact_section_title">EMERGENCY CONTACT INFO</string>
+    <string name="insurance_section_title">INSURANCE INFO</string>
+
+    //profile attribute label strings
+    <string name="profile_action_bar_title">Personal Profile</string>
+    <string name="full_name_label">Full Name</string>
+    <string name="birth_date_label">Birth Date</string>
+    <string name="age_label">Age</string>
+    <string name="citizenship_label">Citizenship</string>
+    <string name="blood_type_label">Blood Type</string>
+    <string name="allergies_label">Allergies</string>
+    <string name="medication_label">Medication</string>
+    <string name="call_first_label">Call First</string>
 </resources>
