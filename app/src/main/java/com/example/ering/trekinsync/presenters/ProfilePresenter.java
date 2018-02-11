@@ -9,6 +9,7 @@ import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
+import com.google.gson.Gson;
 
 public class ProfilePresenter {
     private User user;
@@ -138,15 +139,10 @@ public class ProfilePresenter {
 
     private User createSharedPrefTestData() {
         SharedPreferences.Editor editor = sharedPref.edit();
-
         editor.putString(getKey(R.string.created_profile_key), "true");
-        editor.putString(getKey(R.string.full_name_key), "Lisa Thomas");
-        editor.putString(getKey(R.string.birth_day_key), "March 28, 1996");
-        editor.putInt(getKey(R.string.age_key), 21);
-        editor.putString(getKey(R.string.citizenship_key), "Canadian");
-        editor.putString(getKey(R.string.blood_type_key), "O Positive");
-        editor.putString(getKey(R.string.allergies_key), "Scented Creme, Heat, Maple Trees");
-        editor.putString(getKey(R.string.medication_key), "Some but not important");
+        Gson gson = new Gson();
+        String json = gson.toJson(getTestUserObject());
+        editor.putString(getKey(R.string.primary_profile_key), json);
         editor.apply();
 
         return convertSharedPrefsToUserModel();
@@ -167,6 +163,14 @@ public class ProfilePresenter {
     }
 
     private User convertSharedPrefsToUserModel() {
+        Gson gson = new Gson();
+        String json = sharedPref.getString(getKey(R.string.primary_profile_key), "");
+        //TODO: check if json is an empty string, display error pop-up and go to create profile view
+        User userObj = gson.fromJson(json, User.class) ;
+        return userObj;
+    }
+
+    private User getTestUserObject() {
         PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
         PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
         PolicyInfo[] policyInfoArray = new PolicyInfo[2];
@@ -183,13 +187,13 @@ public class ProfilePresenter {
         emergencyContactArray[0] = emergencyContact;
         emergencyContactArray[1] = emergencyContact2;
 
-        User user = new User(getStringValueGivenKey(R.string.full_name_key),
-                getStringValueGivenKey(R.string.birth_day_key),
-                getIntValueGivenKey(R.string.age_key),
-                getStringValueGivenKey(R.string.citizenship_key),
-                getStringValueGivenKey(R.string.blood_type_key),
-                getStringValueGivenKey(R.string.allergies_key),
-                getStringValueGivenKey(R.string.medication_key),
+        User user = new User("Erin Gallagher",
+                "March 23, 1994",
+                13,
+                "US",
+                "O neutral",
+                "scented shit",
+                "none",
                 emergencyContactArray,
                 insuranceCompanyArray);
         return user;

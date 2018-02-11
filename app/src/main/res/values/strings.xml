@@ -2,6 +2,7 @@
     <string name="app_name">TrekInSync</string>
 
     //shared preferences keys
+    <string name="primary_profile_key">primaryProfile</string>
     <string name="app_name_key">com.example.trekinsync.</string>
     <string name="created_profile_key">createdProfile</string>
     <string name="full_name_key">fullName</string>
@@ -11,6 +12,7 @@
     <string name="blood_type_key">bloodType</string>
     <string name="allergies_key">allergiesKey</string>
     <string name="medication_key">medicationKey</string>
+    <string name="emergency_contact_key">emergencyContactKey</string>
 
     //other strings
     <string name="cannot_find_key">Not Found</string>

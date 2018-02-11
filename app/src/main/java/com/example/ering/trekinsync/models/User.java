@@ -3,8 +3,7 @@ package com.example.ering.trekinsync.models;
 
 public class User {
     private String name;
-    //TODO: convert to date object
-    private String birthDate;
+    private String birthDate; //TODO: convert to date object
     private int age;
     private String citizenship;
     private String bloodType;
