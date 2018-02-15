@@ -15,6 +15,7 @@ public class ProfilePresenter {
     private User user;
     private SharedPreferences sharedPref;
     private Context context;
+
     /**
      * Create Profile Presenter for Business logic
      */
