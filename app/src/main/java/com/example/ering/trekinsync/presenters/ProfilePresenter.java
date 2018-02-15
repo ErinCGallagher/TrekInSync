@@ -21,6 +21,7 @@ public class ProfilePresenter {
     public ProfilePresenter (SharedPreferences sharedPref, Context context) {
         this.sharedPref = sharedPref;
         this.context = context;
+        //TODO confirm user data was returned
         this.user = retrieveUserData();
         //take in view interface
     }
