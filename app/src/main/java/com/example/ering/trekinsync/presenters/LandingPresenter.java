@@ -62,6 +62,13 @@ public class LandingPresenter {
         return Boolean.valueOf(profileCreated);
     }
 
+    private ArrayList<User> retrieveTravelContacts() {
+        if (checkIfContactKeysExists()) {
+            return convertSharedPrefsToTravelContacts();
+        }
+        return createTravelContactTestData();
+    }
+
     private boolean checkIfContactKeysExists() {
         String contactKeys = getKey(R.string.travel_contact_key_names);
         String contactKeysExist = sharedPref.getString(contactKeys, "false");
@@ -69,13 +76,6 @@ public class LandingPresenter {
             return false;
         }
         return true;
-    }
-
-    private ArrayList<User> retrieveTravelContacts() {
-        if (checkIfContactKeysExists()) {
-
-        }
-        return createTravelContactTestData();
     }
 
     //TODO remove once create profile flow completed
