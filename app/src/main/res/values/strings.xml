@@ -5,6 +5,7 @@
     <string name="primary_profile_key">primaryProfile</string>
     <string name="app_name_key">com.example.trekinsync.</string>
     <string name="created_profile_key">createdProfile</string>
+    <string name="travel_contact_key_names">travelContactKeyNames</string>
     <string name="cannot_find_key">Not Found</string>
 
     //profile section title strings

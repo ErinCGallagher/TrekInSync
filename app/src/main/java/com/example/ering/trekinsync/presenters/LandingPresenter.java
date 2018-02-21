@@ -11,9 +11,12 @@ import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class LandingPresenter {
 
     private User user;
+    private ArrayList<User> contacts;
     private SharedPreferences sharedPref;
     private Context context;
 
@@ -24,7 +27,8 @@ public class LandingPresenter {
         this.sharedPref = sharedPref;
         this.context = context;
         //TODO confirm user data was returned
-        this.user = retrieveUserData();
+        this.user = retrievePersonalProfileData();
+        this.contacts = retrieveTravelContacts();
     }
 
     public String getSectionTitle() {
@@ -35,19 +39,15 @@ public class LandingPresenter {
         return user;
     }
 
-    public String getContactName() {
-        return "Jane Beer";
-    }
-
-    public String getContactDescription() {
-        return "Canadian";
+    public ArrayList<User> getTravelContacts() {
+        return contacts;
     }
 
     /**
      *  Private Functions
      */
 
-    private User retrieveUserData() {
+    private User retrievePersonalProfileData() {
         //TODO: check if first time using app and create shared preferences or get them
         if (checkIfProfileExists()) {
             return convertSharedPrefsToUserModel();
@@ -62,15 +62,48 @@ public class LandingPresenter {
         return Boolean.valueOf(profileCreated);
     }
 
+    private ArrayList<User> retrieveTravelContacts() {
+        return createTravelContactTestData();
+    }
+
+    //TODO remove once create profile flow completed
     private User createSharedPrefTestData() {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getKey(R.string.created_profile_key), "true");
         Gson gson = new Gson();
-        String json = gson.toJson(getTestUserObject());
+        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American"));
         editor.putString(getKey(R.string.primary_profile_key), json);
         editor.apply();
 
         return convertSharedPrefsToUserModel();
+    }
+
+    //TODO remove once add travel contact flow complete
+    private ArrayList<User> createTravelContactTestData() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Gson gson = new Gson();
+        String[] contactKeys = new String[3];
+        contactKeys[0] = "contact1";
+        contactKeys[1] = "contact2";
+        contactKeys[2] = "contact3";
+        String json = gson.toJson(contactKeys);
+        editor.putString(getKey(R.string.travel_contact_key_names), json);
+
+        String contactJson = gson.toJson(getTestUserObject("Christina Chan", "Canadian"));
+        editor.putString(getKey(contactKeys[0]), contactJson);
+
+        String contactJson2 = gson.toJson(getTestUserObject("Laura Brooks", "British"));
+        editor.putString(getKey(contactKeys[1]), contactJson2);
+
+        String contactJson3 = gson.toJson(getTestUserObject("Lexi Flynn", "Mexican"));
+        editor.putString(getKey(contactKeys[2]), contactJson3);
+        editor.apply();
+
+        return convertSharedPrefsToTravelContacts();
+    }
+
+    private String getKey(String key) {
+        return context.getString(R.string.app_name_key) + key;
     }
 
     private String getKey(@StringRes int keyId) {
@@ -85,8 +118,23 @@ public class LandingPresenter {
         return userObj;
     }
 
+    private ArrayList<User> convertSharedPrefsToTravelContacts() {
+        ArrayList<User> contactList = new ArrayList<>();
+        Gson gson = new Gson();
+        String json = sharedPref.getString(getKey(R.string.travel_contact_key_names), "");
+        String[] contactKeyNames = gson.fromJson(json, String[].class);
+        for(String keyName: contactKeyNames) {
+            String contactJson = sharedPref.getString(getKey(keyName), "");
+            if(json != null ){
+                User userObj = gson.fromJson(contactJson, User.class);
+                contactList.add(userObj);
+            }
+        }
+        return contactList;
+    }
+
     //TODO remove once create profile flow completed
-    private User getTestUserObject() {
+    private User getTestUserObject(String name, String citizenship) {
         PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
         PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
         PolicyInfo[] policyInfoArray = new PolicyInfo[2];
@@ -103,10 +151,11 @@ public class LandingPresenter {
         emergencyContactArray[0] = emergencyContact;
         emergencyContactArray[1] = emergencyContact2;
 
-        User user = new User("Erin Gallagher",
+        User user = new User(true,
+                name,
                 "March 23, 1994",
                 13,
-                "US",
+                citizenship,
                 "O neutral",
                 "scented shit",
                 "none",

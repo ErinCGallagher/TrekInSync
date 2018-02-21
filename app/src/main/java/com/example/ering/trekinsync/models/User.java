@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+    private boolean isPersonalProfile;
     private String name;
     private String birthDate; //TODO: convert to date object
     private int age;
@@ -15,7 +16,8 @@ public class User implements Parcelable {
     private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
-    public User(String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
+    public User(boolean isPersonalProfile, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
+        this.isPersonalProfile = isPersonalProfile;
         this.name = name;
         this.birthDate = birthDate;
         this.age = age;
@@ -25,6 +27,10 @@ public class User implements Parcelable {
         this.medicine = medicine;
         this.emergencyContacts = emergencyContact;
         this.insuranceInfo = insuranceInfo;
+    }
+
+    public boolean getIsPersonalProfile() {
+        return isPersonalProfile;
     }
 
     public String getName() {
@@ -100,6 +106,7 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
+        isPersonalProfile = in.readInt() != 0;
         name = in.readString();
         birthDate = in.readString();
         age = in.readInt();
@@ -130,6 +137,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt((isPersonalProfile ? 1 : 0));
         parcel.writeString(name);
         parcel.writeString(birthDate);
         parcel.writeInt(age);

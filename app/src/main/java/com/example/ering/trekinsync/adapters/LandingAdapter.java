@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.ContactCellRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
+import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
 
 import java.util.ArrayList;
@@ -34,9 +35,13 @@ public class LandingAdapter extends BaseAdapter {
         listItems.clear();
         //General Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getSectionTitle()));
-        listItems.add(new ContactCellRowBinder(presenter.getContactName(), presenter.getContactDescription()));
-        listItems.add(new ContactCellRowBinder("Christina Chan", "American"));
-        listItems.add(new ContactCellRowBinder("Laura Brooks", "British"));
+        if (presenter.getTravelContacts() != null && !presenter.getTravelContacts().isEmpty()) {
+            for (User contact: presenter.getTravelContacts()) {
+                listItems.add(new ContactCellRowBinder(contact.getName(), contact.getCitizenship()));
+            }
+        } else {
+            //TODO display empty contacts view
+        }
     }
 
     @Override
