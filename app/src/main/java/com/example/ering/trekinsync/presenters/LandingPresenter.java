@@ -62,7 +62,19 @@ public class LandingPresenter {
         return Boolean.valueOf(profileCreated);
     }
 
+    private boolean checkIfContactKeysExists() {
+        String contactKeys = getKey(R.string.travel_contact_key_names);
+        String contactKeysExist = sharedPref.getString(contactKeys, "false");
+        if (contactKeysExist == "false") {
+            return false;
+        }
+        return true;
+    }
+
     private ArrayList<User> retrieveTravelContacts() {
+        if (checkIfContactKeysExists()) {
+
+        }
         return createTravelContactTestData();
     }
 
