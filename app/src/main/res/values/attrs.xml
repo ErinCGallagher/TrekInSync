@@ -21,4 +21,8 @@
         <attr name="viewDetailsNumber2" format="string"/>
         <attr name="viewDetailsNumber3" format="string"/>
     </declare-styleable>
+    <declare-styleable name="ContactDetailView">
+        <attr name="viewContactName" format="string"/>
+        <attr name="viewContactDescription" format="string"/>
+    </declare-styleable>
 </resources>

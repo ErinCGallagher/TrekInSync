@@ -35,6 +35,14 @@ public class LandingPresenter {
         return user;
     }
 
+    public String getContactName() {
+        return "Jane Beer";
+    }
+
+    public String getContactDescription() {
+        return "Canadian";
+    }
+
     /**
      *  Private Functions
      */
