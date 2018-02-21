@@ -51,7 +51,7 @@ public class ProfilePresenter {
     }
 
     public String getFullName() {
-        return user.getName();
+        return user.getName() != null ? user.getName() : "";
     }
 
     public String getBirthDateLabel() {
@@ -59,7 +59,7 @@ public class ProfilePresenter {
     }
 
     public String getBirthDate() {
-        return user.getBirthDate();
+        return user.getBirthDate() != null ? user.getBirthDate() : "";
     }
 
     public String getAgeLabel() {
@@ -75,7 +75,7 @@ public class ProfilePresenter {
     }
 
     public String getCitizenship() {
-        return user.getCitizenship();
+        return user.getCitizenship() != null ? user.getCitizenship() : "";
     }
 
     //Health Section
@@ -84,7 +84,7 @@ public class ProfilePresenter {
     }
 
     public String getBloodType() {
-        return user.getBloodType();
+        return user.getBloodType() != null ? user.getBloodType() : "";
     }
 
     public String getAllergiesLabel() {
@@ -93,7 +93,7 @@ public class ProfilePresenter {
 
     public String getAllergies() {
         //TODO: use model to retrieve list, or could potentially be large string
-        return user.getAllergies();
+        return user.getAllergies() != null ? user.getAllergies() : "";
     }
 
     public String getMedicineLabel() {
@@ -101,7 +101,7 @@ public class ProfilePresenter {
     }
 
     public String getMedicine() {
-        return user.getMedicine();
+        return user.getMedicine() != null ? user.getMedicine() : "";
     }
 
     //Emergency Contact section

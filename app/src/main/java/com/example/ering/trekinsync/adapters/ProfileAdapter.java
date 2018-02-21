@@ -54,25 +54,27 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
 
         //Emergency Contact Info
-        if (presenter.getEmergencyContacts().length > 0) {
+        if (presenter.getEmergencyContacts() != null && presenter.getEmergencyContacts().length > 0) {
             listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
-        }
-        for (EmergencyContact contact:presenter.getEmergencyContacts()) {
-            listItems.add(new PhoneNumberRowBinder(contact.getName(), contact.getPhoneNumber(), contact.getPhoneNumberType()));
+
+            for (EmergencyContact contact : presenter.getEmergencyContacts()) {
+                listItems.add(new PhoneNumberRowBinder(contact.getName(), contact.getPhoneNumber(), contact.getPhoneNumberType()));
+            }
         }
 
         //Insurance Info
-        if (presenter.getInsuranceCompanies().length > 0) {
+        if (presenter.getInsuranceCompanies() != null && presenter.getInsuranceCompanies().length > 0) {
             listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
-        }
-        for (InsuranceCompany company:presenter.getInsuranceCompanies()) {
-            ArrayList<String> labelsList = new ArrayList<>();
-            ArrayList<String> numbersList = new ArrayList<>();
-            for(PolicyInfo info:company.getPolicyInfo()) {
-                labelsList.add(info.getName());
-                numbersList.add(info.getNumber());
+
+            for (InsuranceCompany company : presenter.getInsuranceCompanies()) {
+                ArrayList<String> labelsList = new ArrayList<>();
+                ArrayList<String> numbersList = new ArrayList<>();
+                for (PolicyInfo info : company.getPolicyInfo()) {
+                    labelsList.add(info.getName());
+                    numbersList.add(info.getNumber());
+                }
+                listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), presenter.getCallFirstLabel(), company.isCallFirst(), labelsList, numbersList));
             }
-            listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), presenter.getCallFirstLabel(), company.isCallFirst(), labelsList, numbersList));
         }
     }
 
