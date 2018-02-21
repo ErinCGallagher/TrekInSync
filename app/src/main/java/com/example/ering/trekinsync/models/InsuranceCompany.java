@@ -1,6 +1,9 @@
 package com.example.ering.trekinsync.models;
 
-public class InsuranceCompany {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class InsuranceCompany implements Parcelable{
     private String name;
     private String phoneNumber;
     private boolean callFirst;
@@ -43,5 +46,37 @@ public class InsuranceCompany {
 
     public void setPolicyInfo(PolicyInfo[] policyInfo) {
         this.policyInfo = policyInfo;
+    }
+
+    protected InsuranceCompany(Parcel in) {
+        name = in.readString();
+        phoneNumber = in.readString();
+        callFirst = in.readInt() != 0;
+        policyInfo = in.createTypedArray(PolicyInfo.CREATOR);
+    }
+
+    public static final Creator<InsuranceCompany> CREATOR = new Creator<InsuranceCompany>() {
+        @Override
+        public InsuranceCompany createFromParcel(Parcel in) {
+            return new InsuranceCompany(in);
+        }
+
+        @Override
+        public InsuranceCompany[] newArray(int size) {
+            return new InsuranceCompany[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeString(phoneNumber);
+        parcel.writeInt((callFirst ? 1 : 0));
+        parcel.writeParcelableArray(policyInfo, flags);
     }
 }

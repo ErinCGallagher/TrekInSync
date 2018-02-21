@@ -1,7 +1,10 @@
 package com.example.ering.trekinsync.models;
 
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private String name;
     private String birthDate; //TODO: convert to date object
     private int age;
@@ -94,5 +97,47 @@ public class User {
 
     public void setInsuranceInfo(InsuranceCompany[] insuranceInfo) {
         this.insuranceInfo = insuranceInfo;
+    }
+
+    protected User(Parcel in) {
+        name = in.readString();
+        birthDate = in.readString();
+        age = in.readInt();
+        citizenship = in.readString();
+        bloodType = in.readString();
+        allergies = in.readString();
+        medicine = in.readString();
+        emergencyContacts = in.createTypedArray(EmergencyContact.CREATOR);
+        insuranceInfo = in.createTypedArray(InsuranceCompany.CREATOR);
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeString(birthDate);
+        parcel.writeInt(age);
+        parcel.writeString(citizenship);
+        parcel.writeString(bloodType);
+        parcel.writeString(allergies);
+        parcel.writeString(medicine);
+        parcel.writeTypedArray(emergencyContacts, flags);
+        parcel.writeTypedArray(insuranceInfo, flags);
     }
 }

@@ -15,6 +15,8 @@ import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.LandingAdapter;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
 
+import java.io.Serializable;
+
 public class LandingActivity extends AppCompatActivity {
 
     private Context context;
@@ -43,6 +45,8 @@ public class LandingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
+                //TODO: check is user profile was created
+                intent.putExtra("UserObj", presenter.getUser());
                 startActivity(intent);
             }
         });

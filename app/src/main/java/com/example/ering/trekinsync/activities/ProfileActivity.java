@@ -1,6 +1,7 @@
 package com.example.ering.trekinsync.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
 import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
 public class ProfileActivity extends AppCompatActivity implements ProfileView {
@@ -31,9 +33,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
     }
 
     private void startPersonalProfileFlow() {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = bundle.getParcelable("UserObj");
         //setup presenter
-        presenter = new ProfilePresenter(sharedPref, context);
+        presenter = new ProfilePresenter(user, context);
         String actionBarTitle = presenter.getActionBarTitle();
         actionBar.setTitle(actionBarTitle);
 

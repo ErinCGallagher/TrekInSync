@@ -16,7 +16,7 @@ public class LandingAdapter extends BaseAdapter {
     private final ArrayList<BaseDataBinder> listItems;
 
     /**
-     * Create adapter for displaying profile details
+     * Create an adapter to display travel contact cells
      * @param context
      * @param profilePresenter
      */

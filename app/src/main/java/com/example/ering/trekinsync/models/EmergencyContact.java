@@ -1,6 +1,9 @@
 package com.example.ering.trekinsync.models;
 
-public class EmergencyContact {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class EmergencyContact implements Parcelable {
     private String name;
     private String phoneNumber;
     private String phoneNumberType;
@@ -33,5 +36,35 @@ public class EmergencyContact {
 
     public void setPhoneNumberType(String phoneNumberType) {
         this.phoneNumberType = phoneNumberType;
+    }
+
+    protected EmergencyContact(Parcel in) {
+        name = in.readString();
+        phoneNumber = in.readString();
+        phoneNumberType = in.readString();
+    }
+
+    public static final Creator<EmergencyContact> CREATOR = new Creator<EmergencyContact>() {
+        @Override
+        public EmergencyContact createFromParcel(Parcel in) {
+            return new EmergencyContact(in);
+        }
+
+        @Override
+        public EmergencyContact[] newArray(int size) {
+            return new EmergencyContact[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeString(phoneNumber);
+        parcel.writeString(phoneNumberType);
     }
 }
