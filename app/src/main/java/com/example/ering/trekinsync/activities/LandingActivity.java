@@ -36,6 +36,8 @@ public class LandingActivity extends AppCompatActivity {
     private static double FAB_MENU_MARGIN = 0.60;
     private static double FAB_MENU_HEIGHT_1 = 2.15;
     private static double FAB_MENU_HEIGHT_2 = 3.45;
+    private static double FAB_MENU_LABEL_HEIGHT = 1.5;
+    private static double FAB_MENU_LABEL_MARGIN = 2.0;
     private static float ALPHA_FULLY_TRANSPARENT = 0.0f;
     private static float ALPHA_OPAQUE = 1.0f;
 
@@ -88,9 +90,11 @@ public class LandingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!floatingButtonMenuState) {
+                    displayDimBackground();
                     displayFloatingButtonMenu();
                     fab.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
                 } else {
+                    hideDimBackground();
                     fab.setImageResource(R.mipmap.ic_person_add_white_24dp);
                     hideFloatingButtonMenu();
                 }
@@ -116,6 +120,21 @@ public class LandingActivity extends AppCompatActivity {
 
         fabCameraLabel = (TextView) findViewById(R.id.fab_camera_label);
         fabBarcodeLabel = (TextView) findViewById(R.id.fab_barcode_label);
+        dimMenuBackground = (View) findViewById(R.id.dim_menu_background);
+    }
+
+    private void displayDimBackground() {
+        AlphaAnimation animation1 = new AlphaAnimation(ALPHA_FULLY_TRANSPARENT, 0.65f);
+        animation1.setDuration(150);
+        dimMenuBackground.setVisibility(View.VISIBLE);
+        dimMenuBackground.startAnimation(animation1);
+    }
+
+    private void hideDimBackground() {
+        AlphaAnimation animation1 = new AlphaAnimation(0.65f, ALPHA_FULLY_TRANSPARENT);
+        animation1.setDuration(250);
+        dimMenuBackground.setVisibility(View.INVISIBLE);
+        dimMenuBackground.startAnimation(animation1);
     }
 
     private void displayFloatingButtonMenu() {
