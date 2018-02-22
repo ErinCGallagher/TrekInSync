@@ -28,6 +28,9 @@ public class LandingActivity extends AppCompatActivity {
     private LandingAdapter adapter;
     private FloatingActionButton fabCamera;
     private FloatingActionButton fabBarcode;
+    private TextView fabCameraLabel;
+    private TextView fabBarcodeLabel;
+    private View dimMenuBackground;
 
     private boolean floatingButtonMenuState = false;
     private static double FAB_MENU_MARGIN = 0.60;
@@ -110,6 +113,9 @@ public class LandingActivity extends AppCompatActivity {
                 //TODO display barcode
             }
         });
+
+        fabCameraLabel = (TextView) findViewById(R.id.fab_camera_label);
+        fabBarcodeLabel = (TextView) findViewById(R.id.fab_barcode_label);
     }
 
     private void displayFloatingButtonMenu() {
@@ -133,6 +139,20 @@ public class LandingActivity extends AppCompatActivity {
         fabBarcode.setVisibility(View.VISIBLE);
         fabBarcode.startAnimation(animation2);
         fabBarcode.setClickable(true);
+
+        FrameLayout.LayoutParams layoutParamsLabel = (FrameLayout.LayoutParams) fabCameraLabel.getLayoutParams();
+        layoutParamsLabel.bottomMargin = (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1) + (int) (fabCameraLabel.getHeight() / FAB_MENU_LABEL_HEIGHT);
+        layoutParamsLabel.rightMargin = (int) (fabCamera.getWidth() * FAB_MENU_LABEL_MARGIN);
+        fabCameraLabel.setLayoutParams(layoutParamsLabel);
+        fabCameraLabel.setVisibility(View.VISIBLE);
+        fabCameraLabel.startAnimation(animation1);
+
+        FrameLayout.LayoutParams layoutParamsLabel2 = (FrameLayout.LayoutParams) fabBarcodeLabel.getLayoutParams();
+        layoutParamsLabel2.bottomMargin = (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2) + (int) (fabBarcodeLabel.getHeight() / FAB_MENU_LABEL_HEIGHT);
+        layoutParamsLabel2.rightMargin = (int) (fabBarcode.getWidth() * FAB_MENU_LABEL_MARGIN);
+        fabBarcodeLabel.setLayoutParams(layoutParamsLabel2);
+        fabBarcodeLabel.setVisibility(View.VISIBLE);
+        fabBarcodeLabel.startAnimation(animation2);
     }
 
 
@@ -145,9 +165,13 @@ public class LandingActivity extends AppCompatActivity {
         fabCamera.startAnimation(animation2);
         fabCamera.setVisibility(View.INVISIBLE);
         fabCamera.setClickable(false);
+        fabCameraLabel.startAnimation(animation2);
+        fabCameraLabel.setVisibility(View.INVISIBLE);
 
         fabBarcode.startAnimation(animation1);
         fabBarcode.setVisibility(View.INVISIBLE);
         fabBarcode.setClickable(false);
+        fabBarcodeLabel.startAnimation(animation2);
+        fabBarcodeLabel.setVisibility(View.INVISIBLE);
     }
 }

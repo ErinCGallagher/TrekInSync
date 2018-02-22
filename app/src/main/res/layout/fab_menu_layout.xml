@@ -15,6 +15,15 @@
         app:srcCompat="@android:drawable/ic_menu_camera"
         app:fabSize="mini"/>
 
+    <TextView
+        android:id="@+id/fab_camera_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Camera"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="invisible"/>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_barcode"
         android:layout_width="wrap_content"
@@ -24,5 +33,14 @@
         android:visibility="invisible"
         app:srcCompat="@android:drawable/ic_menu_mapmode"
         app:fabSize="mini"/>
+
+    <TextView
+        android:id="@+id/fab_barcode_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Barcode"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="invisible"/>
 
 </FrameLayout>
