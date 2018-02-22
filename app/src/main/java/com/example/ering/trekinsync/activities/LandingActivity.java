@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -29,9 +30,11 @@ public class LandingActivity extends AppCompatActivity {
     private FloatingActionButton fabBarcode;
 
     private boolean floatingButtonMenuState = false;
-    private static double FAB_MENU_MARGIN = 0.15;
-    private static double FAB_MENU_HEIGHT_1 = 1.75;
-    private static double FAB_MENU_HEIGHT_2 = 3.10;
+    private static double FAB_MENU_MARGIN = 0.60;
+    private static double FAB_MENU_HEIGHT_1 = 2.15;
+    private static double FAB_MENU_HEIGHT_2 = 3.45;
+    private static float ALPHA_FULLY_TRANSPARENT = 0.0f;
+    private static float ALPHA_OPAQUE = 1.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,56 +42,7 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
         startLandingPageSetup();
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!floatingButtonMenuState) {
-                    displayFloatingButtonMenu();
-                    fab.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
-                } else {
-                    fab.setImageResource(R.mipmap.ic_person_add_white_24dp);
-                    hideFloatingButtonMenu();
-                }
-                floatingButtonMenuState = !floatingButtonMenuState;
-            }
-        });
-        fabCamera = (FloatingActionButton) findViewById(R.id.fab_camera);
-        fabBarcode = (FloatingActionButton) findViewById(R.id.fab_barcode);
-    }
-
-    private void displayFloatingButtonMenu() {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fabCamera.getLayoutParams();
-        layoutParams.bottomMargin += (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1);
-        layoutParams.rightMargin += (int) (fabCamera.getWidth() * FAB_MENU_MARGIN);
-        fabCamera.setLayoutParams(layoutParams);
-        fabCamera.setVisibility(View.VISIBLE);
-        fabCamera.setClickable(true);
-
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fabBarcode.getLayoutParams();
-        layoutParams2.bottomMargin += (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2);
-        layoutParams2.rightMargin += (int) (fabBarcode.getWidth() * FAB_MENU_MARGIN);
-        fabBarcode.setLayoutParams(layoutParams2);
-        fabBarcode.setVisibility(View.VISIBLE);
-        fabBarcode.setClickable(true);
-    }
-
-
-    private void hideFloatingButtonMenu() {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fabCamera.getLayoutParams();
-        layoutParams.bottomMargin -= (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1);
-        layoutParams.rightMargin -= (int) (fabCamera.getWidth() * FAB_MENU_MARGIN);
-        fabCamera.setLayoutParams(layoutParams);
-        fabCamera.setVisibility(View.INVISIBLE);
-        fabCamera.setClickable(false);
-
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fabBarcode.getLayoutParams();
-        layoutParams2.bottomMargin -= (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2);
-        layoutParams2.rightMargin -= (int) (fabBarcode.getWidth() * FAB_MENU_MARGIN);
-        fabBarcode.setLayoutParams(layoutParams2);
-        fabBarcode.setVisibility(View.INVISIBLE);
-        fabBarcode.setClickable(false);
+        initializeFabMenu();
     }
 
     private void startLandingPageSetup() {
@@ -123,5 +77,77 @@ public class LandingActivity extends AppCompatActivity {
         contactListView.setLayoutManager(new LinearLayoutManager(context));
         contactListView.setItemAnimator(new DefaultItemAnimator());
         contactListView.setAdapter(adapter);
+    }
+
+    private void initializeFabMenu() {
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!floatingButtonMenuState) {
+                    displayFloatingButtonMenu();
+                    fab.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+                } else {
+                    fab.setImageResource(R.mipmap.ic_person_add_white_24dp);
+                    hideFloatingButtonMenu();
+                }
+                floatingButtonMenuState = !floatingButtonMenuState;
+            }
+        });
+
+        fabCamera = (FloatingActionButton) findViewById(R.id.fab_camera);
+        fabCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO launch camera
+            }
+        });
+
+        fabBarcode = (FloatingActionButton) findViewById(R.id.fab_barcode);
+        fabBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO display barcode
+            }
+        });
+    }
+
+    private void displayFloatingButtonMenu() {
+        AlphaAnimation animation1 = new AlphaAnimation(ALPHA_FULLY_TRANSPARENT, ALPHA_OPAQUE);
+        animation1.setDuration(150);
+        AlphaAnimation animation2 = new AlphaAnimation(ALPHA_FULLY_TRANSPARENT, ALPHA_OPAQUE);
+        animation2.setDuration(300);
+
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fabCamera.getLayoutParams();
+        layoutParams.bottomMargin = (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1);
+        layoutParams.rightMargin = (int) (fabCamera.getWidth() * FAB_MENU_MARGIN);
+        fabCamera.setLayoutParams(layoutParams);
+        fabCamera.setVisibility(View.VISIBLE);
+        fabCamera.startAnimation(animation1);
+        fabCamera.setClickable(true);
+
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fabBarcode.getLayoutParams();
+        layoutParams2.bottomMargin = (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2);
+        layoutParams2.rightMargin = (int) (fabBarcode.getWidth() * FAB_MENU_MARGIN);
+        fabBarcode.setLayoutParams(layoutParams2);
+        fabBarcode.setVisibility(View.VISIBLE);
+        fabBarcode.startAnimation(animation2);
+        fabBarcode.setClickable(true);
+    }
+
+
+    private void hideFloatingButtonMenu() {
+        AlphaAnimation animation1 = new AlphaAnimation(ALPHA_OPAQUE, ALPHA_FULLY_TRANSPARENT);
+        animation1.setDuration(150);
+        AlphaAnimation animation2 = new AlphaAnimation(ALPHA_OPAQUE, ALPHA_FULLY_TRANSPARENT);
+        animation2.setDuration(300);
+
+        fabCamera.startAnimation(animation2);
+        fabCamera.setVisibility(View.INVISIBLE);
+        fabCamera.setClickable(false);
+
+        fabBarcode.startAnimation(animation1);
+        fabBarcode.setVisibility(View.INVISIBLE);
+        fabBarcode.setClickable(false);
     }
 }
