@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,8 +16,6 @@ import android.widget.TextView;
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.LandingAdapter;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
-
-import java.io.Serializable;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -32,6 +32,13 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
         startLandingPageSetup();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
     }
 
     private void startLandingPageSetup() {
