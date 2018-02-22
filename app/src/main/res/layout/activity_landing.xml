@@ -85,5 +85,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@mipmap/ic_person_add_white_24dp" />
 
+    <include layout="@layout/fab_menu_layout" />
+
 
 </android.support.design.widget.CoordinatorLayout>

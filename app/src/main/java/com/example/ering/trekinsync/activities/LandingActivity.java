@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.ering.trekinsync.R;
@@ -25,6 +25,13 @@ public class LandingActivity extends AppCompatActivity {
     private RecyclerView contactListView;
     private LandingPresenter presenter;
     private LandingAdapter adapter;
+    private FloatingActionButton fabCamera;
+    private FloatingActionButton fabBarcode;
+
+    private boolean floatingButtonMenuState = false;
+    private static double FAB_MENU_MARGIN = 0.15;
+    private static double FAB_MENU_HEIGHT_1 = 1.75;
+    private static double FAB_MENU_HEIGHT_2 = 3.10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +40,55 @@ public class LandingActivity extends AppCompatActivity {
         context = getApplicationContext();
         startLandingPageSetup();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!floatingButtonMenuState) {
+                    displayFloatingButtonMenu();
+                    fab.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+                } else {
+                    fab.setImageResource(R.mipmap.ic_person_add_white_24dp);
+                    hideFloatingButtonMenu();
+                }
+                floatingButtonMenuState = !floatingButtonMenuState;
             }
         });
+        fabCamera = (FloatingActionButton) findViewById(R.id.fab_camera);
+        fabBarcode = (FloatingActionButton) findViewById(R.id.fab_barcode);
+    }
+
+    private void displayFloatingButtonMenu() {
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fabCamera.getLayoutParams();
+        layoutParams.bottomMargin += (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1);
+        layoutParams.rightMargin += (int) (fabCamera.getWidth() * FAB_MENU_MARGIN);
+        fabCamera.setLayoutParams(layoutParams);
+        fabCamera.setVisibility(View.VISIBLE);
+        fabCamera.setClickable(true);
+
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fabBarcode.getLayoutParams();
+        layoutParams2.bottomMargin += (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2);
+        layoutParams2.rightMargin += (int) (fabBarcode.getWidth() * FAB_MENU_MARGIN);
+        fabBarcode.setLayoutParams(layoutParams2);
+        fabBarcode.setVisibility(View.VISIBLE);
+        fabBarcode.setClickable(true);
+    }
+
+
+    private void hideFloatingButtonMenu() {
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) fabCamera.getLayoutParams();
+        layoutParams.bottomMargin -= (int) (fabCamera.getHeight() * FAB_MENU_HEIGHT_1);
+        layoutParams.rightMargin -= (int) (fabCamera.getWidth() * FAB_MENU_MARGIN);
+        fabCamera.setLayoutParams(layoutParams);
+        fabCamera.setVisibility(View.INVISIBLE);
+        fabCamera.setClickable(false);
+
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) fabBarcode.getLayoutParams();
+        layoutParams2.bottomMargin -= (int) (fabBarcode.getHeight() * FAB_MENU_HEIGHT_2);
+        layoutParams2.rightMargin -= (int) (fabBarcode.getWidth() * FAB_MENU_MARGIN);
+        fabBarcode.setLayoutParams(layoutParams2);
+        fabBarcode.setVisibility(View.INVISIBLE);
+        fabBarcode.setClickable(false);
     }
 
     private void startLandingPageSetup() {
