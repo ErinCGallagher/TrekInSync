@@ -126,7 +126,7 @@ public class LandingPresenter {
         Gson gson = new Gson();
         String json = sharedPref.getString(getKey(R.string.primary_profile_key), "");
         //TODO: check if json is an empty string, display error pop-up and go to create profile view
-        User userObj = gson.fromJson(json, User.class) ;
+        User userObj = gson.fromJson(json, User.class);
         return userObj;
     }
 

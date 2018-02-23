@@ -1,5 +1,6 @@
 package com.example.ering.trekinsync.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.models.User;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -23,11 +26,18 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_qr_code);
 
         imageView = (ImageView) findViewById(R.id.qrcodeview);
-        String text = "erin gallagher hello";
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = bundle.getParcelable("UserObj");
+
+        //TODO remove insurance info from user before encoding
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
 
         //TODO: add loading spinner to show progress
         try {
-            bitmap = encodeToQrCode(text);
+            bitmap = encodeToQrCode(json);
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -66,7 +76,6 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-
         bitmap.setPixels(pixels, 0, QR_CODE_WIDTH, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }

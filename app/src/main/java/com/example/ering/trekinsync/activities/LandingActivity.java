@@ -118,6 +118,7 @@ public class LandingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO: close menu before leaving activity
                 Intent intent = new Intent(context, DisplayQrCodeActivity.class);
+                intent.putExtra("UserObj", presenter.getUser());
                 startActivity(intent);
             }
         });
