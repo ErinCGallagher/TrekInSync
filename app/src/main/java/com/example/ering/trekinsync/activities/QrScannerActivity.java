@@ -1,10 +1,9 @@
 package com.example.ering.trekinsync.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -13,9 +12,7 @@ import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-import static android.content.ContentValues.TAG;
-
-public class QrScannerActivity extends Activity implements ZXingScannerView.ResultHandler {
+public class QrScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
         private ZXingScannerView mScannerView;
         private Context context;
 

@@ -33,13 +33,13 @@ public class LandingActivity extends AppCompatActivity {
     private View dimMenuBackground;
 
     private boolean floatingButtonMenuState = false;
-    private static double FAB_MENU_MARGIN = 0.60;
-    private static double FAB_MENU_HEIGHT_1 = 2.15;
-    private static double FAB_MENU_HEIGHT_2 = 3.45;
-    private static double FAB_MENU_LABEL_HEIGHT = 1.5;
-    private static double FAB_MENU_LABEL_MARGIN = 2.0;
-    private static float ALPHA_FULLY_TRANSPARENT = 0.0f;
-    private static float ALPHA_OPAQUE = 1.0f;
+    private final static double FAB_MENU_MARGIN = 0.60;
+    private final static double FAB_MENU_HEIGHT_1 = 2.15;
+    private final static double FAB_MENU_HEIGHT_2 = 3.45;
+    private final static double FAB_MENU_LABEL_HEIGHT = 1.5;
+    private final static double FAB_MENU_LABEL_MARGIN = 2.0;
+    private final static float ALPHA_FULLY_TRANSPARENT = 0.0f;
+    private final static float ALPHA_OPAQUE = 1.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +106,7 @@ public class LandingActivity extends AppCompatActivity {
         fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: close menu before leaving activity
                 Intent intent = new Intent(context, QrScannerActivity.class);
                 startActivity(intent);
             }
@@ -115,7 +116,9 @@ public class LandingActivity extends AppCompatActivity {
         fabBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO display barcode
+                //TODO: close menu before leaving activity
+                Intent intent = new Intent(context, DisplayQrCodeActivity.class);
+                startActivity(intent);
             }
         });
 
