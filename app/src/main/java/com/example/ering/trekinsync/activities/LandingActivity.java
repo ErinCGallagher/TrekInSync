@@ -106,7 +106,8 @@ public class LandingActivity extends AppCompatActivity {
         fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO launch camera
+                Intent intent = new Intent(context, QrScannerActivity.class);
+                startActivity(intent);
             }
         });
 

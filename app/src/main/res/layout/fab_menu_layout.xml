@@ -48,7 +48,7 @@
         android:id="@+id/fab_barcode_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Barcode"
+        android:text="Show QR Code"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:textColor="#ffffff"
