@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ProfileActivity"></activity>
-        <activity android:name=".activities.QrScannerActivity" />
+        <activity android:name=".activities.QrScannerActivity"></activity>
         <activity android:name=".activities.DisplayQrCodeActivity"></activity>
     </application>
 
