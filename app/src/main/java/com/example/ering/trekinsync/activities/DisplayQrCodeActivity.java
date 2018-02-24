@@ -1,5 +1,6 @@
 package com.example.ering.trekinsync.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -8,9 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
@@ -21,6 +25,11 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class DisplayQrCodeActivity extends AppCompatActivity {
     private final static int QR_CODE_WIDTH = 800 ;
     private ImageView imageView;
@@ -30,10 +39,16 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
     private User user;
     private ProgressBar progressBar;
 
+    private ImageButton calendarButton;
+    private TextView expiryDate;
+    private RadioButton shareInsuranceInfo;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_qr_code);
+        context = getApplicationContext();
 
         imageView = (ImageView) findViewById(R.id.qr_code_view);
         preferencesContainer =  (LinearLayout) findViewById(R.id.preferences_container);
@@ -57,6 +72,12 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
                 }).start();
             }
         });
+
+        calendarButton = (ImageButton) findViewById(R.id.calendar_button);
+        expiryDate = (TextView) findViewById(R.id.date);
+        shareInsuranceInfo = (RadioButton) findViewById(R.id.insurance_button);
+
+        expiryDate.setText("March 15, 2018");
     }
 
     private void generateQrCode() {

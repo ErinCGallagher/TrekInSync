@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ering.trekinsync.activities.DisplayQrCodeActivity"
@@ -14,6 +15,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:layout_margin="15dp"
+        android:background="@drawable/qr_preferences_border"
         android:visibility="visible">
 
         <TextView
@@ -22,12 +24,73 @@
             android:text="QR Code Preferences"
             android:textSize="17dp"
             android:gravity="center"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Share Insurance Information"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end">
+
+                <RadioButton
+                    android:id="@+id/insurance_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Expiry Date"
+                android:layout_gravity="center_vertical"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/qrCodeWhite"
+                    android:layout_gravity="center_vertical"/>
+
+                <ImageButton
+                    android:id="@+id/calendar_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/qrCodeWhite"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/generate_qr_button"
             android:layout_width="220dp"
             android:layout_height="60dp"
+            android:layout_marginTop="20dp"
             android:text="Generate QR Code"/>
 
     </LinearLayout>
