@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,45 @@
     tools:context="com.example.ering.trekinsync.activities.DisplayQrCodeActivity"
     android:gravity="center">
 
-    <ImageView
+    <LinearLayout
+        android:id="@+id/preferences_container"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="15dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="QR Code Preferences"
+            android:textSize="17dp"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/generate_qr_button"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:text="Generate QR Code"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:indeterminate="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/qrcodeview"
-        android:layout_gravity="center_vertical" />
+        style="?android:attr/progressBarStyleLarge"
+        android:gravity="center"
+        android:visibility="invisible"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/qr_code_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"/>
+
+</RelativeLayout>

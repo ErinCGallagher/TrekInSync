@@ -84,6 +84,7 @@ public class LandingActivity extends AppCompatActivity {
         contactListView.setAdapter(adapter);
     }
 
+    //TODO: refactor Fab menu logic
     private void initializeFabMenu() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
