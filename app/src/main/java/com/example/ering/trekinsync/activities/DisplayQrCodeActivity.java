@@ -26,11 +26,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import java.text.DateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-
 public class DisplayQrCodeActivity extends AppCompatActivity {
     private final static int QR_CODE_WIDTH = 800 ;
     private ImageView imageView;
