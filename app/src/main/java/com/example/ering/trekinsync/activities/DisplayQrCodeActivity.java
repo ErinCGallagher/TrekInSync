@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.User;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -58,6 +59,12 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         user = bundle.getParcelable("UserObj");
+        //TODO add insurance info radio button logic
+        //remove insurance information
+        InsuranceCompany[] emptyInsurance = new InsuranceCompany[0];
+        user.setInsuranceInfo(emptyInsurance);
+
+        //TODO add datepicker logic for expiry date
 
         generateQRrButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +83,6 @@ public class DisplayQrCodeActivity extends AppCompatActivity {
         calendarButton = (ImageButton) findViewById(R.id.calendar_button);
         expiryDate = (TextView) findViewById(R.id.date);
         shareInsuranceInfo = (RadioButton) findViewById(R.id.insurance_button);
-
         expiryDate.setText("March 15, 2018");
     }
 
