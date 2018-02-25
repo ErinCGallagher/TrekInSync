@@ -15,7 +15,7 @@ public class SharedPrefsUtils {
      * @param user, User object to generate key for
      * @return String representing the key
      */
-    public static String createTravelContactKey(User user) {
+    public static String getTravelContactKey(User user) {
         String userKey = user.getName() + user.getCitizenship() + user.getAge();
         return userKey.replaceAll("\\s","");
     }
@@ -27,7 +27,7 @@ public class SharedPrefsUtils {
      * @return return String key
      */
     public static String getKey(Context context, User user) {
-        return getKey(context, createTravelContactKey(user));
+        return getKey(context, getTravelContactKey(user));
     }
 
     /**

@@ -2,26 +2,34 @@ package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.StringRes;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
-import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
+import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class ProfilePresenter {
     private User user;
     private Context context;
+    private ProfileView view;
 
     /**
      * Create Profile Presenter for Business logic
      */
-    public ProfilePresenter (User user, Context context) {
+    public ProfilePresenter (User user, Context context, ProfileView view) {
         this.context = context;
         this.user = user;
-        //take in view interface
+        this.view = view;
     }
 
     //Section Title Data
@@ -118,6 +126,43 @@ public class ProfilePresenter {
     public InsuranceCompany[] getInsuranceCompanies() {
         //TODO null check
         return user.getInsuranceInfo();
+    }
+
+    public void handleMenuSetup(Menu menu) {
+        if (user != null && user.getIsPersonalProfile()) {
+            MenuItem item = menu.findItem(R.id.action_delete);
+            item.setVisible(false);
+        } else {
+            MenuItem item = menu.findItem(R.id.action_edit);
+            item.setVisible(false);
+        }
+        view.refreshMenu();
+    }
+
+    public void handleEditProfileButtonClick() {
+        //TODO: start edit profile flow
+    }
+
+    public void handleDeleteProfileButtonClick() {
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Type listType = new TypeToken<List<String>>() {}.getType();
+        Gson gson = new Gson();
+
+        //retrieve list of travel contact key names in shared preferences
+        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), "");
+        List<String> contactKeyNames = gson.fromJson(json, listType);
+
+        //Remove key from list and put back in shared preferences
+        contactKeyNames.remove(SharedPrefsUtils.getTravelContactKey(user));
+        String jsonKeyNames = gson.toJson(contactKeyNames);
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), jsonKeyNames);
+
+        //remove user data from shared preferences
+        editor.remove(SharedPrefsUtils.getKey(context, user));
+        editor.apply();
+        Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
+        view.launchLandingPage();
     }
 }
 

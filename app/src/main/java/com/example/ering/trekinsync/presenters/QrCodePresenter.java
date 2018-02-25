@@ -36,7 +36,7 @@ public class QrCodePresenter {
      * Generates a QR code given the user data.
      */
     public void handleGenerateQrCodeButtonTap() {
-        //TODO add functionality t handle user preferences for qr code generation
+        //TODO add functionality to handle user preferences for qr code generation
         view.showProgressSpinner();
         view.hidePreferencesContainer();
         new Thread(new Runnable() {

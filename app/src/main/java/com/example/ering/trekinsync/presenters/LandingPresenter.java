@@ -181,7 +181,7 @@ public class LandingPresenter {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
         Gson gson = new Gson();
-        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American"));
+        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American", true));
         editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
         editor.apply();
 
@@ -193,14 +193,14 @@ public class LandingPresenter {
         SharedPreferences.Editor editor = sharedPref.edit();
         Gson gson = new Gson();
 
-        User testUser1 = getTestUserObject("Christina Chan", "Canadian");
-        User testUser2 = getTestUserObject("Laura Brooks", "British");
-        User testUser3 = getTestUserObject("Lexi Flynn", "Mexican");
+        User testUser1 = getTestUserObject("Christina Chan", "Canadian", false);
+        User testUser2 = getTestUserObject("Laura Brooks", "British", false);
+        User testUser3 = getTestUserObject("Lexi Flynn", "Mexican", false);
 
         List<String> contactKeys = new ArrayList<>();
-        contactKeys.add(SharedPrefsUtils.createTravelContactKey(testUser1));
-        contactKeys.add(SharedPrefsUtils.createTravelContactKey(testUser2));
-        contactKeys.add(SharedPrefsUtils.createTravelContactKey(testUser3));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser2));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser3));
         String json = gson.toJson(contactKeys);
         editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
 
@@ -218,7 +218,7 @@ public class LandingPresenter {
     }
 
     //TODO remove once create profile flow completed
-    private User getTestUserObject(String name, String citizenship) {
+    private User getTestUserObject(String name, String citizenship, boolean isPersonalProfile) {
         PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
         PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
         PolicyInfo[] policyInfoArray = new PolicyInfo[2];
@@ -235,7 +235,7 @@ public class LandingPresenter {
         emergencyContactArray[0] = emergencyContact;
         emergencyContactArray[1] = emergencyContact2;
 
-        User user = new User(true,
+        User user = new User(isPersonalProfile,
                 name,
                 "March 23, 1994",
                 13,

@@ -62,6 +62,7 @@ public class QrScannerPresenter {
         User userObj= null;
         try {
             userObj = gson.fromJson(data, User.class);
+            userObj.setIsPersonalProfile(false);
         } catch(Exception e) {
             Toast.makeText(context, "Unable to retrieve Travel Contact Details From QR code ", Toast.LENGTH_LONG).show();
         }
@@ -74,6 +75,7 @@ public class QrScannerPresenter {
      * @return true if user data exists on device, otherwise false
      */
     private boolean checkIfContactExists(User userObj) {
+        //TODO: don't instantiate shared preferences twice
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData", Context.MODE_PRIVATE);
         String contactJson = sharedPref.getString(SharedPrefsUtils.getKey(context, userObj), "false");
 
@@ -85,6 +87,7 @@ public class QrScannerPresenter {
     }
 
     private void addContactToSharedPrefs(User userObj) {
+        //TODO: don't instantiate shared preferences twice
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Type listType = new TypeToken<List<String>>() {}.getType();
@@ -95,7 +98,7 @@ public class QrScannerPresenter {
         List<String> contactKeyNames = gson.fromJson(json, listType);
 
         //Add new key name to list and put back in shared preferences
-        contactKeyNames.add(SharedPrefsUtils.createTravelContactKey(userObj));
+        contactKeyNames.add(SharedPrefsUtils.getTravelContactKey(userObj));
         String jsonKeyNames = gson.toJson(contactKeyNames);
         editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), jsonKeyNames);
 

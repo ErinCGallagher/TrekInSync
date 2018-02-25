@@ -33,6 +33,10 @@ public class User implements Parcelable {
         return isPersonalProfile;
     }
 
+    public void setIsPersonalProfile(boolean isPersonalProfile) {
+        this.isPersonalProfile = isPersonalProfile;
+    }
+
     public String getName() {
         return name;
     }

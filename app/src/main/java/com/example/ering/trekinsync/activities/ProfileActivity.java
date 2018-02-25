@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements ProfileView{
 
     private ProfilePresenter presenter;
     private ProfileAdapter adapter;
@@ -30,12 +33,41 @@ public class ProfileActivity extends AppCompatActivity {
         startPersonalProfileFlow();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        presenter.handleMenuSetup(menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_delete) {
+            presenter.handleDeleteProfileButtonClick();
+        } else if (id == R.id.action_edit) {
+            presenter.handleEditProfileButtonClick();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void refreshMenu() {
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void launchLandingPage() {
+        Intent intent = new Intent(context, LandingActivity.class);
+        startActivity(intent);
+    }
+
     private void startPersonalProfileFlow() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         User user = bundle.getParcelable("UserObj");
         //setup presenter
-        presenter = new ProfilePresenter(user, context);
+        presenter = new ProfilePresenter(user, context, this);
         String actionBarTitle = presenter.getActionBarTitle();
         actionBar.setTitle(actionBarTitle);
 
@@ -51,5 +83,4 @@ public class ProfileActivity extends AppCompatActivity {
         profileListView.setItemAnimator(new DefaultItemAnimator());
         profileListView.setAdapter(adapter);
     }
-
 }
