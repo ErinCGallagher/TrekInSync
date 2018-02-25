@@ -18,6 +18,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class LandingPresenter {
@@ -236,6 +237,7 @@ public class LandingPresenter {
         emergencyContactArray[1] = emergencyContact2;
 
         User user = new User(isPersonalProfile,
+                "Mar 14, 2018",
                 name,
                 "March 23, 1994",
                 13,

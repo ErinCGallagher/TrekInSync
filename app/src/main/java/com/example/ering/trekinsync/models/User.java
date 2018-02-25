@@ -4,10 +4,15 @@ package com.example.ering.trekinsync.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User implements Parcelable {
     private boolean isPersonalProfile;
+    private String contactExpiryDate;
     private String name;
-    private String birthDate; //TODO: convert to date object
+    private String birthDate;
     private int age;
     private String citizenship;
     private String bloodType;
@@ -16,8 +21,11 @@ public class User implements Parcelable {
     private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
-    public User(boolean isPersonalProfile, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
+    private transient SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
+
+    public User(boolean isPersonalProfile, String contactExpiryDate, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
         this.isPersonalProfile = isPersonalProfile;
+        this.contactExpiryDate = contactExpiryDate;
         this.name = name;
         this.birthDate = birthDate;
         this.age = age;
@@ -37,6 +45,21 @@ public class User implements Parcelable {
         this.isPersonalProfile = isPersonalProfile;
     }
 
+    public Date getContactExpiryDate() {
+        Date date = null;
+        try {
+            date = formatter.parse(contactExpiryDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date != null ? date : new Date();
+    }
+
+    public String getFormattedExpiryDate() {
+        return contactExpiryDate;
+    }
+
     public String getName() {
         return name;
     }
@@ -49,8 +72,8 @@ public class User implements Parcelable {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = formatter.format(birthDate);
     }
 
     public int getAge() {
@@ -116,6 +139,7 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         isPersonalProfile = in.readInt() != 0;
+        contactExpiryDate = in.readString();
         name = in.readString();
         birthDate = in.readString();
         age = in.readInt();
@@ -147,6 +171,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeInt((isPersonalProfile ? 1 : 0));
+        parcel.writeString(contactExpiryDate);
         parcel.writeString(name);
         parcel.writeString(birthDate);
         parcel.writeInt(age);
