@@ -28,15 +28,18 @@ public class QrCodePresenter {
     public QrCodePresenter(Context context, QrCodeView view, User user) {
         this.context = context;
         this.view = view;
-        this.user = removeInsuranceInformation(user);
+        this.user = user;
     }
 
     /**
      * Handle Generate QR code button tap given set preferences by user.
      * Generates a QR code given the user data.
      */
-    public void handleGenerateQrCodeButtonTap() {
+    public void handleGenerateQrCodeButtonTap(boolean shareInsuranceInfoChecked, String expiryDateValue) {
         //TODO add functionality to handle user preferences for qr code generation
+        if (!shareInsuranceInfoChecked) {
+            removeInsuranceInformation();
+        }
         view.showProgressSpinner();
         view.hidePreferencesContainer();
         new Thread(new Runnable() {
@@ -49,14 +52,12 @@ public class QrCodePresenter {
 
     /**
      * Removes the insurance information data from the User object.
-     * @param user, user Object Model
      * @return User object model with empty insurance information
      */
-    private User removeInsuranceInformation(User user) {
+    private void removeInsuranceInformation() {
         //remove insurance information
         InsuranceCompany[] emptyInsurance = new InsuranceCompany[0];
         user.setInsuranceInfo(emptyInsurance);
-        return user;
     }
 
     private void generateQrCode() {
