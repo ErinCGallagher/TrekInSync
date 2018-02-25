@@ -132,6 +132,10 @@ public class ProfilePresenter {
         return user.getInsuranceInfo();
     }
 
+    /**
+     * Handle Menu setup with edit button for personal profile, otherwise delete button.
+     * @param menu, return menu for display
+     */
     public void handleMenuSetup(Menu menu) {
         if (user != null && user.getIsPersonalProfile()) {
             MenuItem item = menu.findItem(R.id.action_delete);
@@ -147,16 +151,26 @@ public class ProfilePresenter {
         //TODO: start edit profile flow
     }
 
+    /**
+     * Launch delete confirmation dialog to confirm user wants to delete contact.
+     */
     public void handleDeleteProfileButtonClick() {
         view.launchConfirmationAlert();
     }
 
+    /**
+     * Remove contact from shared preferences, display success toast and then launch landing page.
+     */
     public void handleDeleteContactConfirmation() {
         deleteContact();
         Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
         view.launchLandingPage();
     }
 
+    /**
+     * Remove contact key from travel contact key list in shared preferences and then remove contact
+     * data from shared preferences.
+     */
     private void deleteContact() {
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
