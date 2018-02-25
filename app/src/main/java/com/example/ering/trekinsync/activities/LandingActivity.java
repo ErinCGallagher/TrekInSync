@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.LandingAdapter;
+import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
 
-public class LandingActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
     private Context context;
     private TextView profileName;
@@ -60,8 +62,8 @@ public class LandingActivity extends AppCompatActivity {
 
         //setup adapter
         adapter = new LandingAdapter(getApplicationContext(), presenter);
-        adapter.buildRows();
         initRecyclerView();
+        adapter.buildRows();
 
         profileName.setText(presenter.getUser().getName());
         personalProfileLink.setText("View Profile >");
@@ -82,6 +84,12 @@ public class LandingActivity extends AppCompatActivity {
         contactListView.setLayoutManager(new LinearLayoutManager(context));
         contactListView.setItemAnimator(new DefaultItemAnimator());
         contactListView.setAdapter(adapter);
+        adapter.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v, int position) {
+        Toast.makeText(context, "Clicked position: " + position, Toast.LENGTH_LONG).show();
     }
 
     //TODO: refactor Fab menu logic
