@@ -2,10 +2,10 @@ package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.StringRes;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.LandingView;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
@@ -26,13 +26,15 @@ public class LandingPresenter {
     private List<User> contacts;
     private SharedPreferences sharedPref;
     private Context context;
+    private LandingView view;
 
     /**
      * Create Profile Presenter for Business logic
      */
-    public LandingPresenter (SharedPreferences sharedPref, Context context) {
+    public LandingPresenter (SharedPreferences sharedPref, Context context, LandingView view) {
         this.sharedPref = sharedPref;
         this.context = context;
+        this.view = view;
 
         this.user = retrievePersonalProfileData();
         if (this.user == null ) {
@@ -56,6 +58,11 @@ public class LandingPresenter {
 
     public List<User> getTravelContacts() {
         return contacts;
+    }
+
+    public void handleTravelContactClick(int position) {
+        User selectedContact = contacts.get(position-1);
+        view.launchProfilePage(selectedContact);
     }
 
 
@@ -240,5 +247,4 @@ public class LandingPresenter {
                 insuranceCompanyArray);
         return user;
     }
-
 }

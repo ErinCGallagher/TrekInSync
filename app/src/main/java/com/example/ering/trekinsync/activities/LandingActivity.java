@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,10 +18,12 @@ import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.LandingAdapter;
+import com.example.ering.trekinsync.interfaces.LandingView;
 import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
+import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
 
-public class LandingActivity extends AppCompatActivity implements RecyclerViewClickListener {
+public class LandingActivity extends AppCompatActivity implements RecyclerViewClickListener, LandingView {
 
     private Context context;
     private TextView profileName;
@@ -58,7 +61,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
 
         //setup presenter
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
-        presenter = new LandingPresenter(sharedPref, context);
+        presenter = new LandingPresenter(sharedPref, context, this);
 
         //setup adapter
         adapter = new LandingAdapter(getApplicationContext(), presenter);
@@ -89,7 +92,14 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
 
     @Override
     public void onClick(View v, int position) {
-        Toast.makeText(context, "Clicked position: " + position, Toast.LENGTH_LONG).show();
+        presenter.handleTravelContactClick(position);
+    }
+
+    @Override
+    public void launchProfilePage(@NonNull User user) {
+        Intent intent = new Intent(context, ProfileActivity.class);
+        intent.putExtra("UserObj", user);
+        startActivity(intent);
     }
 
     //TODO: refactor Fab menu logic

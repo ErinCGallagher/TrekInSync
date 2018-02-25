@@ -2,7 +2,6 @@ package com.example.ering.trekinsync.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,12 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
-import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
-public class ProfileActivity extends AppCompatActivity implements ProfileView {
+public class ProfileActivity extends AppCompatActivity {
 
     private ProfilePresenter presenter;
     private ProfileAdapter adapter;
