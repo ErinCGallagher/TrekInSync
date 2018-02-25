@@ -54,7 +54,16 @@ public class LandingActivity extends AppCompatActivity {
         profileName = (TextView) findViewById(R.id.profile_name);
         personalProfileLink = (TextView) findViewById(R.id.profile_link);
 
-        profileName.setText("Erin Gallagher");
+        //setup presenter
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        presenter = new LandingPresenter(sharedPref, context);
+
+        //setup adapter
+        adapter = new LandingAdapter(getApplicationContext(), presenter);
+        adapter.buildRows();
+        initRecyclerView();
+
+        profileName.setText(presenter.getUser().getName());
         personalProfileLink.setText("View Profile >");
 
         personalProfileLink.setOnClickListener(new View.OnClickListener() {
@@ -66,15 +75,6 @@ public class LandingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //setup presenter
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
-        presenter = new LandingPresenter(sharedPref, context);
-
-        //setup adapter
-        adapter = new LandingAdapter(getApplicationContext(), presenter);
-        adapter.buildRows();
-        initRecyclerView();
     }
 
     private void initRecyclerView() {
