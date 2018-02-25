@@ -56,9 +56,6 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     }
 
     private void startLandingPageSetup() {
-        profileName = (TextView) findViewById(R.id.profile_name);
-        personalProfileLink = (TextView) findViewById(R.id.profile_link);
-
         //setup presenter
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         presenter = new LandingPresenter(sharedPref, context, this);
@@ -67,6 +64,21 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         adapter = new LandingAdapter(getApplicationContext(), presenter);
         initRecyclerView();
         adapter.buildRows();
+
+        setUpProfileHeader();
+    }
+
+    private void initRecyclerView() {
+        contactListView = (RecyclerView) findViewById(R.id.contact_recycler_view);
+        contactListView.setLayoutManager(new LinearLayoutManager(context));
+        contactListView.setItemAnimator(new DefaultItemAnimator());
+        contactListView.setAdapter(adapter);
+        adapter.setClickListener(this);
+    }
+
+    private void setUpProfileHeader() {
+        profileName = (TextView) findViewById(R.id.profile_name);
+        personalProfileLink = (TextView) findViewById(R.id.profile_link);
 
         profileName.setText(presenter.getUser().getName());
         personalProfileLink.setText("View Profile >");
@@ -82,14 +94,6 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         });
     }
 
-    private void initRecyclerView() {
-        contactListView = (RecyclerView) findViewById(R.id.contact_recycler_view);
-        contactListView.setLayoutManager(new LinearLayoutManager(context));
-        contactListView.setItemAnimator(new DefaultItemAnimator());
-        contactListView.setAdapter(adapter);
-        adapter.setClickListener(this);
-    }
-
     @Override
     public void onClick(View v, int position) {
         presenter.handleTravelContactClick(position);
@@ -101,6 +105,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         intent.putExtra("UserObj", user);
         startActivity(intent);
     }
+
 
     //TODO: refactor Fab menu logic
     private void initializeFabMenu() {
