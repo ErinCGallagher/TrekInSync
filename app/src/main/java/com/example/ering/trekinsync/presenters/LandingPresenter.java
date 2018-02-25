@@ -16,6 +16,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LandingPresenter {
@@ -37,6 +39,11 @@ public class LandingPresenter {
             //TODO start Error flow and recreation of user profile
         }
         this.contacts = retrieveTravelContacts();
+        if (this.contacts != null && !contacts.isEmpty()) {
+            sortTravelContacts();
+        } else {
+            //TODO: display no travel contacts UI
+        }
     }
 
     public String getSectionTitle() {
@@ -53,6 +60,18 @@ public class LandingPresenter {
 
 
     /* Private Functions */
+
+    /**
+     * sort the contacts by citizenship and then by name.
+     */
+    private void sortTravelContacts() {
+        Collections.sort(this.contacts, new Comparator<User>(){
+            public int compare(User obj1, User obj2) {
+                // ## Ascending order
+                return obj1.getSortingString().compareToIgnoreCase(obj2.getSortingString());
+            }
+        });
+    }
 
     /**
      * Retrieves the User's profile data from shared preferences if exists, otherwise start user

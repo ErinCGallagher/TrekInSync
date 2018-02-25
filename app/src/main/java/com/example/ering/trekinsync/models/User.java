@@ -105,6 +105,11 @@ public class User implements Parcelable {
         this.insuranceInfo = insuranceInfo;
     }
 
+    public String getSortingString() {
+        String key = citizenship + name;
+        return key.replaceAll("\\s","");
+    }
+
     protected User(Parcel in) {
         isPersonalProfile = in.readInt() != 0;
         name = in.readString();
