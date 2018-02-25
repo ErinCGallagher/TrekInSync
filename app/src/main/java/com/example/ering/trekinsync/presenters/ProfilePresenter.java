@@ -51,7 +51,11 @@ public class ProfilePresenter {
 
     //General Info Section
     public String getActionBarTitle() {
-        return context.getString(R.string.profile_action_bar_title);
+        if (user != null && user.getIsPersonalProfile()) {
+            return context.getString(R.string.personal_profile_action_bar_title);
+        } else {
+            return context.getString(R.string.travel_contact_profile_action_bar_title);
+        }
     }
 
     public String getFullNameLabel() {
@@ -144,6 +148,16 @@ public class ProfilePresenter {
     }
 
     public void handleDeleteProfileButtonClick() {
+        view.launchConfirmationAlert();
+    }
+
+    public void handleDeleteContactConfirmation() {
+        deleteContact();
+        Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
+        view.launchLandingPage();
+    }
+
+    private void deleteContact() {
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Type listType = new TypeToken<List<String>>() {}.getType();
@@ -161,8 +175,6 @@ public class ProfilePresenter {
         //remove user data from shared preferences
         editor.remove(SharedPrefsUtils.getKey(context, user));
         editor.apply();
-        Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
-        view.launchLandingPage();
     }
 }
 

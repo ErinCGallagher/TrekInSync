@@ -6,4 +6,5 @@ package com.example.ering.trekinsync.interfaces;
 public interface ProfileView {
     void refreshMenu();
     void launchLandingPage();
+    void launchConfirmationAlert();
 }

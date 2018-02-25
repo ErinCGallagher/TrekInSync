@@ -1,8 +1,10 @@
 package com.example.ering.trekinsync.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,6 +62,28 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
     public void launchLandingPage() {
         Intent intent = new Intent(context, LandingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void launchConfirmationAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.delete_profile_alert_message)
+                .setTitle(R.string.delete_profile_alert_title);
+
+        builder.setPositiveButton(R.string.delete_alert_positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                presenter.handleDeleteContactConfirmation();
+            }
+        });
+        builder.setNegativeButton(R.string.delete_alert_Negative, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                //dismiss dialog
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void startPersonalProfileFlow() {

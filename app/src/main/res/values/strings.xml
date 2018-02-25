@@ -15,7 +15,8 @@
     <string name="insurance_section_title">INSURANCE INFO</string>
 
     //profile attribute label strings
-    <string name="profile_action_bar_title">Personal Profile</string>
+    <string name="personal_profile_action_bar_title">Personal Profile</string>
+    <string name="travel_contact_profile_action_bar_title">Travel Contact Profile</string>
     <string name="full_name_label">Full Name</string>
     <string name="birth_date_label">Birth Date</string>
     <string name="age_label">Age</string>
@@ -24,4 +25,10 @@
     <string name="allergies_label">Allergies</string>
     <string name="medication_label">Medication</string>
     <string name="call_first_label">Call First</string>
+
+    //profile Alert
+    <string name="delete_profile_alert_title">Delete Contact</string>
+    <string name="delete_profile_alert_message">Are you sure you want to delete this travel contact?</string>
+    <string name="delete_alert_positive">Yes, Delete</string>
+    <string name="delete_alert_Negative">No, Go Back</string>
 </resources>
