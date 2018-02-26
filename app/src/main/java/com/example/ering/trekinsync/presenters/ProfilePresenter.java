@@ -162,33 +162,13 @@ public class ProfilePresenter {
      * Remove contact from shared preferences, display success toast and then launch landing page.
      */
     public void handleDeleteContactConfirmation() {
-        deleteContact();
-        Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
+        boolean result = SharedPrefsUtils.removeTravelContact(context, user);
+        if (result) {
+            Toast.makeText(context, "Contact " + user.getName() + " was deleted successfully", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "An Error occurred while trying to delete travel contact " + user.getName(), Toast.LENGTH_LONG).show();
+        }
         view.launchLandingPage();
-    }
-
-    /**
-     * Remove contact key from travel contact key list in shared preferences and then remove contact
-     * data from shared preferences.
-     */
-    private void deleteContact() {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Type listType = new TypeToken<List<String>>() {}.getType();
-        Gson gson = new Gson();
-
-        //retrieve list of travel contact key names in shared preferences
-        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), "");
-        List<String> contactKeyNames = gson.fromJson(json, listType);
-
-        //Remove key from list and put back in shared preferences
-        contactKeyNames.remove(SharedPrefsUtils.getTravelContactKey(user));
-        String jsonKeyNames = gson.toJson(contactKeyNames);
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), jsonKeyNames);
-
-        //remove user data from shared preferences
-        editor.remove(SharedPrefsUtils.getKey(context, user));
-        editor.apply();
     }
 }
 

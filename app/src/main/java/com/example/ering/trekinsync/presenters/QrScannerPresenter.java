@@ -35,7 +35,7 @@ public class QrScannerPresenter {
     public void handleQrCodeScanResults(String results) {
         User userObj = convertToUserObject(results);
 
-        if (userObj != null && checkIfContactExists(userObj)) {
+        if (userObj != null && SharedPrefsUtils.checkIfContactExists(context, userObj)) {
             addContactToSharedPrefs(userObj);
         } else {
             Toast.makeText(context, "This travel contact already exists on your device.", Toast.LENGTH_LONG).show();
@@ -67,23 +67,6 @@ public class QrScannerPresenter {
             Toast.makeText(context, "Unable to retrieve Travel Contact Details From QR code ", Toast.LENGTH_LONG).show();
         }
         return userObj;
-    }
-
-    /**
-     * Check if travel contact key exists in shared preferences.
-     * @param userObj, object representing user data
-     * @return true if user data exists on device, otherwise false
-     */
-    private boolean checkIfContactExists(User userObj) {
-        //TODO: don't instantiate shared preferences twice
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData", Context.MODE_PRIVATE);
-        String contactJson = sharedPref.getString(SharedPrefsUtils.getKey(context, userObj), "false");
-
-        if (contactJson == "false") {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private void addContactToSharedPrefs(User userObj) {
