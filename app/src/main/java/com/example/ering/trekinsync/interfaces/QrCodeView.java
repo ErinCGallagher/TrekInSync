@@ -10,4 +10,5 @@ public interface QrCodeView {
     void hideProgressSpinner();
     void hidePreferencesContainer();
     void setQrCodeBitmap(Bitmap bitmap);
+    void setExpiryDateText(String expiryDate);
 }

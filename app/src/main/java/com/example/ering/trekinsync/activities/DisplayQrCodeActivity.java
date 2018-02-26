@@ -1,5 +1,7 @@
 package com.example.ering.trekinsync.activities;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +21,9 @@ import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.QrCodeView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.QrCodePresenter;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeView{
     private ImageView imageView;
@@ -60,9 +66,32 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         });
 
         //TODO add datepicker logic for expiry date
-        expiryDate.setText(presenter.getDefaultExpiryDate());
+        expiryDate.setText(presenter.getDefaultFormattedExpiryDate());
 
         //TODO add insurance info radio button logic
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+    }
+
+    public void showDatePickerDialog(View v) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(presenter.getExpiryDate());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                presenter.handleExpiryDateChange(year, month, dayOfMonth);
+            }
+        }, year, month, day);
+        datePicker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePicker.show();
     }
 
 
@@ -86,5 +115,10 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
     @Override
     public void setQrCodeBitmap(Bitmap bitmap) {
         imageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void setExpiryDateText(String expiryDateText) {
+        expiryDate.setText(expiryDateText);
     }
 }

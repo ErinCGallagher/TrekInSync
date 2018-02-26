@@ -28,12 +28,22 @@ public class QrCodePresenter {
     private QrCodeView view;
     private Bitmap bitmap ;
     private User user;
+    private Date expiryDate;
     private SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
 
     public QrCodePresenter(Context context, QrCodeView view, User user) {
         this.context = context;
         this.view = view;
         this.user = user;
+        setDefaultExpiryDate();
+    }
+
+    public String getDefaultFormattedExpiryDate() {
+        return formatter.format(expiryDate);
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
     }
 
     /**
@@ -59,13 +69,31 @@ public class QrCodePresenter {
         }).start();
     }
 
-    public String getDefaultExpiryDate() {
-        int twoWeeks = 14; //i.e two weeks
+    /**
+     * Given date details, update the expiry date.
+     * @param year, year represented as int
+     * @param month, month represented as int
+     * @param dayOfMonth, day of the moth represented as int
+     */
+    public void handleExpiryDateChange(int year, int month, int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        this.expiryDate = calendar.getTime();
+        view.setExpiryDateText(formatter.format(expiryDate));
+    }
+
+
+    /* Private Functions */
+
+    /**
+     * Set the default expiry date to be 2 weeks from the current day.
+     */
+    private void setDefaultExpiryDate() {
+        int twoWeeks = 14;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.DAY_OF_YEAR, twoWeeks);
-        Date date = calendar.getTime();
-        return formatter.format(date);
+        this.expiryDate = calendar.getTime();
     }
 
     /**
