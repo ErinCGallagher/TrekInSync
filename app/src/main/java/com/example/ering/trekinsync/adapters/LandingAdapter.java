@@ -1,7 +1,5 @@
 package com.example.ering.trekinsync.adapters;
 
-import android.content.Context;
-
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.ContactCellRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
@@ -14,18 +12,15 @@ import java.util.List;
 
 public class LandingAdapter extends BaseAdapter {
 
-    private final Context ctx;
     private final LandingPresenter presenter;
     private final ArrayList<BaseDataBinder> listItems;
     private RecyclerViewClickListener clickListener;
 
     /**
      * Create an adapter to display travel contact cells
-     * @param context
      * @param profilePresenter
      */
-    public LandingAdapter(Context context, LandingPresenter profilePresenter) {
-        ctx = context;
+    public LandingAdapter(LandingPresenter profilePresenter) {
         presenter = profilePresenter;
         listItems = new ArrayList<>();
     }

@@ -96,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
         actionBar.setTitle(actionBarTitle);
 
         //setup adapter
-        adapter = new ProfileAdapter(getApplicationContext(), presenter);
+        adapter = new ProfileAdapter(presenter);
         adapter.buildRows();
         initRecyclerView();
     }

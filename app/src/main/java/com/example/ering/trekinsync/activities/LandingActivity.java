@@ -61,7 +61,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         presenter = new LandingPresenter(sharedPref, context, this);
 
         //setup adapter
-        adapter = new LandingAdapter(getApplicationContext(), presenter);
+        adapter = new LandingAdapter(presenter);
         initRecyclerView();
         adapter.buildRows();
 
