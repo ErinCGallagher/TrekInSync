@@ -21,7 +21,7 @@ public class User implements Parcelable {
     private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
-    private transient SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
+    private static final String DATE_PATTERN = "MMM d, yyyy";
 
     public User(boolean isPersonalProfile, String contactExpiryDate, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
         this.isPersonalProfile = isPersonalProfile;
@@ -46,11 +46,14 @@ public class User implements Parcelable {
     }
 
     public Date getContactExpiryDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
         Date date = null;
-        try {
-            date = formatter.parse(contactExpiryDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (contactExpiryDate != null) {
+            try {
+                date = formatter.parse(contactExpiryDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
 
         return date != null ? date : new Date();
@@ -58,6 +61,10 @@ public class User implements Parcelable {
 
     public String getFormattedExpiryDate() {
         return contactExpiryDate;
+    }
+
+    public void setContactExpiryDate(String expiryDate) {
+        this.contactExpiryDate = expiryDate;
     }
 
     public String getName() {
@@ -73,6 +80,7 @@ public class User implements Parcelable {
     }
 
     public void setBirthDate(Date birthDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
         this.birthDate = formatter.format(birthDate);
     }
 

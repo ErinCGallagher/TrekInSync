@@ -2,6 +2,7 @@ package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.format.DateUtils;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class LandingPresenter {
@@ -43,6 +45,7 @@ public class LandingPresenter {
         }
         this.contacts = retrieveTravelContacts();
         if (this.contacts != null && !contacts.isEmpty()) {
+            removeExpiredContacts();
             sortTravelContacts();
         } else {
             //TODO: display no travel contacts UI
@@ -68,6 +71,29 @@ public class LandingPresenter {
 
 
     /* Private Functions */
+
+    /**
+     * Iterate over travel contacts and remove any that have expired.
+     * If the contact expiry date is today or after today the contact is considered expired.
+     */
+    private void removeExpiredContacts() {
+        int numContactsExpired = 0;
+        Date dateToday = new Date();
+        for (Iterator<User> it = contacts.iterator(); it.hasNext();) {
+            User contact = it.next();
+            Date contactExpiryDate = contact.getContactExpiryDate();
+            if (dateToday.after(contactExpiryDate) || DateUtils.isToday(contactExpiryDate.getTime())) {
+                boolean result = SharedPrefsUtils.removeTravelContact(context, contact);
+                if (result) {
+                    it.remove();
+                    numContactsExpired++;
+                }
+            }
+        }
+        if (numContactsExpired > 0) {
+            Toast.makeText(context, "Removed " + numContactsExpired + " expired contacts", Toast.LENGTH_LONG).show();
+        }
+    }
 
     /**
      * sort the contacts by citizenship and then by name.

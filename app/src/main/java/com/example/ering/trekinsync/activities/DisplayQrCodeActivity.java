@@ -60,7 +60,7 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         });
 
         //TODO add datepicker logic for expiry date
-        expiryDate.setText("March 15, 2018");
+        expiryDate.setText(presenter.getDefaultExpiryDate());
 
         //TODO add insurance info radio button logic
     }

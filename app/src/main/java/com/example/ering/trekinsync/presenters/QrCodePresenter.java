@@ -17,6 +17,10 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class QrCodePresenter {
     private final static int QR_CODE_WIDTH = 800 ;
 
@@ -24,6 +28,7 @@ public class QrCodePresenter {
     private QrCodeView view;
     private Bitmap bitmap ;
     private User user;
+    private SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy");
 
     public QrCodePresenter(Context context, QrCodeView view, User user) {
         this.context = context;
@@ -36,10 +41,14 @@ public class QrCodePresenter {
      * Generates a QR code given the user data.
      */
     public void handleGenerateQrCodeButtonTap(boolean shareInsuranceInfoChecked, String expiryDateValue) {
-        //TODO add functionality to handle user preferences for qr code generation
         if (!shareInsuranceInfoChecked) {
             removeInsuranceInformation();
         }
+
+        if (expiryDateValue != null) {
+            user.setContactExpiryDate(expiryDateValue);
+        }
+
         view.showProgressSpinner();
         view.hidePreferencesContainer();
         new Thread(new Runnable() {
@@ -48,6 +57,15 @@ public class QrCodePresenter {
                 generateQrCode();
             }
         }).start();
+    }
+
+    public String getDefaultExpiryDate() {
+        int twoWeeks = 14; //i.e two weeks
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_YEAR, twoWeeks);
+        Date date = calendar.getTime();
+        return formatter.format(date);
     }
 
     /**
