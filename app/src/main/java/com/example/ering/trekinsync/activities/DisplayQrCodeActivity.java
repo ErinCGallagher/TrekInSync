@@ -57,24 +57,7 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         user = bundle.getParcelable("UserObj");
         presenter = new QrCodePresenter(context, this, user);
 
-
-        generateQRrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.handleGenerateQrCodeButtonTap(shareInsuranceInfo.isChecked(), expiryDate.getText().toString());
-            }
-        });
-
-        //TODO add datepicker logic for expiry date
-        expiryDate.setText(presenter.getDefaultFormattedExpiryDate());
-
-        //TODO add insurance info radio button logic
-        calendarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(v);
-            }
-        });
+        setUpOnClickListeners();
     }
 
     public void showDatePickerDialog(View v) {
@@ -120,5 +103,23 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
     @Override
     public void setExpiryDateText(String expiryDateText) {
         expiryDate.setText(expiryDateText);
+    }
+
+    private void setUpOnClickListeners() {
+        generateQRrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.handleGenerateQrCodeButtonTap(shareInsuranceInfo.isChecked(), expiryDate.getText().toString());
+            }
+        });
+
+        expiryDate.setText(presenter.getDefaultFormattedExpiryDate());
+
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
     }
 }
