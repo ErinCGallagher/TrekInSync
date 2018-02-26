@@ -77,6 +77,6 @@ public class InsuranceCompany implements Parcelable{
         parcel.writeString(name);
         parcel.writeString(phoneNumber);
         parcel.writeInt((callFirst ? 1 : 0));
-        parcel.writeParcelableArray(policyInfo, flags);
+        parcel.writeTypedArray(policyInfo, flags);
     }
 }
