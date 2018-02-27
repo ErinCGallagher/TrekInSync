@@ -7,4 +7,5 @@ public interface ProfileView {
     void refreshMenu();
     void launchLandingPage();
     void launchConfirmationAlert();
+    void launchEditProfile();
 }

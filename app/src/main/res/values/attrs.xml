@@ -3,6 +3,7 @@
     <declare-styleable name="LabelDescriptionView">
         <attr name="viewLabel" format="string"/>
         <attr name="viewDescription" format="string"/>
+        <attr name="viewIconVisibility" format="boolean"/>
     </declare-styleable>
     <declare-styleable name="PhoneNumberView">
         <attr name="viewPhoneLabel" format="string"/>

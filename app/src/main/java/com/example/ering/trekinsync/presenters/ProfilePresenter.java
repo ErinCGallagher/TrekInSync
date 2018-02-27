@@ -32,6 +32,10 @@ public class ProfilePresenter {
         this.view = view;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     //Section Title Data
     public String getGeneralSectionTitle() {
         return context.getString(R.string.general_section_title);
@@ -148,7 +152,7 @@ public class ProfilePresenter {
     }
 
     public void handleEditProfileButtonClick() {
-        //TODO: start edit profile flow
+        view.launchEditProfile();
     }
 
     /**

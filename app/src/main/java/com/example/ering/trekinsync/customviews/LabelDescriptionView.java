@@ -17,6 +17,7 @@ import com.example.ering.trekinsync.R;
 public class LabelDescriptionView extends LinearLayout {
     private TextView labelView;
     private TextView descriptionView;
+    private LinearLayout dropDownIconContainer;
 
 
     public LabelDescriptionView(Context context, @Nullable AttributeSet attrs) {
@@ -28,12 +29,14 @@ public class LabelDescriptionView extends LinearLayout {
         View container = LayoutInflater.from(context).inflate(R.layout.label_description_cell, this);
         labelView = (TextView) container.findViewById(R.id.label);
         descriptionView = (TextView) container.findViewById(R.id.description);
+        dropDownIconContainer = (LinearLayout) container.findViewById(R.id.drop_down_icon_container);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LabelDescriptionView, 0, 0);
             try {
                 setLabel(array.getString(R.styleable.LabelDescriptionView_viewLabel));
                 setDescription(array.getString(R.styleable.LabelDescriptionView_viewDescription));
+                setIconVisibility(array.getBoolean(R.styleable.LabelDescriptionView_viewIconVisibility, false));
             } finally {
                 array.recycle();
             }
@@ -46,5 +49,9 @@ public class LabelDescriptionView extends LinearLayout {
 
     public void setDescription(final String description) {
         descriptionView.setText(description);
+    }
+
+    public void setIconVisibility(final boolean iconVisibility) {
+        dropDownIconContainer.setVisibility(iconVisibility? VISIBLE : GONE);
     }
 }

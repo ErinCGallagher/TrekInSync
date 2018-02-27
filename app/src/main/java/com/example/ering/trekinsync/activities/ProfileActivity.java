@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
@@ -86,9 +87,17 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
         dialog.show();
     }
 
+    @Override
+    public void launchEditProfile() {
+        Intent intent = new Intent(context, EditProfileActivity.class);
+        intent.putExtra("UserObj", presenter.getUser());
+        startActivity(intent);
+    }
+
     private void startPersonalProfileFlow() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        //TODO: put inside try catch
         User user = bundle.getParcelable("UserObj");
         //setup presenter
         presenter = new ProfilePresenter(user, context, this);
