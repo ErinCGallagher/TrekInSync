@@ -114,10 +114,10 @@ public class LandingPresenter {
      */
     private User retrievePersonalProfileData() {
         if (checkIfProfileExists()) {
-            return convertSharedPrefsToUserModel();
+            return SharedPrefsUtils.convertSharedPrefsToUserModel(context);
         } else {
-            //TODO: User creation flow initiated
-            return createSharedPrefTestData();
+            view.launchEditProfilePage();
+            return null;
         }
     }
 
@@ -139,10 +139,10 @@ public class LandingPresenter {
      */
     private List<User> retrieveTravelContacts() {
         if (checkIfContactKeysExists()) {
-            return convertSharedPrefsToTravelContacts();
+            return SharedPrefsUtils.convertSharedPrefsToTravelContacts(context);
         }
         //TODO: display no contacts UI below header
-        return createTravelContactTestData();
+        return new ArrayList<>();
     }
 
     /**
@@ -159,120 +159,4 @@ public class LandingPresenter {
         return true;
     }
 
-    /**
-     * Retrieve primary user's profile from shared preferences and convert to User object.
-     * @return a User object otherwise null if error parsing
-     */
-    private User convertSharedPrefsToUserModel() {
-        Gson gson = new Gson();
-        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), "");
-        User userObj = null;
-        try {
-            userObj = gson.fromJson(json, User.class);
-        } catch(Exception e) {
-            //TODO create error flow if unable to parse
-            Toast.makeText(context, "Error parsing user profile from shared preferences", Toast.LENGTH_LONG).show();
-        }
-        return userObj;
-    }
-
-    /**
-     * Retrieve the list of travel contact key names from shared preferences in order to retrieve contact details.
-     * @return List of User object retrieved from shared preferences
-     */
-    private List<User> convertSharedPrefsToTravelContacts() {
-        Type listType = new TypeToken<List<String>>() {}.getType();
-        Gson gson = new Gson();
-
-        //retrieve list of travel contact key names in shared preferences
-        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), "");
-        List<String> contactKeyNames = gson.fromJson(json, listType);
-
-        //retrieve travel contact details from shared preferences given the key names
-        List<User> contactList = new ArrayList<>();
-        for(String keyName: contactKeyNames) {
-            String contactJson = sharedPref.getString(SharedPrefsUtils.getKey(context, keyName), "");
-            if(json != null ){
-                User userObj = gson.fromJson(contactJson, User.class);
-                contactList.add(userObj);
-            }
-        }
-        return contactList;
-    }
-
-
-    /* Test Data creation to be removed */
-
-    //TODO remove once create profile flow completed
-    private User createSharedPrefTestData() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
-        Gson gson = new Gson();
-        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American", true));
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
-        editor.apply();
-
-        return convertSharedPrefsToUserModel();
-    }
-
-    //TODO remove once add travel contact flow complete
-    private List<User> createTravelContactTestData() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Gson gson = new Gson();
-
-        User testUser1 = getTestUserObject("Christina Chan", "Canadian", false);
-        User testUser2 = getTestUserObject("Laura Brooks", "British", false);
-        User testUser3 = getTestUserObject("Lexi Flynn", "Mexican", false);
-
-        List<String> contactKeys = new ArrayList<>();
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser2));
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser3));
-        String json = gson.toJson(contactKeys);
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
-
-        String contactJson = gson.toJson(testUser1);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser1), contactJson);
-
-        String contactJson2 = gson.toJson(testUser2);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser2), contactJson2);
-
-        String contactJson3 = gson.toJson(testUser3);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser3), contactJson3);
-        editor.apply();
-
-        return convertSharedPrefsToTravelContacts();
-    }
-
-    //TODO remove once create profile flow completed
-    private User getTestUserObject(String name, String citizenship, boolean isPersonalProfile) {
-        PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
-        PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
-        PolicyInfo[] policyInfoArray = new PolicyInfo[2];
-        policyInfoArray[0] = policyInfo;
-        policyInfoArray[1] = policyInfo2;
-
-        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", true, policyInfoArray);
-        InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
-        insuranceCompanyArray[0] = insuranceCompany;
-
-        EmergencyContact emergencyContact = new EmergencyContact("Mother", "416-747-3625", "Cell");
-        EmergencyContact emergencyContact2 = new EmergencyContact("Father", "416-888-9865", "Work");
-        EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
-        emergencyContactArray[0] = emergencyContact;
-        emergencyContactArray[1] = emergencyContact2;
-
-        User user = new User(isPersonalProfile,
-                "Mar 14, 2018",
-                name,
-                "March 23, 1994",
-                13,
-                citizenship,
-                "O neutral",
-                "scented shit",
-                "none",
-                emergencyContactArray,
-                insuranceCompanyArray);
-        return user;
-    }
 }

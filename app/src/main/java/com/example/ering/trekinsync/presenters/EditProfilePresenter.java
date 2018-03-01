@@ -8,11 +8,17 @@ import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
+import com.example.ering.trekinsync.interfaces.ProfileView;
+import com.example.ering.trekinsync.models.EmergencyContact;
+import com.example.ering.trekinsync.models.InsuranceCompany;
+import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
+import com.example.ering.trekinsync.utils.ProfileFlow;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserUtils;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +26,9 @@ public class EditProfilePresenter {
 
     private EditProfileView view;
     private Context context;
+    private SharedPreferences sharedPref;
     private User user;
+    private ProfileFlow profileFlow;
 
     private List<String> countryKeyList;
     private List<String> countryValuesList;
@@ -35,6 +43,8 @@ public class EditProfilePresenter {
         this.context = context;
         this.view = view;
         this.user = user;
+        this.sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+
 
         countryKeyList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_keys));
         countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
@@ -43,11 +53,13 @@ public class EditProfilePresenter {
 
         if (user == null) {
             startCreateProfileFlow();
+        } else {
+            profileFlow = ProfileFlow.EDIT;
         }
     }
 
     public String getActionBarTitle() {
-        if (user != null) {
+        if (profileFlow == ProfileFlow.EDIT) {
             return context.getString(R.string.edit_profile_action_bar_title);
         } else {
             return context.getString(R.string.create_profile_action_bar_title);
@@ -67,8 +79,12 @@ public class EditProfilePresenter {
         //TODO: detect if changes were made and only display toast then
         Toast.makeText(context, "Profile Successfully Updated", Toast.LENGTH_LONG).show();
 
-        //Send updated user object back in intent
-        view.launchProfileView(user);
+        if(profileFlow == ProfileFlow.EDIT) {
+            //Send updated user object back in intent
+            view.launchProfileView(user);
+        } else {
+            view.launchLandingView();
+        }
     }
 
     /**
@@ -181,7 +197,83 @@ public class EditProfilePresenter {
     }
 
     private void startCreateProfileFlow() {
+        this.profileFlow = ProfileFlow.CREATE;
+        this.user = createSharedPrefTestData();
+        createTravelContactTestData();
+    }
 
+    /* Test Data creation to be removed */
+
+    //TODO remove once create profile flow completed
+    private User createSharedPrefTestData() {
+        //TODO: set key once save is hit
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
+        Gson gson = new Gson();
+        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American", true));
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
+        editor.apply();
+
+        return SharedPrefsUtils.convertSharedPrefsToUserModel(context);
+    }
+
+    //TODO remove once add travel contact flow complete
+    private void createTravelContactTestData() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Gson gson = new Gson();
+
+        User testUser1 = getTestUserObject("Christina Chan", "Canadian", false);
+        User testUser2 = getTestUserObject("Laura Brooks", "British", false);
+        User testUser3 = getTestUserObject("Lexi Flynn", "Mexican", false);
+
+        List<String> contactKeys = new ArrayList<>();
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser2));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser3));
+        String json = gson.toJson(contactKeys);
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
+
+        String contactJson = gson.toJson(testUser1);
+        editor.putString(SharedPrefsUtils.getKey(context, testUser1), contactJson);
+
+        String contactJson2 = gson.toJson(testUser2);
+        editor.putString(SharedPrefsUtils.getKey(context, testUser2), contactJson2);
+
+        String contactJson3 = gson.toJson(testUser3);
+        editor.putString(SharedPrefsUtils.getKey(context, testUser3), contactJson3);
+        editor.apply();
+    }
+
+    //TODO remove once create profile flow completed
+    private User getTestUserObject(String name, String citizenship, boolean isPersonalProfile) {
+        PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
+        PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
+        PolicyInfo[] policyInfoArray = new PolicyInfo[2];
+        policyInfoArray[0] = policyInfo;
+        policyInfoArray[1] = policyInfo2;
+
+        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", true, policyInfoArray);
+        InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
+        insuranceCompanyArray[0] = insuranceCompany;
+
+        EmergencyContact emergencyContact = new EmergencyContact("Mother", "416-747-3625", "Cell");
+        EmergencyContact emergencyContact2 = new EmergencyContact("Father", "416-888-9865", "Work");
+        EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
+        emergencyContactArray[0] = emergencyContact;
+        emergencyContactArray[1] = emergencyContact2;
+
+        User user = new User(isPersonalProfile,
+                "Mar 14, 2018",
+                name,
+                "March 23, 1994",
+                13,
+                citizenship,
+                "O neutral",
+                "scented shit",
+                "none",
+                emergencyContactArray,
+                insuranceCompanyArray);
+        return user;
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.ering.trekinsync.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.StringRes;
+import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.models.User;
@@ -10,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SharedPrefsUtils {
@@ -102,6 +104,50 @@ public class SharedPrefsUtils {
         editor.apply();
 
         return checkIfContactExists(context, user);
+    }
+
+    /**
+     * Retrieve primary user's profile from shared preferences and convert to User object.
+     * @return a User object otherwise null if error parsing
+     */
+    public static User convertSharedPrefsToUserModel(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), "");
+        User userObj = null;
+        try {
+            userObj = gson.fromJson(json, User.class);
+        } catch(Exception e) {
+            //TODO create error flow if unable to parse
+            Toast.makeText(context, "Error parsing user profile from shared preferences", Toast.LENGTH_LONG).show();
+        }
+        return userObj;
+    }
+
+    /**
+     * Retrieve the list of travel contact key names from shared preferences in order to retrieve contact details.
+     * @return List of User object retrieved from shared preferences
+     */
+    public static List<User> convertSharedPrefsToTravelContacts(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+
+        Type listType = new TypeToken<List<String>>() {}.getType();
+        Gson gson = new Gson();
+
+        //retrieve list of travel contact key names in shared preferences
+        String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), "");
+        List<String> contactKeyNames = gson.fromJson(json, listType);
+
+        //retrieve travel contact details from shared preferences given the key names
+        List<User> contactList = new ArrayList<>();
+        for(String keyName: contactKeyNames) {
+            String contactJson = sharedPref.getString(SharedPrefsUtils.getKey(context, keyName), "");
+            if(json != null ){
+                User userObj = gson.fromJson(contactJson, User.class);
+                contactList.add(userObj);
+            }
+        }
+        return contactList;
     }
 
 

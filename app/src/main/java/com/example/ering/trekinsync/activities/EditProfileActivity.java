@@ -81,6 +81,13 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
+    public void launchLandingView() {
+        Intent intent = new Intent(context, LandingActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public void launchConfirmationAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

@@ -37,15 +37,17 @@ public class IntroActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.dot_indicator);
         tabLayout.setupWithViewPager(viewPager, true);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(COMPLETED_ON_BOARDING, true);
+        editor.apply();
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

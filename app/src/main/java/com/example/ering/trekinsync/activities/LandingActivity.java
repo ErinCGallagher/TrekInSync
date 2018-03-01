@@ -53,7 +53,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {
             startActivity(new Intent(this, IntroActivity.class));
         } else {
@@ -110,6 +110,12 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     public void launchProfilePage(@NonNull User user) {
         Intent intent = new Intent(context, ProfileActivity.class);
         intent.putExtra("UserObj", user);
+        startActivity(intent);
+    }
+
+    @Override
+    public void launchEditProfilePage() {
+        Intent intent = new Intent(context, ProfileActivity.class);
         startActivity(intent);
     }
 
