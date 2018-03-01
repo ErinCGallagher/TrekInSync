@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">TrekInSync</string>
 
+    //Intro Pages
+    <string name="intro_lets_go_button">Let\'s Go</string>
+    <string name="intro_frag_1_title">Are you ready for an Emergency Situation?</string>
+    <string name="intro_frag_1_desc">When is the last time you discussed what to do in an emergency with your friends or travel buddies?</string>
+    <string name="intro_frag_2_title">Use <b><i>Trek In Sync</i></b> to start the conversation!</string>
+    <string name="intro_frag_2_desc">Now that you have the app no network is required to share you emergency details</string>
+    <string name="intro_frag_3_title">QR Code scanning!</string>
+    <string name="intro_frag_3_desc">Use the QR code to share details and set an expiry date for security.</string>
+
     //shared preferences keys
     <string name="primary_profile_key">primaryProfile</string>
     <string name="app_name_key">com.example.trekinsync.</string>

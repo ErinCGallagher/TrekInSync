@@ -2,14 +2,11 @@ package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
-import com.example.ering.trekinsync.activities.ProfileActivity;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
@@ -43,6 +40,10 @@ public class EditProfilePresenter {
         countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
         bloodTypeKeyList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_keys));
         bloodTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_values));
+
+        if (user == null) {
+            startCreateProfileFlow();
+        }
     }
 
     public String getActionBarTitle() {
@@ -62,6 +63,9 @@ public class EditProfilePresenter {
         String json = gson.toJson(user);
         editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
         editor.apply();
+
+        //TODO: detect if changes were made and only display toast then
+        Toast.makeText(context, "Profile Successfully Updated", Toast.LENGTH_LONG).show();
 
         //Send updated user object back in intent
         view.launchProfileView(user);
@@ -174,6 +178,10 @@ public class EditProfilePresenter {
                 dialog.dismiss();
             }
         };
+    }
+
+    private void startCreateProfileFlow() {
+
     }
 
 }

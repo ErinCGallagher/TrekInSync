@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -51,8 +52,14 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
-        startLandingPageSetup();
-        initializeFabMenu();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {
+            startActivity(new Intent(this, IntroActivity.class));
+        } else {
+            startLandingPageSetup();
+            initializeFabMenu();
+        }
     }
 
     private void startLandingPageSetup() {

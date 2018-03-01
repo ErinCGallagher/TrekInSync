@@ -51,35 +51,6 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         return super.onOptionsItemSelected(item);
     }
 
-    private void startProfileFlow() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        User user = null;
-        try {
-            user = bundle.getParcelable("UserObj");
-        } catch (Exception e) {
-            //Do Nothing
-        }
-
-        //setup presenter
-        presenter = new EditProfilePresenter(context, this, user);
-
-        String actionBarTitle = presenter.getActionBarTitle();
-        actionBar.setTitle(actionBarTitle);
-
-        //setup adapter
-        adapter = new EditProfileAdapter(presenter);
-        initRecyclerView();
-        adapter.buildRows();
-    }
-
-    private void initRecyclerView() {
-        profileDetailsList = (RecyclerView) findViewById(R.id.profileRecyclerView);
-        profileDetailsList.setLayoutManager(new LinearLayoutManager(context));
-        profileDetailsList.setItemAnimator(new DefaultItemAnimator());
-        profileDetailsList.setAdapter(adapter);
-    }
-
     @Override
     public void launchPopUp(String title, @ArrayRes int itemsId, int checkedItem, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -136,5 +107,34 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     @Override
     public void onBackPressed() {
         presenter.handleBackButtonClick();
+    }
+
+    private void startProfileFlow() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        User user = null;
+        try {
+            user = bundle.getParcelable("UserObj");
+        } catch (Exception e) {
+            //Do Nothing
+        }
+
+        //setup presenter
+        presenter = new EditProfilePresenter(context, this, user);
+
+        String actionBarTitle = presenter.getActionBarTitle();
+        actionBar.setTitle(actionBarTitle);
+
+        //setup adapter
+        adapter = new EditProfileAdapter(presenter);
+        initRecyclerView();
+        adapter.buildRows();
+    }
+
+    private void initRecyclerView() {
+        profileDetailsList = (RecyclerView) findViewById(R.id.profileRecyclerView);
+        profileDetailsList.setLayoutManager(new LinearLayoutManager(context));
+        profileDetailsList.setItemAnimator(new DefaultItemAnimator());
+        profileDetailsList.setAdapter(adapter);
     }
 }
