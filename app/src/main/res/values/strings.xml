@@ -37,22 +37,23 @@
     <string name="edit_profile_action_bar_title">Create Profile</string>
 
     //Country list of keys and associated values in specific language
-    <string-array name="citizenship_key_list" translatable="false">
-        <item>SINGAPORE</item>
-        <item>SOUTH KOREA</item>
-        <item>FINLAND</item>
-        <item>GERMANY</item>
-        <item>JAPAN</item>
-        <item>DENMARK</item>
-        <item>SWEDEN</item>
-        <item>ITALY</item>
-        <item>CANADA</item>
-        <item>FRANCE</item>
-        <item>SPAIN</item>
-        <item>LUXEMBOURG</item>
+    //TODO: use country codes
+    <string-array name="citizenship_keys" translatable="false">
+        <item>SGP</item>
+        <item>KOR</item>
+        <item>FIN</item>
+        <item>DEU</item>
+        <item>JPN</item>
+        <item>DNK</item>
+        <item>SWE</item>
+        <item>ITA</item>
+        <item>CAD</item>
+        <item>FRA</item>
+        <item>ESP</item>
+        <item>LUX</item>
     </string-array>
 
-    <string-array name="citizenship_key_values">
+    <string-array name="citizenship_values">
         <item>Singapore</item>
         <item>South Korea</item>
         <item>Finland</item>
@@ -65,5 +66,29 @@
         <item>France</item>
         <item>Spain</item>
         <item>Luxembourg</item>
+    </string-array>
+
+    <string-array name="blood_type_keys" translatable="false">
+        <item>O-</item>
+        <item>O+</item>
+        <item>A-</item>
+        <item>A+</item>
+        <item>B-</item>
+        <item>B+</item>
+        <item>AB-</item>
+        <item>AB+</item>
+        <item>NA</item>
+    </string-array>
+
+    <string-array name="blood_type_values">
+        <item>O Negative</item>
+        <item>O Positive</item>
+        <item>A Negative</item>
+        <item>A Positive</item>
+        <item>B Negative</item>
+        <item>B Positive</item>
+        <item>AB Negative</item>
+        <item>AB Positive</item>
+        <item>Do not Know</item>
     </string-array>
 </resources>

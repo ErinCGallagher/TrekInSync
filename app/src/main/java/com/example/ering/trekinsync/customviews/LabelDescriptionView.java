@@ -18,7 +18,7 @@ public class LabelDescriptionView extends LinearLayout {
     private TextView labelView;
     private TextView descriptionView;
     private LinearLayout dropDownIconContainer;
-
+    private LinearLayout viewContainer;
 
     public LabelDescriptionView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -30,6 +30,7 @@ public class LabelDescriptionView extends LinearLayout {
         labelView = (TextView) container.findViewById(R.id.label);
         descriptionView = (TextView) container.findViewById(R.id.description);
         dropDownIconContainer = (LinearLayout) container.findViewById(R.id.drop_down_icon_container);
+        viewContainer = (LinearLayout) container.findViewById(R.id.view_container);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LabelDescriptionView, 0, 0);
@@ -53,5 +54,9 @@ public class LabelDescriptionView extends LinearLayout {
 
     public void setIconVisibility(final boolean iconVisibility) {
         dropDownIconContainer.setVisibility(iconVisibility? VISIBLE : GONE);
+    }
+
+    public void setOnClickListener(OnClickListener clickListener) {
+        viewContainer.setOnClickListener(clickListener);
     }
 }

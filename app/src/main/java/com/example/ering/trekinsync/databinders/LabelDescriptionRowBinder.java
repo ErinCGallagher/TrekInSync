@@ -10,13 +10,13 @@ import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
     private String label;
     private String description;
-    private RecyclerViewClickListener clickListener;
+    private View.OnClickListener clickListener;
     private boolean isEditing;
 
     /**
      * creates a view holder for a static label and description form field with on click listener.
      */
-    public LabelDescriptionRowBinder(String label, String description, RecyclerViewClickListener clickListener) {
+    public LabelDescriptionRowBinder(String label, String description, View.OnClickListener clickListener) {
         this.label = label;
         this.description = description;
         this.clickListener = clickListener;
@@ -37,7 +37,7 @@ public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionVi
     @Override
     public LabelDescriptionViewHolder createViewHolder(ViewGroup parent) {
         View view = getView(LabelDescriptionViewHolder.getLayoutId(), parent);
-        return new LabelDescriptionViewHolder(view, clickListener);
+        return new LabelDescriptionViewHolder(view);
     }
 
     @Override
@@ -46,5 +46,8 @@ public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionVi
         labelDescriptionView.setLabel(label);
         labelDescriptionView.setDescription(description);
         labelDescriptionView.setIconVisibility(isEditing);
+        if (clickListener != null) {
+            labelDescriptionView.setOnClickListener(clickListener);
+        }
     }
 }

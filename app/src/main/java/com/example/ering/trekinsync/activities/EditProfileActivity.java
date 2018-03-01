@@ -3,6 +3,7 @@ package com.example.ering.trekinsync.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.ArrayRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import com.example.ering.trekinsync.presenters.EditProfilePresenter;
 import static android.view.Gravity.BOTTOM;
 import static android.view.Gravity.TOP;
 
-public class EditProfileActivity extends AppCompatActivity implements RecyclerViewClickListener, EditProfileView {
+public class EditProfileActivity extends AppCompatActivity implements EditProfileView {
 
     private Context context;
     private android.support.v7.app.ActionBar actionBar;
@@ -68,28 +69,26 @@ public class EditProfileActivity extends AppCompatActivity implements RecyclerVi
         profileDetailsList.setLayoutManager(new LinearLayoutManager(context));
         profileDetailsList.setItemAnimator(new DefaultItemAnimator());
         profileDetailsList.setAdapter(adapter);
-        adapter.setClickListener(this);
     }
 
     @Override
-    public void onClick(View v, int position) {
-        presenter.handleRowItemSelection(v, position);
-    }
-
-    @Override
-    public void launchPopUp(View view) {
+    public void launchPopUp(String title, @ArrayRes int itemsId, int checkedItem, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Select Country with Citizenship");
-        builder.setSingleChoiceItems(R.array.citizenship_key_values, 0, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //TODO: update row
-                dialog.dismiss();
-            }
-        });
+        builder.setTitle(title);
+        builder.setSingleChoiceItems(itemsId, checkedItem, listener);
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void reloadData() {
+        profileDetailsList.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.reloadData();
+            }
+        });
     }
 }
