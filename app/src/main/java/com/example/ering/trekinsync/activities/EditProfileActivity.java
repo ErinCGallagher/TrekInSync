@@ -102,10 +102,10 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
-    public void launchProfileView(User user) {
+    public void launchProfileView(User editedUser) {
         Intent intent = new Intent(context, ProfileActivity.class);
-        intent.putExtra("UserObj", user);
-        startActivity(intent);
+        intent.putExtra("UserObj", editedUser);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
@@ -118,6 +118,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
         builder.setPositiveButton(R.string.save_alert_positive, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
                 finish();
             }
         });

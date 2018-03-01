@@ -8,4 +8,5 @@ public interface ProfileView {
     void launchLandingPage();
     void launchConfirmationAlert();
     void launchEditProfile();
+    void reloadData();
 }

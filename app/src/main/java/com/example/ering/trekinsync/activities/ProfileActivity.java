@@ -27,6 +27,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
     private Context context;
     private android.support.v7.app.ActionBar actionBar;
 
+    static final int EDIT_PROFILE_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,14 +93,42 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
     public void launchEditProfile() {
         Intent intent = new Intent(context, EditProfileActivity.class);
         intent.putExtra("UserObj", presenter.getUser());
-        startActivity(intent);
+        startActivityForResult(intent, EDIT_PROFILE_REQUEST);
+    }
+
+    @Override
+    public void reloadData() {
+        profileListView.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.reloadData();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EDIT_PROFILE_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                User editedUser = parseUserIntent(data);
+                presenter.setUser(editedUser);
+            }
+        }
+    }
+
+    private User parseUserIntent(Intent intentData) {
+        Bundle bundle = intentData.getExtras();
+        User user = null;
+        try {
+            user = bundle.getParcelable("UserObj");
+        } catch (Exception e) {
+            //Do Nothing
+        }
+        return user;
     }
 
     private void startPersonalProfileFlow() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        //TODO: put inside try catch
-        User user = bundle.getParcelable("UserObj");
+        User user = parseUserIntent(getIntent());
         //setup presenter
         presenter = new ProfilePresenter(user, context, this);
         String actionBarTitle = presenter.getActionBarTitle();

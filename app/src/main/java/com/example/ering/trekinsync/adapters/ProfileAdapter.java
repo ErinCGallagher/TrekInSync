@@ -75,6 +75,11 @@ public class ProfileAdapter extends BaseAdapter {
         }
     }
 
+    public void reloadData() {
+        buildRows();
+        notifyDataSetChanged();
+    }
+
     @Override
     public List<BaseDataBinder> getItems() {
         return listItems;

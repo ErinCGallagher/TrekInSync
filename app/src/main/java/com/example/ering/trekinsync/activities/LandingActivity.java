@@ -131,6 +131,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
             @Override
             public void onClick(View view) {
                 //TODO: close menu before leaving activity
+                //TODO: use startActivityForResult()
                 Intent intent = new Intent(context, QrScannerActivity.class);
                 startActivity(intent);
             }

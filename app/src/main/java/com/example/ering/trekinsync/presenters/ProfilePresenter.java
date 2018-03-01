@@ -36,6 +36,11 @@ public class ProfilePresenter {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+        view.reloadData();
+    }
+
     //Section Title Data
     public String getGeneralSectionTitle() {
         return context.getString(R.string.general_section_title);
