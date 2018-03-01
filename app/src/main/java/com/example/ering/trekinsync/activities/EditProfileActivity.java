@@ -10,20 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.EditProfileAdapter;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
-import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
-
-import static android.view.Gravity.BOTTOM;
-import static android.view.Gravity.TOP;
 
 public class EditProfileActivity extends AppCompatActivity implements EditProfileView {
 
@@ -40,6 +34,21 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         actionBar =  getSupportActionBar();
         context = getApplicationContext();
         startProfileFlow();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.edit_profile_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save) {
+            presenter.handleSaveProfileButtonClick();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void startProfileFlow() {
@@ -90,5 +99,40 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
                 adapter.reloadData();
             }
         });
+    }
+
+    @Override
+    public void launchProfileView(User user) {
+        Intent intent = new Intent(context, ProfileActivity.class);
+        intent.putExtra("UserObj", user);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void launchConfirmationAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage(R.string.save_profile_alert_message)
+                .setTitle(R.string.save_profile_alert_title);
+
+        builder.setPositiveButton(R.string.save_alert_positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.save_alert_Negative, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        presenter.handleBackButtonClick();
     }
 }

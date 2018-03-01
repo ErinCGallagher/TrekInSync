@@ -13,6 +13,4 @@
         android:icon="@android:drawable/ic_menu_edit"
         android:title="Edit Profile"
         app:showAsAction="ifRoom"/>
-
-
 </menu>

@@ -1,13 +1,9 @@
 package com.example.ering.trekinsync.adapters;
 
-import android.widget.Switch;
-
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
-import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
-import com.example.ering.trekinsync.utils.CellType;
 
 import java.util.ArrayList;
 import java.util.List;

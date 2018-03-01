@@ -32,6 +32,11 @@
     <string name="delete_alert_positive">Yes, Delete</string>
     <string name="delete_alert_Negative">No, Go Back</string>
 
+    <string name="save_profile_alert_title">Go Back Without Saving?</string>
+    <string name="save_profile_alert_message">Are you sure you do not want to save your changes?</string>
+    <string name="save_alert_positive">Yes, Do Not Save</string>
+    <string name="save_alert_Negative">No, Return to Edit</string>
+
     //Edit Profile
     <string name="create_profile_action_bar_title">Create Profile</string>
     <string name="edit_profile_action_bar_title">Create Profile</string>

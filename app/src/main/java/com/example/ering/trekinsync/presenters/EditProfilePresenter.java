@@ -2,12 +2,19 @@ package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.activities.ProfileActivity;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.models.User;
+import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserUtils;
+import com.google.gson.Gson;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +51,27 @@ public class EditProfilePresenter {
         } else {
             return context.getString(R.string.create_profile_action_bar_title);
         }
+    }
+
+    public void handleSaveProfileButtonClick() {
+        //update primary user shared preferences
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
+        editor.apply();
+
+        //Send updated user object back in intent
+        view.launchProfileView(user);
+    }
+
+    /**
+     * Launch back button confirmation dialog to confirm user wants to not save changes
+     */
+    public void handleBackButtonClick() {
+        view.launchConfirmationAlert();
     }
 
     /* Section Title Data*/

@@ -1,10 +1,5 @@
 package com.example.ering.trekinsync.utils;
 
-import android.content.Context;
-
-import com.example.ering.trekinsync.R;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class UserUtils {
