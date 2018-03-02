@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class User implements Parcelable {
     private boolean isPersonalProfile;
@@ -21,7 +22,8 @@ public class User implements Parcelable {
     private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
-    private static final String DATE_PATTERN = "MMM d, yyyy";
+    private static final String DATE_PATTERN_DISPLAY = "MMM d, yyyy";
+    private static final String DATE_PATTERN_STORAGE = "yyyy-MM-dd";
 
     public User(boolean isPersonalProfile, String contactExpiryDate, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
         this.isPersonalProfile = isPersonalProfile;
@@ -45,8 +47,12 @@ public class User implements Parcelable {
         this.isPersonalProfile = isPersonalProfile;
     }
 
+    /**
+     * Get the expiry date from object as DATE_PATTERN_STORAGE and return as Date object.
+     * @return Date expiry date
+     */
     public Date getContactExpiryDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_STORAGE, Locale.CANADA);
         Date date = null;
         if (contactExpiryDate != null) {
             try {
@@ -59,12 +65,23 @@ public class User implements Parcelable {
         return date != null ? date : new Date();
     }
 
+    /**
+     * Get formatted expiry date for display DATE_PATTERN_DISPLAY (MMM d, yyyy).
+     * @return String expiry date formatted
+     */
     public String getFormattedExpiryDate() {
-        return contactExpiryDate;
+        Date expiryDateToConvert = getContactExpiryDate();
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_DISPLAY, Locale.CANADA);
+        return formatter.format(expiryDateToConvert);
     }
 
-    public void setContactExpiryDate(String expiryDate) {
-        this.contactExpiryDate = expiryDate;
+    /**
+     * Given expiryDate, sets the value in DATE_PATTERN_STORAGE (yyy-MM-dd)
+     * @param expiryDate, Date expiryDate
+     */
+    public void setContactExpiryDate(Date expiryDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_STORAGE, Locale.CANADA);
+        this.contactExpiryDate  = formatter.format(expiryDate);
     }
 
     public String getName() {
@@ -75,14 +92,10 @@ public class User implements Parcelable {
         this.name = name;
     }
 
-    public String getFormattedBirthDate() {
-        return birthDate;
-    }
-
     public Date getBirthdayDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_STORAGE, Locale.CANADA);
         Date date = null;
-        if (contactExpiryDate != null) {
+        if (birthDate != null) {
             try {
                 date = formatter.parse(birthDate);
             } catch (ParseException e) {
@@ -93,8 +106,14 @@ public class User implements Parcelable {
         return date != null ? date : new Date();
     }
 
+    public String getFormattedBirthDate() {
+        Date birthDateToConvert = getBirthdayDate();
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_DISPLAY, Locale.CANADA);
+        return formatter.format(birthDateToConvert);
+    }
+
     public void setBirthDate(Date birthDate) {
-        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN_STORAGE, Locale.CANADA);
         this.birthDate = formatter.format(birthDate);
     }
 

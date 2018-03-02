@@ -109,7 +109,7 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         generateQRrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.handleGenerateQrCodeButtonTap(shareInsuranceInfo.isChecked(), expiryDate.getText().toString());
+                presenter.handleGenerateQrCodeButtonTap(shareInsuranceInfo.isChecked());
             }
         });
 

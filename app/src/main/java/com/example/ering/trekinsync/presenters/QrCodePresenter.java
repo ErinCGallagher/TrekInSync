@@ -50,13 +50,13 @@ public class QrCodePresenter {
      * Handle Generate QR code button tap given set preferences by user.
      * Generates a QR code given the user data.
      */
-    public void handleGenerateQrCodeButtonTap(boolean shareInsuranceInfoChecked, String expiryDateValue) {
+    public void handleGenerateQrCodeButtonTap(boolean shareInsuranceInfoChecked) {
         if (!shareInsuranceInfoChecked) {
             removeInsuranceInformation();
         }
 
-        if (expiryDateValue != null) {
-            user.setContactExpiryDate(expiryDateValue);
+        if (expiryDate != null) {
+            user.setContactExpiryDate(expiryDate);
         }
 
         view.showProgressSpinner();
@@ -79,7 +79,7 @@ public class QrCodePresenter {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
         this.expiryDate = calendar.getTime();
-        view.setExpiryDateText(formatter.format(expiryDate));
+        view.setExpiryDateText(formatter.format(this.expiryDate));
     }
 
 

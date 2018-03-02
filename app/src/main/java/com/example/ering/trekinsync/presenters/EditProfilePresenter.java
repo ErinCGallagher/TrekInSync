@@ -318,10 +318,10 @@ public class EditProfilePresenter {
         emergencyContactArray[1] = emergencyContact2;
 
         User user = new User(isPersonalProfile,
-                "Mar 14, 2018",
+                "2018-03-18",
                 name,
-                "March 23, 1994",
-                13,
+                "1994-03-24",
+                23,
                 citizenship,
                 "O neutral",
                 "scented shit",
