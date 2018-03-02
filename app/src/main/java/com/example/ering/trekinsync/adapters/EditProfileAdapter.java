@@ -30,6 +30,9 @@ public class EditProfileAdapter extends BaseAdapter {
         //TODO: indicate updates happening on changes, no save necessary
         //General Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
+        listItems.add(new LabelDescriptionRowBinder("BirthDay",
+                presenter.getFormattedUserBirthday(),
+                presenter.createBirthdayDropDownListener()));
         listItems.add(new LabelDescriptionRowBinder("Citizenship",
                 presenter.getUserCitizenship(),
                 presenter.createCitizenshipDropDownRowListener()));

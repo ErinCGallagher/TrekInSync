@@ -1,7 +1,6 @@
 package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -12,11 +11,6 @@ import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.List;
 
 public class ProfilePresenter {
     private User user;
@@ -80,7 +74,7 @@ public class ProfilePresenter {
     }
 
     public String getBirthDate() {
-        return user.getBirthDate() != null ? user.getBirthDate() : "";
+        return user.getFormattedBirthDate() != null ? user.getFormattedBirthDate() : "";
     }
 
     public String getAgeLabel() {

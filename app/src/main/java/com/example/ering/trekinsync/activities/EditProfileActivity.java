@@ -1,5 +1,6 @@
 package com.example.ering.trekinsync.activities;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,12 +13,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.EditProfileAdapter;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class EditProfileActivity extends AppCompatActivity implements EditProfileView {
 
@@ -60,6 +66,19 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    public void launchDatePicker(Date birthDate, DatePickerDialog.OnDateSetListener listener) {
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(birthDate);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePicker = new DatePickerDialog(this, listener, year, month, day);
+        datePicker.getDatePicker().setMaxDate(System.currentTimeMillis() - 1000);
+        datePicker.show();
     }
 
     @Override

@@ -75,8 +75,22 @@ public class User implements Parcelable {
         this.name = name;
     }
 
-    public String getBirthDate() {
+    public String getFormattedBirthDate() {
         return birthDate;
+    }
+
+    public Date getBirthdayDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+        Date date = null;
+        if (contactExpiryDate != null) {
+            try {
+                date = formatter.parse(birthDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return date != null ? date : new Date();
     }
 
     public void setBirthDate(Date birthDate) {

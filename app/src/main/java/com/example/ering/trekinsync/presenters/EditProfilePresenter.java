@@ -1,14 +1,15 @@
 package com.example.ering.trekinsync.presenters;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
-import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
@@ -18,8 +19,11 @@ import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserUtils;
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class EditProfilePresenter {
@@ -115,6 +119,14 @@ public class EditProfilePresenter {
     /* User Details */
 
     /**
+     * Gte formatted user birthday.
+     * @return String birthday
+     */
+    public String getFormattedUserBirthday() {
+        return user.getFormattedBirthDate();
+    }
+
+    /**
      * Get formatted/translated country.
      * @return String country
      */
@@ -131,6 +143,15 @@ public class EditProfilePresenter {
     }
 
     /* On Click Listeners */
+
+    public View.OnClickListener createBirthdayDropDownListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.launchDatePicker(user.getBirthdayDate(), createBirthDaySelectionListener());
+            }
+        };
+    }
 
     /**
      * Create listener for Citizenship row click. Launch Alert spinner on click.
@@ -165,6 +186,29 @@ public class EditProfilePresenter {
     }
 
     /* Dialog alert views */
+
+    private DatePickerDialog.OnDateSetListener createBirthDaySelectionListener() {
+        return new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePickerView, int year, int month, int dayOfMonth) {
+                //Set new Birthday
+                Calendar birthdayCal = Calendar.getInstance();
+                birthdayCal.set(year, month, dayOfMonth);
+                user.setBirthDate(birthdayCal.getTime());
+
+                //calculate & set age from birthday
+                Calendar today = Calendar.getInstance();
+                int age = today.get(Calendar.YEAR) - birthdayCal.get(Calendar.YEAR);
+                if (today.get(Calendar.DAY_OF_YEAR) < birthdayCal.get(Calendar.DAY_OF_YEAR)) {
+                    age--;
+                }
+                user.setAge(age);
+
+                //reload data
+                view.reloadData();
+            }
+        };
+    }
 
     /**
      * Create Alert spinner for country with citizenship selection.
