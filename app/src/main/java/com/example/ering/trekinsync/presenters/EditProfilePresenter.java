@@ -16,11 +16,10 @@ import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.ProfileFlow;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
-import com.example.ering.trekinsync.utils.UserUtils;
+import com.example.ering.trekinsync.utils.UserSingletonUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -33,12 +32,6 @@ public class EditProfilePresenter {
     private ProfileFlow profileFlow;
     private boolean userDataModified;
 
-    private List<String> countryKeyList;
-    private List<String> countryValuesList;
-    private List<String> bloodTypeKeyList;
-    private List<String> bloodTypeValuesList;
-
-
     /**
      * Create Profile Presenter for Business logic
      */
@@ -47,11 +40,6 @@ public class EditProfilePresenter {
         this.view = view;
         this.user = user;
         this.sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
-
-        countryKeyList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_keys));
-        countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
-        bloodTypeKeyList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_keys));
-        bloodTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_values));
 
         if (user == null) {
             startCreateProfileFlow();
@@ -130,7 +118,7 @@ public class EditProfilePresenter {
      * @return String country
      */
     public String getUserCitizenship() {
-        return UserUtils.getFormattedCountry(countryKeyList, countryValuesList, user.getCitizenship());
+        return UserSingletonUtils.getInstance().getFormattedCountry(user.getCitizenship());
     }
 
     /**
@@ -138,7 +126,7 @@ public class EditProfilePresenter {
      * @return String blood type
      */
     public String getUserBloodType() {
-        return UserUtils.getFormattedBloodType(bloodTypeKeyList, bloodTypeValuesList, user.getBloodType());
+        return UserSingletonUtils.getInstance().getFormattedBloodType(user.getBloodType());
     }
 
     /* On Click Listeners */
@@ -162,7 +150,7 @@ public class EditProfilePresenter {
             public void onClick(View v) {
                 view.launchPopUp("Select Country with Citizenship",
                         R.array.citizenship_values,
-                        UserUtils.getCountryPosition(countryValuesList, getUserCitizenship()),
+                        UserSingletonUtils.getInstance().getCountryPosition(getUserCitizenship()),
                         createCountrySelectionListener());
             }
         };
@@ -178,7 +166,7 @@ public class EditProfilePresenter {
             public void onClick(View v) {
                 view.launchPopUp("Select Blood Type",
                         R.array.blood_type_values,
-                        UserUtils.getBloodTypePosition(bloodTypeValuesList, getUserBloodType()),
+                        UserSingletonUtils.getInstance().getBloodTypePosition(getUserBloodType()),
                         createBloodTypeSelectionListener());
             }
         };
@@ -218,7 +206,7 @@ public class EditProfilePresenter {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                user.setCitizenship(UserUtils.getCountryCode(countryKeyList, countryValuesList, countryValuesList.get(which)));
+                user.setCitizenship(UserSingletonUtils.getInstance().getCountryCode(which));
                 indicateUserDataModified();
                 view.reloadData();
                 dialog.dismiss();
@@ -234,7 +222,7 @@ public class EditProfilePresenter {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                user.setBloodType(UserUtils.getBloodTypeCode(bloodTypeKeyList, bloodTypeValuesList, bloodTypeValuesList.get(which)));
+                user.setBloodType(UserSingletonUtils.getInstance().getBloodTypeCode(which));
                 indicateUserDataModified();
                 view.reloadData();
                 dialog.dismiss();
@@ -268,8 +256,6 @@ public class EditProfilePresenter {
     private User createSharedPrefTestData() {
         return getTestUserObject("Erin Gallagher", "FIN", true);
     }
-
-
 
     //TODO remove once add travel contact flow complete
     private void createTravelContactTestData() {
@@ -329,5 +315,4 @@ public class EditProfilePresenter {
                 insuranceCompanyArray);
         return user;
     }
-
 }

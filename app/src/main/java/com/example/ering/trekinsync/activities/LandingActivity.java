@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.LandingAdapter;
@@ -23,6 +21,7 @@ import com.example.ering.trekinsync.interfaces.LandingView;
 import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
+import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
 public class LandingActivity extends AppCompatActivity implements RecyclerViewClickListener, LandingView {
 
@@ -52,6 +51,9 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
+
+        //create User Utils Singleton
+        UserSingletonUtils.init(context);
 
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {

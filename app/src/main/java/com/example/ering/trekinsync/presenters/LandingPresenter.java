@@ -7,15 +7,9 @@ import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.LandingView;
-import com.example.ering.trekinsync.models.EmergencyContact;
-import com.example.ering.trekinsync.models.InsuranceCompany;
-import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
