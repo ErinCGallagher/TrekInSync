@@ -49,7 +49,7 @@ public class UserSingletonUtils {
      * @param selectedCountryKey, selected country key
      * @return selected translated country value
      */
-    public static String getFormattedCountry(String selectedCountryKey) {
+    public String getFormattedCountry(String selectedCountryKey) {
         int position = countryKeyList.indexOf(selectedCountryKey);
         return countryValuesList.get(position != -1 ? position : 0);
     }
@@ -59,7 +59,7 @@ public class UserSingletonUtils {
      * @param selectedCountryValue, selected country value
      * @return position of given country value
      */
-    public static int getCountryPosition(String selectedCountryValue) {
+    public int getCountryPosition(String selectedCountryValue) {
         int countryPos = countryValuesList.indexOf(selectedCountryValue);
         return countryPos != -1 ? countryPos : 0;
     }
@@ -69,7 +69,7 @@ public class UserSingletonUtils {
      * @param countryValuePosition, selected country value position
      * @return the country key associated with the country value
      */
-    public static String getCountryCode(int countryValuePosition) {
+    public String getCountryCode(int countryValuePosition) {
         if (countryValuePosition < countryKeyList.size()) {
             return countryKeyList.get(countryValuePosition);
         }
@@ -82,7 +82,7 @@ public class UserSingletonUtils {
      * @param selectedBloodTypeKey, selected blood type key
      * @return formatted blood type value
      */
-    public static String getFormattedBloodType(String selectedBloodTypeKey) {
+    public String getFormattedBloodType(String selectedBloodTypeKey) {
         int position = bloodTypeKeyList.indexOf(selectedBloodTypeKey);
         return bloodTypeValuesList.get(position != -1 ? position : 0);
     }
@@ -92,7 +92,7 @@ public class UserSingletonUtils {
      * @param selectedBloodTypeValue, selected blood type key
      * @return position of country value
      */
-    public static int getBloodTypePosition(String selectedBloodTypeValue) {
+    public int getBloodTypePosition(String selectedBloodTypeValue) {
         int bloodTypePos = bloodTypeValuesList.indexOf(selectedBloodTypeValue);
         return bloodTypePos != -1 ? bloodTypePos : 0;
     }
@@ -102,7 +102,7 @@ public class UserSingletonUtils {
      * @param bloodTypeValuePosition, selected blood type value position
      * @return blood type key associated with the blood type value
      */
-    public static String getBloodTypeCode(int bloodTypeValuePosition) {
+    public String getBloodTypeCode(int bloodTypeValuePosition) {
         if (bloodTypeValuePosition < bloodTypeKeyList.size()) {
             return bloodTypeKeyList.get(bloodTypeValuePosition);
         }

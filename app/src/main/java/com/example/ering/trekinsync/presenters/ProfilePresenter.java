@@ -11,6 +11,7 @@ import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.SharedPrefsUtils;
+import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
 public class ProfilePresenter {
     private User user;
@@ -90,7 +91,8 @@ public class ProfilePresenter {
     }
 
     public String getCitizenship() {
-        return user.getCitizenship() != null ? user.getCitizenship() : "";
+        return user.getCitizenship() != null ?
+                UserSingletonUtils.getInstance().getFormattedCountry(user.getCitizenship()) : "";
     }
 
     //Health Section
@@ -99,7 +101,8 @@ public class ProfilePresenter {
     }
 
     public String getBloodType() {
-        return user.getBloodType() != null ? user.getBloodType() : "";
+        return user.getBloodType() != null ?
+                UserSingletonUtils.getInstance().getFormattedBloodType(user.getBloodType()) : "";
     }
 
     public String getAllergiesLabel() {
