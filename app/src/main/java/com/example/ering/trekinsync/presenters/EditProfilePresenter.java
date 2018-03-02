@@ -48,7 +48,6 @@ public class EditProfilePresenter {
         this.user = user;
         this.sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
 
-
         countryKeyList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_keys));
         countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
         bloodTypeKeyList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_keys));
@@ -71,13 +70,7 @@ public class EditProfilePresenter {
 
     public void handleSaveProfileButtonClick() {
         //update primary user shared preferences
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
-        Gson gson = new Gson();
-        String json = gson.toJson(user);
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
-        editor.apply();
+        saveProfileToSharedPrefs();
 
         //TODO: detect if changes were made and only display toast then
         Toast.makeText(context, "Profile Successfully Updated", Toast.LENGTH_LONG).show();
@@ -96,6 +89,8 @@ public class EditProfilePresenter {
     public void handleBackButtonClick() {
         if (userDataModified && profileFlow != ProfileFlow.CREATE) {
             view.launchConfirmationAlert();
+        } else if (profileFlow == ProfileFlow.CREATE){
+            view.launchLandingWithExitFlag();
         } else {
             view.launchBackButtonAction();
         }
@@ -257,29 +252,33 @@ public class EditProfilePresenter {
         this.userDataModified = true;
     }
 
+    private void saveProfileToSharedPrefs() {
+        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
+        editor.apply();
+    }
+
     /* Test Data creation to be removed */
 
     //TODO remove once create profile flow completed
     private User createSharedPrefTestData() {
-        //TODO: set key once save is hit
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
-        Gson gson = new Gson();
-        String json = gson.toJson(getTestUserObject("Erin Gallagher", "American", true));
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), json);
-        editor.apply();
-
-        return SharedPrefsUtils.convertSharedPrefsToUserModel(context);
+        return getTestUserObject("Erin Gallagher", "FIN", true);
     }
+
+
 
     //TODO remove once add travel contact flow complete
     private void createTravelContactTestData() {
         SharedPreferences.Editor editor = sharedPref.edit();
         Gson gson = new Gson();
 
-        User testUser1 = getTestUserObject("Christina Chan", "Canadian", false);
-        User testUser2 = getTestUserObject("Laura Brooks", "British", false);
-        User testUser3 = getTestUserObject("Lexi Flynn", "Mexican", false);
+        User testUser1 = getTestUserObject("Christina Chan", "CAD", false);
+        User testUser2 = getTestUserObject("Laura Brooks", "KOR", false);
+        User testUser3 = getTestUserObject("Lexi Flynn", "ITA", false);
 
         List<String> contactKeys = new ArrayList<>();
         contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));

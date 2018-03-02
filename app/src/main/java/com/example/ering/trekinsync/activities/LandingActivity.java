@@ -63,6 +63,12 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     }
 
     private void startLandingPageSetup() {
+        //close app if sent EXIT flag
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+            return;
+        }
+
         //setup presenter
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         presenter = new LandingPresenter(sharedPref, context, this);
@@ -87,7 +93,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         profileName = (TextView) findViewById(R.id.profile_name);
         personalProfileLink = (TextView) findViewById(R.id.profile_link);
 
-        profileName.setText(presenter.getUser().getName());
+        profileName.setText(presenter.getUserName());
         personalProfileLink.setText("View Profile >");
 
         personalProfileLink.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +122,12 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     @Override
     public void launchEditProfilePage() {
         Intent intent = new Intent(context, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void launchCreateProfilePage() {
+        Intent intent = new Intent(context, EditProfileActivity.class);
         startActivity(intent);
     }
 

@@ -13,8 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.DatePicker;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.adapters.EditProfileAdapter;
@@ -108,6 +106,15 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     @Override
     public void launchBackButtonAction() {
+        finish();
+    }
+
+    @Override
+    public void launchLandingWithExitFlag() {
+        Intent intent = new Intent(this, LandingActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
         finish();
     }
 

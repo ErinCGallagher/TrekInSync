@@ -41,7 +41,9 @@ public class LandingPresenter {
 
         this.user = retrievePersonalProfileData();
         if (this.user == null ) {
-            //TODO start Error flow and recreation of user profile
+            //launch create profile flow since none exists
+            view.launchCreateProfilePage();
+            return;
         }
         this.contacts = retrieveTravelContacts();
         if (this.contacts != null && !contacts.isEmpty()) {
@@ -58,6 +60,13 @@ public class LandingPresenter {
 
     public User getUser() {
         return user;
+    }
+
+    public String getUserName() {
+        if (user != null ){
+            return user.getName();
+        }
+        return "";
     }
 
     public List<User> getTravelContacts() {

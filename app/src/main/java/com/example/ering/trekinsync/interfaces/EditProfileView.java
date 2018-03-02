@@ -18,5 +18,6 @@ public interface EditProfileView {
     void launchProfileView(User user);
     void launchLandingView();
     void launchBackButtonAction();
+    void launchLandingWithExitFlag();
     void launchConfirmationAlert();
 }
