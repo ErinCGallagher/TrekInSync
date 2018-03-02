@@ -19,11 +19,9 @@ import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserUtils;
 import com.google.gson.Gson;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class EditProfilePresenter {
@@ -33,6 +31,7 @@ public class EditProfilePresenter {
     private SharedPreferences sharedPref;
     private User user;
     private ProfileFlow profileFlow;
+    private boolean userDataModified;
 
     private List<String> countryKeyList;
     private List<String> countryValuesList;
@@ -95,7 +94,12 @@ public class EditProfilePresenter {
      * Launch back button confirmation dialog to confirm user wants to not save changes
      */
     public void handleBackButtonClick() {
-        view.launchConfirmationAlert();
+        if (userDataModified && profileFlow != ProfileFlow.CREATE) {
+            view.launchConfirmationAlert();
+        } else {
+            view.launchBackButtonAction();
+        }
+
     }
 
     /* Section Title Data*/
@@ -205,6 +209,7 @@ public class EditProfilePresenter {
                 user.setAge(age);
 
                 //reload data
+                indicateUserDataModified();
                 view.reloadData();
             }
         };
@@ -219,6 +224,7 @@ public class EditProfilePresenter {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 user.setCitizenship(UserUtils.getCountryCode(countryKeyList, countryValuesList, countryValuesList.get(which)));
+                indicateUserDataModified();
                 view.reloadData();
                 dialog.dismiss();
             }
@@ -234,6 +240,7 @@ public class EditProfilePresenter {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 user.setBloodType(UserUtils.getBloodTypeCode(bloodTypeKeyList, bloodTypeValuesList, bloodTypeValuesList.get(which)));
+                indicateUserDataModified();
                 view.reloadData();
                 dialog.dismiss();
             }
@@ -244,6 +251,10 @@ public class EditProfilePresenter {
         this.profileFlow = ProfileFlow.CREATE;
         this.user = createSharedPrefTestData();
         createTravelContactTestData();
+    }
+
+    private void indicateUserDataModified() {
+        this.userDataModified = true;
     }
 
     /* Test Data creation to be removed */

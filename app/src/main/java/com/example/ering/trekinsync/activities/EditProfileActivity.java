@@ -107,6 +107,11 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
+    public void launchBackButtonAction() {
+        finish();
+    }
+
+    @Override
     public void launchConfirmationAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -115,9 +120,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
         builder.setPositiveButton(R.string.save_alert_positive, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
+                launchBackButtonAction();
             }
         });
         builder.setNegativeButton(R.string.save_alert_Negative, new DialogInterface.OnClickListener() {

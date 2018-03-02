@@ -1,5 +1,6 @@
 package com.example.ering.trekinsync.databinders;
 
+import android.support.annotation.DrawableRes;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,17 +11,19 @@ import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
     private String label;
     private String description;
+    private @DrawableRes int iconResId;
     private View.OnClickListener clickListener;
     private boolean isEditing;
 
     /**
      * creates a view holder for a static label and description form field with on click listener.
      */
-    public LabelDescriptionRowBinder(String label, String description, View.OnClickListener clickListener) {
+    public LabelDescriptionRowBinder(String label, String description, @DrawableRes int iconResId, View.OnClickListener clickListener) {
         this.label = label;
         this.description = description;
         this.clickListener = clickListener;
         this.isEditing = true;
+        this.iconResId = iconResId;
     }
 
     /**
@@ -48,6 +51,9 @@ public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionVi
         labelDescriptionView.setIconVisibility(isEditing);
         if (clickListener != null) {
             labelDescriptionView.setOnClickListener(clickListener);
+        }
+        if(iconResId != 0) {
+            labelDescriptionView.setIcon(iconResId);
         }
     }
 }

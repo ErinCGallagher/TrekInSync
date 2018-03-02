@@ -50,7 +50,7 @@
 
     //Edit Profile
     <string name="create_profile_action_bar_title">Create Profile</string>
-    <string name="edit_profile_action_bar_title">Create Profile</string>
+    <string name="edit_profile_action_bar_title">Edit Profile</string>
 
     //Country list of keys and associated values in specific language
     //TODO: use country codes

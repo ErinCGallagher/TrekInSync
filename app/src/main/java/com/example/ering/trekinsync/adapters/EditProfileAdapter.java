@@ -1,5 +1,6 @@
 package com.example.ering.trekinsync.adapters;
 
+import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
@@ -30,17 +31,20 @@ public class EditProfileAdapter extends BaseAdapter {
         //TODO: indicate updates happening on changes, no save necessary
         //General Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
-        listItems.add(new LabelDescriptionRowBinder("BirthDay",
+        listItems.add(new LabelDescriptionRowBinder("Birthday",
                 presenter.getFormattedUserBirthday(),
+                R.mipmap.ic_date_range_black_24dp,
                 presenter.createBirthdayDropDownListener()));
         listItems.add(new LabelDescriptionRowBinder("Citizenship",
                 presenter.getUserCitizenship(),
+                R.mipmap.ic_keyboard_arrow_down_black_24dp,
                 presenter.createCitizenshipDropDownRowListener()));
 
         //Health info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
         listItems.add(new LabelDescriptionRowBinder("Blood Type",
                 presenter.getUserBloodType(),
+                R.mipmap.ic_keyboard_arrow_down_black_24dp,
                 presenter.createBloodTypeDropDownListener()));
     }
 
