@@ -49,8 +49,11 @@ public class IntroFragment extends android.support.v4.app.Fragment {
             case 1:
                 layoutResId = R.layout.intro_frag_2;
                 break;
-            default:
+            case 2:
                 layoutResId = R.layout.intro_frag_3;
+                break;
+            default:
+                layoutResId = R.layout.intro_frag_4;
         }
 
         View view = getActivity().getLayoutInflater().inflate(layoutResId, container, false);

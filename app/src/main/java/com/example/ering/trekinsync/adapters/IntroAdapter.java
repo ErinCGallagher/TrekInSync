@@ -22,13 +22,15 @@ public class IntroAdapter extends FragmentPagerAdapter {
                 return IntroFragment.newInstance(Color.parseColor("#02d7f4"), position);
             case 1:
                 return IntroFragment.newInstance(Color.parseColor("#03A9F4"), position);
-            default:
+            case 2:
                 return IntroFragment.newInstance(Color.parseColor("#026ef4"), position);
+            default:
+                return IntroFragment.newInstance(Color.parseColor("#0252f4"), position);
         }
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }
