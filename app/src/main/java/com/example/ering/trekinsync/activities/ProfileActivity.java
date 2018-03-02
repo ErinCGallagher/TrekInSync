@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
 import com.example.ering.trekinsync.R;
-import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;

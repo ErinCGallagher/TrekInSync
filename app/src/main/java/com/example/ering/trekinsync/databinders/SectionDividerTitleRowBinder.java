@@ -3,7 +3,6 @@ package com.example.ering.trekinsync.databinders;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 import com.example.ering.trekinsync.viewholders.SectionDividerTitleViewHolder;
 
 public class SectionDividerTitleRowBinder extends BaseDataBinder<SectionDividerTitleViewHolder> {

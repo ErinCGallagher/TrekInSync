@@ -6,10 +6,6 @@ import android.widget.TextView;
 
 import com.example.ering.trekinsync.R;
 
-/**
- * Created by ering on 2018-02-04.
- */
-
 public class SectionDividerTitleViewHolder extends RecyclerView.ViewHolder {
     public TextView title;
 

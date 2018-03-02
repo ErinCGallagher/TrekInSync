@@ -28,7 +28,6 @@ public class InsuranceRowBinder extends BaseDataBinder<InsuranceViewHolder> {
         this.detailsNumbers = detailsNumbers;
     }
 
-
     @Override
     public InsuranceViewHolder createViewHolder(ViewGroup parent) {
         View view = getView(InsuranceViewHolder.getLayoutId(), parent);

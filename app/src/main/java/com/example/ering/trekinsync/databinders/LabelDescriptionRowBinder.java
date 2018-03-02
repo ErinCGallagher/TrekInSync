@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ering.trekinsync.customviews.LabelDescriptionView;
-import com.example.ering.trekinsync.interfaces.RecyclerViewClickListener;
 import com.example.ering.trekinsync.viewholders.LabelDescriptionViewHolder;
 
 public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionViewHolder> {
@@ -35,7 +34,6 @@ public class LabelDescriptionRowBinder extends BaseDataBinder<LabelDescriptionVi
         this.clickListener = null;
         this.isEditing = false;
     }
-
 
     @Override
     public LabelDescriptionViewHolder createViewHolder(ViewGroup parent) {

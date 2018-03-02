@@ -1,6 +1,5 @@
 package com.example.ering.trekinsync.customviews;
 
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;

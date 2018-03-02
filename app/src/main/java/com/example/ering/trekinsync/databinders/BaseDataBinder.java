@@ -38,5 +38,4 @@ public abstract class BaseDataBinder <T extends RecyclerView.ViewHolder> {
      * @param holder, viewHolder of type T
      */
     abstract public void bindViewHolder(T holder);
-
 }

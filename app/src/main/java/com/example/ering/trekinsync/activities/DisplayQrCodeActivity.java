@@ -1,7 +1,6 @@
 package com.example.ering.trekinsync.activities;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,7 +22,6 @@ import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.QrCodePresenter;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeView{
     private ImageView imageView;

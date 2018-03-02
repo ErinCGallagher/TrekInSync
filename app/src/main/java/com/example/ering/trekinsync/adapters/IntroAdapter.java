@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.TextView;
 
 import com.example.ering.trekinsync.fragments.IntroFragment;
 

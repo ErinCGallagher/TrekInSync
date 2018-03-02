@@ -1,7 +1,5 @@
 package com.example.ering.trekinsync.adapters;
 
-import android.content.Context;
-
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.InsuranceRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;

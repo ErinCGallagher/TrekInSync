@@ -42,8 +42,6 @@ public class UserSingletonUtils {
         bloodTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_values));
     }
 
-
-
     /**
      * Given a country key, find the associated translated value.
      * @param selectedCountryKey, selected country key
@@ -109,5 +107,4 @@ public class UserSingletonUtils {
         //if country code is not found, return a default value
         return bloodTypeKeyList.get(0);
     }
-
 }

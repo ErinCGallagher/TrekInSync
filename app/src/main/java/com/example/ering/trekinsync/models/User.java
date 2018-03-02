@@ -1,6 +1,5 @@
 package com.example.ering.trekinsync.models;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
