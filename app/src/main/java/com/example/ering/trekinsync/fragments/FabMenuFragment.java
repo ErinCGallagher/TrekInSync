@@ -26,6 +26,7 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
     private TextView fabCameraLabel;
     private TextView fabBarcodeLabel;
     private View dimMenuBackground;
+    private User user;
 
     private boolean floatingButtonMenuState = false;
 
@@ -36,8 +37,6 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
     private final static double FAB_MENU_LABEL_MARGIN = 2.0;
     private final static float ALPHA_FULLY_TRANSPARENT = 0.0f;
     private final static float ALPHA_OPAQUE = 1.0f;
-
-    private User user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
