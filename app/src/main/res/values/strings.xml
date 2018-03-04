@@ -51,6 +51,9 @@
     //Edit Profile
     <string name="create_profile_action_bar_title">Create Profile</string>
     <string name="edit_profile_action_bar_title">Edit Profile</string>
+    <string name="phone_number_relation_label">Relationship:</string>
+    <string name="phone_number_type_label">Type:</string>
+    <string name="phone_number_hint">Enter Number</string>
 
     //Country list of keys and associated values in specific language
     //TODO: use country codes
@@ -106,5 +109,45 @@
         <item>AB Negative</item>
         <item>AB Positive</item>
         <item>Do not Know</item>
+    </string-array>
+
+    <string-array name="contact_relation_keys" translatable="false">
+        <item>BR</item>
+        <item>DA</item>
+        <item>FA</item>
+        <item>FR</item>
+        <item>MO</item>
+        <item>GR</item>
+        <item>GU</item>
+        <item>OT</item>
+        <item>SI</item>
+        <item>SO</item>
+    </string-array>
+
+    <string-array name="contact_relation_values">
+        <item>Brother</item>
+        <item>Daughter</item>
+        <item>Father</item>
+        <item>Friend</item>
+        <item>Mother</item>
+        <item>Grandparent</item>
+        <item>Guardian</item>
+        <item>Other</item>
+        <item>Sister</item>
+        <item>Son</item>
+    </string-array>
+
+    <string-array name="number_type_keys" translatable="false">
+        <item>H</item>
+        <item>M</item>
+        <item>W</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="number_type_values">
+        <item>Home</item>
+        <item>Mobile</item>
+        <item>Work</item>
+        <item>Other</item>
     </string-array>
 </resources>

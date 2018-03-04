@@ -19,6 +19,7 @@ import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -127,6 +128,14 @@ public class EditProfilePresenter {
      */
     public String getUserBloodType() {
         return UserSingletonUtils.getInstance().getFormattedBloodType(user.getBloodType());
+    }
+
+    //Emergency Contact section
+    public EmergencyContact[] getEmergencyContacts() {
+        if (user.getEmergencyContacts() != null) {
+            return user.getEmergencyContacts();
+        }
+        return new EmergencyContact[0];
     }
 
     /* On Click Listeners */

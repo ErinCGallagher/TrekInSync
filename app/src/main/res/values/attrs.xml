@@ -10,6 +10,11 @@
         <attr name="viewPhoneNumber" format="string"/>
         <attr name="viewPhoneNumberType" format="string"/>
     </declare-styleable>
+    <declare-styleable name="EditPhoneNumberView">
+        <attr name="viewEditRelationship" format="string"/>
+        <attr name="viewEditPhoneType" format="string"/>
+        <attr name="viewEditPhone" format="string"/>
+    </declare-styleable>
     <declare-styleable name="InsuranceView">
         <attr name="viewInsuranceLabel" format="string"/>
         <attr name="viewInsuranceNumber" format="string"/>

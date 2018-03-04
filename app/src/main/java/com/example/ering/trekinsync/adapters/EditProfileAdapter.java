@@ -2,8 +2,11 @@ package com.example.ering.trekinsync.adapters;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.databinders.EditPhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
+import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
+import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
 
 import java.util.ArrayList;
@@ -46,6 +49,12 @@ public class EditProfileAdapter extends BaseAdapter {
                 presenter.getUserBloodType(),
                 R.mipmap.ic_keyboard_arrow_down_black_24dp,
                 presenter.createBloodTypeDropDownListener()));
+
+        //Emergency Contact Info
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
+        for (EmergencyContact contact : presenter.getEmergencyContacts()) {
+            listItems.add(new EditPhoneNumberRowBinder(contact.getName(), contact.getPhoneNumberType(), contact.getPhoneNumber()));
+        }
     }
 
     public void reloadData() {
