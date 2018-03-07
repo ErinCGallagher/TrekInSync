@@ -24,6 +24,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         this.contactModel = contactModel;
         this.contactPosition = contactPosition;
         this.listener = listener;
+        //TODO: implement delete listener
     }
 
     @Override

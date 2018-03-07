@@ -62,8 +62,9 @@ public class EditProfilePresenter {
         //update primary user shared preferences
         saveProfileToSharedPrefs();
 
-        //TODO: detect if changes were made and only display toast then
-        Toast.makeText(context, "Profile Successfully Updated", Toast.LENGTH_LONG).show();
+        if (userDataModified) {
+            Toast.makeText(context, "Profile Successfully Updated", Toast.LENGTH_LONG).show();
+        }
 
         if(profileFlow == ProfileFlow.EDIT) {
             //Send updated user object back in intent
