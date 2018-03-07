@@ -9,6 +9,7 @@ import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
+import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,9 @@ public class ProfileAdapter extends BaseAdapter {
             listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
 
             for (EmergencyContact contact : presenter.getEmergencyContacts()) {
-                listItems.add(new PhoneNumberRowBinder(contact.getName(), contact.getPhoneNumber(), contact.getPhoneNumberType()));
+                String name = UserSingletonUtils.getInstance().getFormattedPhoneRelation(contact.getName());
+                String type = UserSingletonUtils.getInstance().getFormattedPhoneType(contact.getPhoneNumberType());
+                listItems.add(new PhoneNumberRowBinder(name, contact.getPhoneNumber(), type));
             }
         }
 

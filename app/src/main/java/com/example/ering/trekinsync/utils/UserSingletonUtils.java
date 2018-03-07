@@ -17,6 +17,10 @@ public class UserSingletonUtils {
     private static List<String> countryValuesList;
     private static List<String> bloodTypeKeyList;
     private static List<String> bloodTypeValuesList;
+    private static List<String> phoneRelationKeyList;
+    private static List<String> phoneRelationValuesList;
+    private static List<String> phoneTypeKeysList;
+    private static List<String> phoneTypeValuesList;
 
     public static void init(Context context) {
         if (instance == null) {
@@ -40,6 +44,10 @@ public class UserSingletonUtils {
         countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
         bloodTypeKeyList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_keys));
         bloodTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_values));
+        phoneRelationKeyList = Arrays.asList(context.getResources().getStringArray(R.array.contact_relation_keys));
+        phoneRelationValuesList = Arrays.asList(context.getResources().getStringArray(R.array.contact_relation_values));
+        phoneTypeKeysList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_keys));
+        phoneTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_values));
     }
 
     /**
@@ -106,5 +114,61 @@ public class UserSingletonUtils {
         }
         //if country code is not found, return a default value
         return bloodTypeKeyList.get(0);
+    }
+
+    public String getFormattedPhoneRelation(String selectedPhoneRelationKey) {
+        int position = phoneRelationKeyList.indexOf(selectedPhoneRelationKey);
+        return phoneRelationValuesList.get(position != -1 ? position : 0);
+    }
+
+    /**
+     * Given selected phone number relation value, find its position in the values list.
+     * @param selectedRelationValue, selected relation value
+     * @return position of country value
+     */
+    public int getPhoneRelationPosition(String selectedRelationValue) {
+        int relationPos = phoneRelationValuesList.indexOf(selectedRelationValue);
+        return relationPos != -1 ? relationPos : 0;
+    }
+
+    public int getPhoneRelationKeyPosition(String selectedRelationKey) {
+        int relationPos = phoneRelationKeyList.indexOf(selectedRelationKey);
+        return relationPos != -1 ? relationPos : 0;
+    }
+
+    public String getFormattedPhoneType(String selectedPhoneTypeKey) {
+        int position = phoneTypeKeysList.indexOf(selectedPhoneTypeKey);
+        return phoneTypeValuesList.get(position != -1 ? position : 0);
+    }
+
+    public String getPhoneRelationCode(int PhoneRelationValuePosition) {
+        if (PhoneRelationValuePosition < phoneRelationKeyList.size()) {
+            return phoneRelationKeyList.get(PhoneRelationValuePosition);
+        }
+        //if country code is not found, return a default value
+        return phoneRelationKeyList.get(0);
+    }
+
+    /**
+     * Given selected phone number type value, find its position in the values list.
+     * @param selectedPhoneTypeValue, selected relation value
+     * @return position of country value
+     */
+    public int getPhoneTypePosition(String selectedPhoneTypeValue) {
+        int typePos = phoneTypeValuesList.indexOf(selectedPhoneTypeValue);
+        return typePos != -1 ? typePos : 0;
+    }
+
+    public int getPhoneTypeKeyPosition(String selectedPhoneTypeKey) {
+        int typePos = phoneTypeKeysList.indexOf(selectedPhoneTypeKey);
+        return typePos != -1 ? typePos : 0;
+    }
+
+    public String getPhoneTypeCode(int PhoneTypeValuePosition) {
+        if (PhoneTypeValuePosition < phoneTypeKeysList.size()) {
+            return phoneTypeKeysList.get(PhoneTypeValuePosition);
+        }
+        //if country code is not found, return a default value
+        return phoneTypeKeysList.get(0);
     }
 }
