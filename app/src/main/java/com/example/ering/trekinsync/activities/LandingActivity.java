@@ -45,6 +45,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {
             startActivity(new Intent(this, IntroActivity.class));
+            finish();
         } else {
             startLandingPageSetup();
             initializeFabMenu();
@@ -54,16 +55,12 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     @Override
     public void onResume(){
         super.onResume();
-        presenter.updateProfileAndContacts();
+        if (presenter != null) {
+            presenter.updateProfileAndContacts();
+        }
     }
 
     private void startLandingPageSetup() {
-        //close app if sent EXIT flag
-        if (getIntent().getBooleanExtra("EXIT", false)) {
-            finish();
-            return;
-        }
-
         //setup presenter
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         presenter = new LandingPresenter(sharedPref, context, this);
@@ -125,15 +122,10 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     }
 
     @Override
-    public void launchEditProfilePage() {
-        Intent intent = new Intent(context, ProfileActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
     public void launchCreateProfilePage() {
         Intent intent = new Intent(context, EditProfileActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void initializeFabMenu() {

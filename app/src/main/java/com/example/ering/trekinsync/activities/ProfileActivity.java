@@ -18,7 +18,7 @@ import com.example.ering.trekinsync.interfaces.ProfileView;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.ProfilePresenter;
 
-public class ProfileActivity extends AppCompatActivity implements ProfileView{
+public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     private ProfilePresenter presenter;
     private ProfileAdapter adapter;
@@ -40,7 +40,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile_menu, menu);
-        presenter.handleMenuSetup(menu);
+        if (presenter != null) {
+            presenter.handleMenuSetup(menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -127,15 +129,17 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
 
     private void startPersonalProfileFlow() {
         User user = parseUserIntent(getIntent());
-        //setup presenter
-        presenter = new ProfilePresenter(user, context, this);
-        String actionBarTitle = presenter.getActionBarTitle();
-        actionBar.setTitle(actionBarTitle);
+        if (user != null) {
+            //setup presenter
+            presenter = new ProfilePresenter(user, context, this);
+            String actionBarTitle = presenter.getActionBarTitle();
+            actionBar.setTitle(actionBarTitle);
 
-        //setup adapter
-        adapter = new ProfileAdapter(presenter);
-        adapter.buildRows();
-        initRecyclerView();
+            //setup adapter
+            adapter = new ProfileAdapter(presenter);
+            adapter.buildRows();
+            initRecyclerView();
+        }
     }
 
     private void initRecyclerView() {

@@ -125,7 +125,6 @@ public class LandingPresenter {
         if (checkIfProfileExists()) {
             return SharedPrefsUtils.convertSharedPrefsToUserModel(context);
         } else {
-            view.launchEditProfilePage();
             return null;
         }
     }

@@ -8,6 +8,5 @@ import com.example.ering.trekinsync.models.User;
 public interface LandingView {
     void reloadData();
     void launchProfilePage(User user);
-    void launchEditProfilePage();
     void launchCreateProfilePage();
 }

@@ -110,15 +110,6 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
-    public void launchLandingWithExitFlag() {
-        Intent intent = new Intent(this, LandingActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
     public void launchConfirmationAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
