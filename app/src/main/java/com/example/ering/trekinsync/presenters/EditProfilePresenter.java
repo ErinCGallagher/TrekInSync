@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v4.content.res.TypedArrayUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.example.ering.trekinsync.utils.UserSingletonUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -190,9 +192,17 @@ public class EditProfilePresenter {
             public void onInputReceived(EmergencyNumberDataListenerModel value) {
                 //update user model emergency contact details
                 EmergencyContact[] ec = user.getEmergencyContacts();
-                ec[value.getPosition()].setName(value.getContact().getName());
-                ec[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
-                ec[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+
+                if (value.isShouldDelete()) {
+                    List<EmergencyContact> list = new ArrayList<EmergencyContact>(Arrays.asList(ec));
+                    list.remove(value.getPosition());
+                    user.setEmergencyContacts(list.toArray(ec));
+                    view.reloadData();
+                } else {
+                    ec[value.getPosition()].setName(value.getContact().getName());
+                    ec[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
+                    ec[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+                }
 
                 indicateUserDataModified();
             }

@@ -54,9 +54,11 @@ public class ProfileAdapter extends BaseAdapter {
             listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
 
             for (EmergencyContact contact : presenter.getEmergencyContacts()) {
-                String name = UserSingletonUtils.getInstance().getFormattedPhoneRelation(contact.getName());
-                String type = UserSingletonUtils.getInstance().getFormattedPhoneType(contact.getPhoneNumberType());
-                listItems.add(new PhoneNumberRowBinder(name, contact.getPhoneNumber(), type));
+                if (contact != null) {
+                    String name = UserSingletonUtils.getInstance().getFormattedPhoneRelation(contact.getName());
+                    String type = UserSingletonUtils.getInstance().getFormattedPhoneType(contact.getPhoneNumberType());
+                    listItems.add(new PhoneNumberRowBinder(name, contact.getPhoneNumber(), type));
+                }
             }
         }
 

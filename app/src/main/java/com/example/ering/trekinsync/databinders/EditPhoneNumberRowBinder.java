@@ -39,6 +39,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         editPhoneNumberView.setRelationshipAndListener(contactModel.getName(), relationListener);
         editPhoneNumberView.setPhoneTypeAndListener(contactModel.getPhoneNumberType(), phoneTypeListener);
         editPhoneNumberView.setPhoneNumber(contactModel.getPhoneNumber());
+        editPhoneNumberView.setDeleteOnClickListener(deleteClickListener);
     }
 
     private AdapterView.OnItemSelectedListener relationListener = new AdapterView.OnItemSelectedListener() {
@@ -46,7 +47,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setName(UserSingletonUtils.getInstance().getPhoneRelationCode(position));
             //notify listener of model change
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition));
+            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
         }
 
         @Override
@@ -60,12 +61,19 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setPhoneNumberType(UserSingletonUtils.getInstance().getPhoneTypeCode(position));
             //notify listener of model change
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition));
+            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
             //spinner dismisses
+        }
+    };
+
+    private View.OnClickListener deleteClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, true));
         }
     };
 }

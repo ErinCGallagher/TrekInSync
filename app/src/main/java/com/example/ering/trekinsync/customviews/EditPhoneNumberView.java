@@ -2,6 +2,7 @@ package com.example.ering.trekinsync.customviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.media.Image;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -20,6 +22,7 @@ public class EditPhoneNumberView extends LinearLayout {
     private Spinner relationshipField;
     private Spinner phoneNumberType;
     private EditText phoneNumber;
+    private ImageView deleteIcon;
 
     public EditPhoneNumberView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -31,6 +34,7 @@ public class EditPhoneNumberView extends LinearLayout {
         relationshipField = (Spinner) container.findViewById(R.id.relationship_spinner);
         phoneNumberType = (Spinner) container.findViewById(R.id.phone_type_spinner);
         phoneNumber = (EditText) container.findViewById(R.id.edit_phone_number);
+        deleteIcon = (ImageView) container.findViewById(R.id.delete_icon);
 
         initSpinnerAdapters();
 
@@ -58,6 +62,10 @@ public class EditPhoneNumberView extends LinearLayout {
 
     public void setPhoneNumber(String value) {
         phoneNumber.setText(value);
+    }
+
+    public void setDeleteOnClickListener(OnClickListener listener) {
+        deleteIcon.setOnClickListener(listener);
     }
 
     private void setRelationship(String value) {
