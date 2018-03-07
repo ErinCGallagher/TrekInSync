@@ -23,6 +23,7 @@ public class QrScannerActivity extends AppCompatActivity implements ZXingScanner
 
     private ZXingScannerView mScannerView;
     private Context context;
+    private android.support.v7.app.ActionBar actionBar;
     private QrScannerPresenter presenter;
 
     @Override
@@ -30,8 +31,11 @@ public class QrScannerActivity extends AppCompatActivity implements ZXingScanner
         super.onCreate(state);
         setContentView(R.layout.activity_qr_code_scanner);
         context = getApplicationContext();
+        actionBar =  getSupportActionBar();
         presenter = new QrScannerPresenter(context, this);
 
+        String actionBarTitle = presenter.getActionBarTitle();
+        actionBar.setTitle(actionBarTitle);
 
         ViewGroup scannerContentFrame = (ViewGroup) findViewById(R.id.scanner_frame);
         mScannerView = new ZXingScannerView(this);

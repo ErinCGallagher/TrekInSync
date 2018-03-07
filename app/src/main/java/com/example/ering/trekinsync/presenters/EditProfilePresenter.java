@@ -345,7 +345,7 @@ public class EditProfilePresenter {
                 "1994-03-24",
                 23,
                 citizenship,
-                "O neutral",
+                "O-",
                 "scented shit",
                 "none",
                 emergencyContactArray,

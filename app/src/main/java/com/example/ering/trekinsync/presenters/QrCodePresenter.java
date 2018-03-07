@@ -81,6 +81,10 @@ public class QrCodePresenter {
         view.setExpiryDateText(formatter.format(this.expiryDate));
     }
 
+    public String getActionBarTitle() {
+        return context.getString(R.string.qr_generator_action_bar_title);
+    }
+
 
     /* Private Functions */
 

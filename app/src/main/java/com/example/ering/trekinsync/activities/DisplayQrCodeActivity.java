@@ -35,12 +35,14 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
     private TextView expiryDate;
     private RadioButton shareInsuranceInfo;
     private Context context;
+    private android.support.v7.app.ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_qr_code);
         context = getApplicationContext();
+        actionBar =  getSupportActionBar();
 
         imageView = (ImageView) findViewById(R.id.qr_code_view);
         preferencesContainer =  (LinearLayout) findViewById(R.id.preferences_container);
@@ -54,6 +56,9 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         Bundle bundle = intent.getExtras();
         user = bundle.getParcelable("UserObj");
         presenter = new QrCodePresenter(context, this, user);
+
+        String actionBarTitle = presenter.getActionBarTitle();
+        actionBar.setTitle(actionBarTitle);
 
         setUpOnClickListeners();
     }

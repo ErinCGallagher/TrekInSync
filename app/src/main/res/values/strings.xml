@@ -55,6 +55,12 @@
     <string name="phone_number_type_label">Type:</string>
     <string name="phone_number_hint">Enter Number</string>
 
+    //QR Code scanning
+    <string name="qr_scanning_action_bar_title">Scan Contact QR Code</string>
+
+    //QR Code Generator
+    <string name="qr_generator_action_bar_title">Generate QR Code</string>
+
     //Country list of keys and associated values in specific language
     //TODO: use country codes
     <string-array name="citizenship_keys" translatable="false">

@@ -52,6 +52,10 @@ public class QrScannerPresenter {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
+    public String getActionBarTitle() {
+        return context.getString(R.string.qr_scanning_action_bar_title);
+    }
+
     /**
      * Convert string json data to User object model if possible.
      * @param data, json representation of User Model
