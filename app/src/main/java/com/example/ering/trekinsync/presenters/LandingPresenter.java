@@ -48,6 +48,12 @@ public class LandingPresenter {
         }
     }
 
+    public void updateProfileAndContacts() {
+        this.user = retrievePersonalProfileData();
+        this.contacts = retrieveTravelContacts();
+        view.reloadData();
+    }
+
     public String getSectionTitle() {
         return "Travel Contacts";
     }

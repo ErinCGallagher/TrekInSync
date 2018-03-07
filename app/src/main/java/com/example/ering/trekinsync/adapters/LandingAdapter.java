@@ -48,6 +48,11 @@ public class LandingAdapter extends BaseAdapter {
         this.clickListener = itemClickListener;
     }
 
+    public void reloadData() {
+        buildRows();
+        notifyDataSetChanged();
+    }
+
     @Override
     public List<BaseDataBinder> getItems() {
         return listItems;

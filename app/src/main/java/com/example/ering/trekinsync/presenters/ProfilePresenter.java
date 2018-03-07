@@ -176,9 +176,5 @@ public class ProfilePresenter {
         }
         view.launchLandingPage();
     }
-
-    public void handleBackButtonClick() {
-        view.launchLandingPage();
-    }
 }
 

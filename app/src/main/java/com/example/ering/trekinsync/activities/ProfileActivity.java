@@ -62,9 +62,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
 
     @Override
     public void launchLandingPage() {
-        //TODO: make more efficient and indicate what needs refreshing, contacts or profile
-        Intent intent = new Intent(context, LandingActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -114,11 +112,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView{
                 presenter.setUser(editedUser);
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        presenter.handleBackButtonClick();
     }
 
     private User parseUserIntent(Intent intentData) {

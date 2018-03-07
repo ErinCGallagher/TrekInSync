@@ -51,6 +51,12 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         }
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        presenter.updateProfileAndContacts();
+    }
+
     private void startLandingPageSetup() {
         //close app if sent EXIT flag
         if (getIntent().getBooleanExtra("EXIT", false)) {
@@ -99,6 +105,16 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     @Override
     public void onClick(View v, int position) {
         presenter.handleTravelContactClick(position);
+    }
+
+    @Override
+    public void reloadData() {
+        contactListView.post(new Runnable() {
+            @Override
+            public void run() {
+                adapter.reloadData();
+            }
+        });
     }
 
     @Override
