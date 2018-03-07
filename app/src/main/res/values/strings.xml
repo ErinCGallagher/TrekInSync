@@ -3,12 +3,12 @@
 
     //Intro Pages
     <string name="intro_lets_go_button">Let\'s Go</string>
-    <string name="intro_frag_1_title">Are You Prepared for an Emergency?</string>
-    <string name="intro_frag_1_desc">Backpacking? Weekend getaways? Outside your hometown?</string>
-    <string name="intro_frag_2_title">Don\'t Worry! Use <b><i>Trek In Sync</i></b></string>
-    <string name="intro_frag_2_desc">Start the conversation and stay safe!</string>
-    <string name="intro_frag_3_title">QR Code scanning!</string>
-    <string name="intro_frag_3_desc">Use the QR code to share emergency details and set an expiry date for security.</string>
+    <string name="intro_frag_1_title">Travelling?</string>
+    <string name="intro_frag_1_desc">Are you prepared for an emergency?</string>
+    <string name="intro_frag_2_title">Don\'t Worry With <b><i>Trek In Sync</i></b></string>
+    <string name="intro_frag_2_desc">Start the conversation with fellow travellers and stay safe!</string>
+    <string name="intro_frag_3_title">Easy Sharing</string>
+    <string name="intro_frag_3_desc">QR Code scanning enables quick and easy sharing of emergency info.</string>
     <string name="intro_frag_4_title">Language Barriers While Travelling?</string>
     <string name="intro_frag_4_desc">No sweat! Your details can be shared in several languages.</string>
 
