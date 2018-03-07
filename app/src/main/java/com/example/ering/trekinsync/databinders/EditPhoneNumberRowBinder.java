@@ -44,12 +44,13 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setName(UserSingletonUtils.getInstance().getPhoneRelationCode(position));
+            //notify listener of model change
             listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition));
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
+            //spinner dismisses
         }
     };
 
@@ -57,12 +58,13 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setPhoneNumberType(UserSingletonUtils.getInstance().getPhoneTypeCode(position));
+            //notify listener of model change
             listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition));
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
+            //spinner dismisses
         }
     };
 }

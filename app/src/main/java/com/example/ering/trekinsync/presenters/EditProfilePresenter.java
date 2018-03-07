@@ -82,7 +82,6 @@ public class EditProfilePresenter {
         } else {
             view.launchBackButtonAction();
         }
-
     }
 
     /* Section Title Data*/
@@ -180,6 +179,10 @@ public class EditProfilePresenter {
         };
     }
 
+    /**
+     * Create data input listener for emergency contact rows.
+     * @return DataInputListener of type EmergencyNumberDataListenerModel
+     */
     public DataInputListener<EmergencyNumberDataListenerModel> getEmergencyContactListener() {
         return new DataInputListener<EmergencyNumberDataListenerModel>() {
             @Override
