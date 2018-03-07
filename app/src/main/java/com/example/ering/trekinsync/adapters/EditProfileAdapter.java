@@ -1,6 +1,7 @@
 package com.example.ering.trekinsync.adapters;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.databinders.AddRowIconTitleCellDataBinder;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.EditPhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
@@ -59,7 +60,12 @@ public class EditProfileAdapter extends BaseAdapter {
                 pos++;
             }
         }
-        //TODO: implement add new emergency contact cell & logic
+        if (pos < presenter.getMaxEmergencyContacts()) {
+            listItems.add(new AddRowIconTitleCellDataBinder("Add Emergency Contact", presenter.getAddEmergencyContactListener()));
+        }
+
+        //Insurance Info
+        listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
     }
 
     public void reloadData() {

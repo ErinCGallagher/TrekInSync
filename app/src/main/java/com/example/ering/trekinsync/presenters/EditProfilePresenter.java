@@ -139,6 +139,10 @@ public class EditProfilePresenter {
         return new EmergencyContact[0];
     }
 
+    public int getMaxEmergencyContacts() {
+        return 3;
+    }
+
     /* On Click Listeners */
 
     public View.OnClickListener createBirthdayDropDownListener() {
@@ -191,19 +195,52 @@ public class EditProfilePresenter {
             @Override
             public void onInputReceived(EmergencyNumberDataListenerModel value) {
                 //update user model emergency contact details
-                EmergencyContact[] ec = user.getEmergencyContacts();
+                EmergencyContact[] userEmergContacts = user.getEmergencyContacts();
 
-                if (value.isShouldDelete()) {
-                    List<EmergencyContact> list = new ArrayList<EmergencyContact>(Arrays.asList(ec));
-                    list.remove(value.getPosition());
-                    user.setEmergencyContacts(list.toArray(ec));
+                if (value.isShouldDelete()) { //emergency contact deleted
+                    //convert to ArrayList and remove requested contact
+                    List<EmergencyContact> list = new ArrayList<>(Arrays.asList(userEmergContacts));
+                    try {
+                        list.remove(value.getPosition());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                    //create new emergency contact list for user
+                    EmergencyContact[] updatedList = new EmergencyContact[(userEmergContacts.length - 1)];
+                    user.setEmergencyContacts(list.toArray(updatedList));
                     view.reloadData();
-                } else {
-                    ec[value.getPosition()].setName(value.getContact().getName());
-                    ec[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
-                    ec[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+                } else { //emergency contact details updated
+                    if (value.getPosition() < userEmergContacts.length) {
+                        userEmergContacts[value.getPosition()].setName(value.getContact().getName());
+                        userEmergContacts[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
+                        userEmergContacts[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+                    }
                 }
+                indicateUserDataModified();
+            }
+        };
+    }
 
+    /**
+     * detect add emergency contact button click.
+     * @return on click listener
+     */
+    public View.OnClickListener getAddEmergencyContactListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EmergencyContact defaultNewContact = new EmergencyContact("BR", "111-111-1111", "M");
+                EmergencyContact[] ec = user.getEmergencyContacts();
+                List<EmergencyContact> list = new ArrayList<>(Arrays.asList(ec));
+                try {
+                    list.add(defaultNewContact);
+                } catch(Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+                user.setEmergencyContacts(list.toArray(ec));
+                view.reloadData();
                 indicateUserDataModified();
             }
         };
