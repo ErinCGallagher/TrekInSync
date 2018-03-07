@@ -79,8 +79,6 @@ public class EditProfilePresenter {
     public void handleBackButtonClick() {
         if (userDataModified && profileFlow != ProfileFlow.CREATE) {
             view.launchConfirmationAlert();
-        } else if (profileFlow == ProfileFlow.CREATE){
-            view.launchLandingWithExitFlag();
         } else {
             view.launchBackButtonAction();
         }
@@ -191,6 +189,8 @@ public class EditProfilePresenter {
                 ec[value.getPosition()].setName(value.getContact().getName());
                 ec[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
                 ec[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+
+                indicateUserDataModified();
             }
         };
     }
