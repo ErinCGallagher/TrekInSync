@@ -52,8 +52,10 @@ public class EditProfileAdapter extends BaseAdapter {
 
         //Emergency Contact Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
+        int pos = 0;
         for (EmergencyContact contact : presenter.getEmergencyContacts()) {
-            listItems.add(new EditPhoneNumberRowBinder(contact.getName(), contact.getPhoneNumberType(), contact.getPhoneNumber()));
+            listItems.add(new EditPhoneNumberRowBinder(contact.clone(), pos, presenter.getEmergencyContactListener()));
+            pos++;
         }
     }
 

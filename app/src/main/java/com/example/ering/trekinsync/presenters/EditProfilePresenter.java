@@ -9,7 +9,9 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.DataInputListener;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
+import com.example.ering.trekinsync.models.EmergencyNumberDataListenerModel;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
@@ -19,7 +21,6 @@ import com.example.ering.trekinsync.utils.SharedPrefsUtils;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -181,6 +182,19 @@ public class EditProfilePresenter {
         };
     }
 
+    public DataInputListener<EmergencyNumberDataListenerModel> getEmergencyContactListener() {
+        return new DataInputListener<EmergencyNumberDataListenerModel>() {
+            @Override
+            public void onInputReceived(EmergencyNumberDataListenerModel value) {
+                //update user model emergency contact details
+                EmergencyContact[] ec = user.getEmergencyContacts();
+                ec[value.getPosition()].setName(value.getContact().getName());
+                ec[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
+                ec[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+            }
+        };
+    }
+
     /* Dialog alert views */
 
     private DatePickerDialog.OnDateSetListener createBirthDaySelectionListener() {
@@ -305,8 +319,8 @@ public class EditProfilePresenter {
         InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
         insuranceCompanyArray[0] = insuranceCompany;
 
-        EmergencyContact emergencyContact = new EmergencyContact("Mother", "416-747-3625", "Cell");
-        EmergencyContact emergencyContact2 = new EmergencyContact("Father", "416-888-9865", "Work");
+        EmergencyContact emergencyContact = new EmergencyContact("MO", "416-747-3625", "M");
+        EmergencyContact emergencyContact2 = new EmergencyContact("FA", "416-888-9865", "W");
         EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
         emergencyContactArray[0] = emergencyContact;
         emergencyContactArray[1] = emergencyContact2;
