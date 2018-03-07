@@ -15,7 +15,7 @@ public class EmergencyContact implements Parcelable {
     }
 
     public String getName() {
-        return name;
+        return name != null ? name : "";
     }
 
     public void setName(String name) {
@@ -23,7 +23,7 @@ public class EmergencyContact implements Parcelable {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumber != null ? phoneNumber : "";
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -31,7 +31,7 @@ public class EmergencyContact implements Parcelable {
     }
 
     public String getPhoneNumberType() {
-        return phoneNumberType;
+        return phoneNumberType != null ? phoneNumberType : "";
     }
 
     public void setPhoneNumberType(String phoneNumberType) {
@@ -66,5 +66,9 @@ public class EmergencyContact implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(phoneNumber);
         parcel.writeString(phoneNumberType);
+    }
+
+    public EmergencyContact clone() {
+        return new EmergencyContact(name, phoneNumber, phoneNumberType);
     }
 }
