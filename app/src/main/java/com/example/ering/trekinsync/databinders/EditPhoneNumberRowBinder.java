@@ -1,6 +1,8 @@
 package com.example.ering.trekinsync.databinders;
 
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -38,7 +40,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         final EditPhoneNumberView editPhoneNumberView = holder.editPhoneNumberView;
         editPhoneNumberView.setRelationshipAndListener(contactModel.getName(), relationListener);
         editPhoneNumberView.setPhoneTypeAndListener(contactModel.getPhoneNumberType(), phoneTypeListener);
-        editPhoneNumberView.setPhoneNumber(contactModel.getPhoneNumber());
+        editPhoneNumberView.setPhoneNumberAndListener(contactModel.getPhoneNumber(), phoneNumberInputListener);
         editPhoneNumberView.setDeleteOnClickListener(deleteClickListener);
     }
 
@@ -69,6 +71,16 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
             //spinner dismisses
         }
     };
+
+    private DataInputListener<String> phoneNumberInputListener = new DataInputListener<String>() {
+        @Override
+        public void onInputReceived(String value) {
+            contactModel.setPhoneNumber(value);
+            //notify listener of model change
+            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
+        }
+    };
+
 
     private View.OnClickListener deleteClickListener = new View.OnClickListener() {
         @Override

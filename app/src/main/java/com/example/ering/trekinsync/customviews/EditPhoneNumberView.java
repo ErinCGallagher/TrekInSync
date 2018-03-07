@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.media.Image;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.ering.trekinsync.R;
+import com.example.ering.trekinsync.interfaces.DataInputListener;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
 public class EditPhoneNumberView extends LinearLayout {
@@ -60,8 +63,24 @@ public class EditPhoneNumberView extends LinearLayout {
         phoneNumberType.setOnItemSelectedListener(listener);
     }
 
-    public void setPhoneNumber(String value) {
+    public void setPhoneNumberAndListener(String value, final DataInputListener<String> listener) {
         phoneNumber.setText(value);
+        phoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listener.onInputReceived(phoneNumber.getText().toString());
+            }
+        });
     }
 
     public void setDeleteOnClickListener(OnClickListener listener) {
@@ -76,6 +95,10 @@ public class EditPhoneNumberView extends LinearLayout {
     private void setPhoneNumberType(String value) {
         int pos = UserSingletonUtils.getInstance().getPhoneTypeKeyPosition(value);
         phoneNumberType.setSelection(pos, true);
+    }
+
+    private void setPhoneNumber(String value) {
+        phoneNumber.setText(value);
     }
 
     private void initSpinnerAdapters() {
