@@ -23,20 +23,25 @@ import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.presenters.LandingPresenter;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class LandingActivity extends AppCompatActivity implements RecyclerViewClickListener, LandingView {
 
     private Context context;
     private TextView profileName;
-    private TextView personalProfileLink;
     private RecyclerView contactListView;
     private LandingPresenter presenter;
     private LandingAdapter adapter;
+    private CircleImageView profileIcon;
+    private android.support.v7.app.ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
         context = getApplicationContext();
+        actionBar =  getSupportActionBar();
+        actionBar.setTitle("");
 
         //create User Utils Singleton
         UserSingletonUtils.init(context);
@@ -83,12 +88,11 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
 
     private void setUpProfileHeader() {
         profileName = (TextView) findViewById(R.id.profile_name);
-        personalProfileLink = (TextView) findViewById(R.id.profile_link);
+        profileIcon = (CircleImageView) findViewById(R.id.profile_icon);
 
         profileName.setText(presenter.getUserName());
-        personalProfileLink.setText("View Profile >");
 
-        personalProfileLink.setOnClickListener(new View.OnClickListener() {
+        profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
