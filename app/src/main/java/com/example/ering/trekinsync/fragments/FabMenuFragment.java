@@ -56,7 +56,9 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
 
     @Override
     public void onStop() {
-        hideFabMenu();
+        if (floatingButtonMenuState) {
+            hideFabMenu();
+        }
         super.onStop();
     }
 

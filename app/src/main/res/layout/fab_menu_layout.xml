@@ -35,11 +35,11 @@
         android:id="@+id/fab_camera_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camera"
+        android:text="@string/qr_scanning_button_menu_title"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:textColor="#ffffff"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:visibility="invisible"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -56,11 +56,11 @@
         android:id="@+id/fab_barcode_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show QR Code"
+        android:text="@string/qr_generator_button_menu_title"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:textColor="#ffffff"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:visibility="invisible"/>
 
 </FrameLayout>
