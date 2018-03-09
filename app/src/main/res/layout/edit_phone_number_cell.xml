@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:padding="16dp">
+    android:padding="@dimen/cell_padding">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -20,19 +20,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:padding="5dp">
 
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textColor="@color/primaryBlackFont"
+                android:textSize="@dimen/secondary_label_font"
                 android:text="@string/phone_number_relation_label" />
 
             <Spinner
                 android:id="@+id/relationship_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textColor="@color/primaryBlackFont"
+                android:textSize="@dimen/secondary_description_font"
                 tools:text="Label" />
 
         </LinearLayout>
@@ -42,20 +44,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="5dp">
+            android:padding="5dp">
 
 
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textColor="@color/primaryBlackFont"
+                android:textSize="@dimen/secondary_label_font"
                 android:text="@string/phone_number_type_label" />
 
             <Spinner
                 android:id="@+id/phone_type_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textColor="@color/primaryBlackFont"
+                android:textSize="@dimen/secondary_description_font"
                 tools:text="Cell"/>
 
         </LinearLayout>
@@ -69,7 +73,7 @@
                 android:id="@+id/edit_phone_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="@dimen/description_font"
                 android:inputType="phone"
                 android:digits="0123456789"
                 android:hint="@string/phone_number_hint"
@@ -82,11 +86,12 @@
 
     <ImageView
         android:id="@+id/delete_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="5dp"
+        android:layout_width="@dimen/delete_cell_icon_size"
+        android:layout_height="@dimen/delete_cell_icon_size"
+        android:layout_marginTop="@dimen/inner_item_cell_padding"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="@dimen/end_align_margin"
         android:contentDescription="delete icon"
-        android:src="@android:drawable/ic_delete"/>
+        android:src="@drawable/ic_cancel"/>
 
 </LinearLayout>
