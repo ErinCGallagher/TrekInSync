@@ -10,8 +10,11 @@
     <dimen name="delete_cell_icon_size">20dp</dimen>
 
     //font Sizes
+    <dimen name="intro_primary_font">28sp</dimen>
+    <dimen name="intro_secondary_font">20sp</dimen>
     <dimen name="label_font">13sp</dimen>
     <dimen name="secondary_label_font">15sp</dimen>
     <dimen name="description_font">19sp</dimen>
     <dimen name="secondary_description_font">17sp</dimen>
+
 </resources>

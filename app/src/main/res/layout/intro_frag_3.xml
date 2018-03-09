@@ -17,7 +17,8 @@
             android:layout_marginTop="40dp"
             android:text="@string/intro_frag_3_title"
             android:textAlignment="center"
-            android:textSize="28dp"/>
+            android:textColor="@color/primaryBlackFont"
+            android:textSize="@dimen/intro_primary_font"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -26,7 +27,8 @@
             android:layout_marginBottom="70dp"
             android:text="@string/intro_frag_3_desc"
             android:textAlignment="center"
-            android:textSize="18dp"/>
+            android:textColor="@color/primaryBlackFont"
+            android:textSize="@dimen/intro_secondary_font"/>
 
     </FrameLayout>
 
