@@ -42,6 +42,8 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         context = getApplicationContext();
         actionBar =  getSupportActionBar();
         actionBar.setTitle("");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         //create User Utils Singleton
         UserSingletonUtils.init(context);
