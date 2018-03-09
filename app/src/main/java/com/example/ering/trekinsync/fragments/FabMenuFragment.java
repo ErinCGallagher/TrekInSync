@@ -118,7 +118,7 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
      */
     private void hideFabMenu() {
         hideDimBackground();
-        fab.setImageResource(R.mipmap.ic_person_add_white_24dp);
+        fab.setImageResource(R.drawable.ic_add);
         hideFloatingButtonMenu();
         floatingButtonMenuState = !floatingButtonMenuState;
     }

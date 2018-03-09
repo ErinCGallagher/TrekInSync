@@ -37,18 +37,18 @@ public class EditProfileAdapter extends BaseAdapter {
         listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
         listItems.add(new LabelDescriptionRowBinder("Birthday",
                 presenter.getFormattedUserBirthday(),
-                R.mipmap.ic_date_range_black_24dp,
+                R.drawable.ic_date,
                 presenter.createBirthdayDropDownListener()));
         listItems.add(new LabelDescriptionRowBinder("Citizenship",
                 presenter.getUserCitizenship(),
-                R.mipmap.ic_keyboard_arrow_down_black_24dp,
+                R.drawable.ic_keyboard_arrow_down,
                 presenter.createCitizenshipDropDownRowListener()));
 
         //Health info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
         listItems.add(new LabelDescriptionRowBinder("Blood Type",
                 presenter.getUserBloodType(),
-                R.mipmap.ic_keyboard_arrow_down_black_24dp,
+                R.drawable.ic_keyboard_arrow_down,
                 presenter.createBloodTypeDropDownListener()));
 
         //Emergency Contact Info
