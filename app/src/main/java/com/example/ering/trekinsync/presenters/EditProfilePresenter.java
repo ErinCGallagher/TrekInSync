@@ -370,8 +370,8 @@ public class EditProfilePresenter {
         InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
         insuranceCompanyArray[0] = insuranceCompany;
 
-        EmergencyContact emergencyContact = new EmergencyContact("MO", "416-747-3625", "M");
-        EmergencyContact emergencyContact2 = new EmergencyContact("FA", "416-888-9865", "W");
+        EmergencyContact emergencyContact = new EmergencyContact("PA", "416-747-3625", "M");
+        EmergencyContact emergencyContact2 = new EmergencyContact("SI", "416-888-9865", "W");
         EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
         emergencyContactArray[0] = emergencyContact;
         emergencyContactArray[1] = emergencyContact2;

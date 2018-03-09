@@ -120,29 +120,27 @@
     </string-array>
 
     <string-array name="contact_relation_keys" translatable="false">
-        <item>BR</item>
-        <item>DA</item>
-        <item>FA</item>
         <item>FR</item>
-        <item>MO</item>
         <item>GR</item>
         <item>GU</item>
-        <item>OT</item>
-        <item>SI</item>
+        <item>OF</item>
+        <item>PA</item>
         <item>SO</item>
+        <item>SI</item>
+        <item>SP</item>
+        <item>OT</item>
     </string-array>
 
     <string-array name="contact_relation_values">
-        <item>Brother</item>
-        <item>Daughter</item>
-        <item>Father</item>
         <item>Friend</item>
-        <item>Mother</item>
         <item>Grandparent</item>
         <item>Guardian</item>
+        <item>Offspring</item>
+        <item>Parent</item>
+        <item>Significant Other</item>
+        <item>Sibling</item>
+        <item>Spouse</item>
         <item>Other</item>
-        <item>Sister</item>
-        <item>Son</item>
     </string-array>
 
     <string-array name="number_type_keys" translatable="false">
