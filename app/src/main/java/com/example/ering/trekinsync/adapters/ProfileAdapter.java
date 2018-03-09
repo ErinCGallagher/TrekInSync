@@ -1,6 +1,7 @@
 package com.example.ering.trekinsync.adapters;
 
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.databinders.DualLabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.InsuranceRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
@@ -35,9 +36,8 @@ public class ProfileAdapter extends BaseAdapter {
     public void buildRows() {
         listItems.clear();
         listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor()));
-        //TODO: create birth date and age cell where they are side by side
-        listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate()));
-        listItems.add(new LabelDescriptionRowBinder(presenter.getAgeLabel(), presenter.getAge()));
+        listItems.add(new DualLabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate(),
+                presenter.getAgeLabel(), presenter.getAge()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(), presenter.getCitizenship()));
 
         //Health info

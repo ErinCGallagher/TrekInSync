@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="@dimen/cell_padding">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,17 +15,19 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="Label"/>
-        <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/description_font"
+            android:textColor="@color/primaryBlackFont"
             tools:text="Description Description"/>
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_font"
+            android:textColor="@color/primaryBlackFont"
+            tools:text="Label"/>
     </LinearLayout>
 
     <LinearLayout
