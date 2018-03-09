@@ -28,7 +28,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:src="@drawable/ic_camera"
         app:fabSize="mini"/>
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/ic_menu_mapmode"
+        android:src="@drawable/ic_grid"
         app:fabSize="mini"/>
 
     <TextView

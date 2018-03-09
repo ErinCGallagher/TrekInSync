@@ -109,7 +109,7 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
     private void displayFabMenu() {
         displayDimBackground();
         displayFloatingButtonMenu();
-        fab.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+        fab.setImageResource(R.drawable.ic_close);
         floatingButtonMenuState = !floatingButtonMenuState;
     }
 
