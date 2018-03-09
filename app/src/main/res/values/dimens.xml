@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="end_align_margin">15dp</dimen>
+    <dimen name="cell_padding">16dp</dimen>
+    <dimen name="inner_item_cell_padding">10dp</dimen>
+
+    //asset sizes
+    <dimen name="checkbox_size">25dp</dimen>
+
+    //font Sizes
+    <dimen name="label_font">13sp</dimen>
+    <dimen name="secondary_label_font">15sp</dimen>
+    <dimen name="description_font">19sp</dimen>
+    <dimen name="secondary_description_font">17sp</dimen>
 </resources>

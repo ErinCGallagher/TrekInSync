@@ -57,12 +57,14 @@
 
     //QR Code scanning
     <string name="qr_scanning_action_bar_title">Scan Contact QR Code</string>
+    <string name="qr_scanning_button_menu_title">Scan</string>
 
     //QR Code Generator
     <string name="qr_generator_action_bar_title">Generate QR Code</string>
+    <string name="qr_generator_button_menu_title">Show</string>
 
     //Country list of keys and associated values in specific language
-    //TODO: use country codes
+    //TODO include all countries
     <string-array name="citizenship_keys" translatable="false">
         <item>SGP</item>
         <item>KOR</item>

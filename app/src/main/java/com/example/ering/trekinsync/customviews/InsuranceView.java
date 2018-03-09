@@ -24,17 +24,14 @@ public class InsuranceView extends LinearLayout {
     private LinearLayout[] detailContainerArray;
     private LinearLayout container1;
     private LinearLayout container2;
-    private LinearLayout container3;
 
     private TextView[] detailLabelsArray;
     private TextView detailsLabel1;
     private TextView detailsLabel2;
-    private TextView detailsLabel3;
 
     private TextView[] detailNumbersArray;
     private TextView detailsNumber1;
     private TextView detailsNumber2;
-    private TextView detailsNumber3;
 
     public InsuranceView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -63,13 +60,11 @@ public class InsuranceView extends LinearLayout {
                 ArrayList<String> labelsList = new ArrayList<>();
                 labelsList.add(array.getString(R.styleable.InsuranceView_viewDetailsLabel1));
                 labelsList.add(array.getString(R.styleable.InsuranceView_viewDetailsLabel2));
-                labelsList.add(array.getString(R.styleable.InsuranceView_viewDetailsLabel3));
                 setDetailsLabels(labelsList);
 
                 ArrayList<String> numbersList = new ArrayList<>();
                 numbersList.add(array.getString(R.styleable.InsuranceView_viewDetailsNumber1));
                 numbersList.add(array.getString(R.styleable.InsuranceView_viewDetailsNumber2));
-                numbersList.add(array.getString(R.styleable.InsuranceView_viewDetailsNumber3));
                 setDetailNumbers(numbersList);
             } finally {
                 array.recycle();
@@ -128,31 +123,25 @@ public class InsuranceView extends LinearLayout {
 
     private void setUpListOfLabels(View container) {
         detailLabelsArray = new TextView[3];
-        detailsLabel1 = (TextView) container.findViewById(R.id.details_label1);
-        detailsLabel2 = (TextView) container.findViewById(R.id.details_label2);
-        detailsLabel3 = (TextView) container.findViewById(R.id.details_label3);
+        detailsLabel1 = container.findViewById(R.id.details_label1);
+        detailsLabel2 = container.findViewById(R.id.details_label2);
         detailLabelsArray[0] = detailsLabel1;
         detailLabelsArray[1] = detailsLabel2;
-        detailLabelsArray[2] = detailsLabel3;
     }
 
     private void setUpListOfNumbers(View container) {
         detailNumbersArray = new TextView[3];
-        detailsNumber1 = (TextView) container.findViewById(R.id.details_number1);
-        detailsNumber2 = (TextView) container.findViewById(R.id.details_number2);
-        detailsNumber3 = (TextView) container.findViewById(R.id.details_number3);
+        detailsNumber1 = container.findViewById(R.id.details_number1);
+        detailsNumber2 = container.findViewById(R.id.details_number2);
         detailNumbersArray[0] = detailsNumber1;
         detailNumbersArray[1] = detailsNumber2;
-        detailNumbersArray[2] = detailsNumber3;
     }
 
     private void setUpListOfContainers(View container) {
         detailContainerArray = new LinearLayout[3];
-        container1 = (LinearLayout) container.findViewById(R.id.details_container1);
-        container2 = (LinearLayout) container.findViewById(R.id.details_container2);
-        container3 = (LinearLayout) container.findViewById(R.id.details_container3);
+        container1 = container.findViewById(R.id.details_container1);
+        container2 = container.findViewById(R.id.details_container2);
         detailContainerArray[0] = container1;
         detailContainerArray[1] = container2;
-        detailContainerArray[2] = container3;
     }
 }

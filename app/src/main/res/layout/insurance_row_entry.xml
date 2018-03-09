@@ -10,7 +10,5 @@
     attr:viewCheckboxState="false"
     attr:viewDetailsLabel1="Cert #"
     attr:viewDetailsLabel2="Policy #"
-    attr:viewDetailsLabel3="Group #"
     attr:viewDetailsNumber1="1276"
-    attr:viewDetailsNumber2="12345"
-    attr:viewDetailsNumber3="09876"/>
+    attr:viewDetailsNumber2="12345" />
