@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/header_container"
@@ -14,10 +14,11 @@
         android:gravity="center_horizontal">
 
         <LinearLayout
+            android:id="@+id/top_background_container"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/colorPrimary">
-
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView

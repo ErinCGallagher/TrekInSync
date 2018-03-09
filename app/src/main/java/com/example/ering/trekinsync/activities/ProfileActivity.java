@@ -3,7 +3,9 @@ package com.example.ering.trekinsync.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.ering.trekinsync.adapters.ProfileAdapter;
 import com.example.ering.trekinsync.R;
@@ -134,6 +137,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
             presenter = new ProfilePresenter(user, context, this);
             String actionBarTitle = presenter.getActionBarTitle();
             actionBar.setTitle(actionBarTitle);
+            actionBar.setBackgroundDrawable(new ColorDrawable(presenter.getHeaderColor()));
 
             //setup adapter
             adapter = new ProfileAdapter(presenter);

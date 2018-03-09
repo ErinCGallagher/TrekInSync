@@ -1,6 +1,9 @@
 package com.example.ering.trekinsync.presenters;
 
 import android.content.Context;
+import android.support.annotation.ColorInt;
+import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -37,10 +40,6 @@ public class ProfilePresenter {
     }
 
     //Section Title Data
-    public String getGeneralSectionTitle() {
-        return context.getString(R.string.general_section_title);
-    }
-
     public String getHealthSectionTitle() {
         return context.getString(R.string.health_section_title);
     }
@@ -62,8 +61,12 @@ public class ProfilePresenter {
         }
     }
 
-    public String getFullNameLabel() {
-        return context.getString(R.string.full_name_label);
+    public @ColorInt int getHeaderColor() {
+        if (user.getIsPersonalProfile()) {
+            return ContextCompat.getColor(context, R.color.colorPrimary);
+        } else {
+            return ContextCompat.getColor(context, R.color.colorSecondary);
+        }
     }
 
     public String getFullName() {

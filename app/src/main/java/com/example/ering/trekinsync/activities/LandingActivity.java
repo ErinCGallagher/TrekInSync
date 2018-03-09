@@ -87,11 +87,10 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     }
 
     private void setUpProfileHeader() {
-        profileName = (TextView) findViewById(R.id.profile_name);
-        profileIcon = (CircleImageView) findViewById(R.id.profile_icon);
+        profileName = findViewById(R.id.profile_name);
+        profileIcon = findViewById(R.id.profile_icon);
 
         profileName.setText(presenter.getUserName());
-
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

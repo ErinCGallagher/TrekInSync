@@ -4,6 +4,7 @@ import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.InsuranceRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
+import com.example.ering.trekinsync.databinders.ProfileHeaderRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
@@ -33,10 +34,7 @@ public class ProfileAdapter extends BaseAdapter {
      */
     public void buildRows() {
         listItems.clear();
-        //General Info
-        listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
-        //TODO: create profile picture upload cell?
-        listItems.add(new LabelDescriptionRowBinder(presenter.getFullNameLabel(),presenter.getFullName()));
+        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor()));
         //TODO: create birth date and age cell where they are side by side
         listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getAgeLabel(), presenter.getAge()));
