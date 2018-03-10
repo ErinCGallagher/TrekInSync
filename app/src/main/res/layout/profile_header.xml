@@ -57,6 +57,7 @@
                 android:textSize="@dimen/full_name_header_font"
                 android:visibility="gone"
                 android:maxLength="30"
+                android:digits="abcdefghijklmnopqrstuvwxyz "
                 tools:text="My Full Name" />
 
         </LinearLayout>
