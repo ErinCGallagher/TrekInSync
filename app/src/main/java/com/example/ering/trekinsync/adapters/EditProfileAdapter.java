@@ -34,7 +34,8 @@ public class EditProfileAdapter extends BaseAdapter {
     public void buildRows() {
         listItems.clear();
         //TODO: indicate updates happening on changes, no save necessary
-        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor(), presenter.getFullNameEditListener()));
+        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor(),
+                presenter.getProfileIcon(), presenter.getFullNameEditListener()));
         listItems.add(new LabelDescriptionRowBinder("Birthday",
                 presenter.getFormattedUserBirthday(),
                 R.drawable.ic_date,

@@ -35,7 +35,7 @@ public class ProfileAdapter extends BaseAdapter {
      */
     public void buildRows() {
         listItems.clear();
-        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor()));
+        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor(), presenter.getProfileIcon()));
         listItems.add(new DualLabelDescriptionRowBinder(presenter.getBirthDateLabel(), presenter.getBirthDate(),
                 presenter.getAgeLabel(), presenter.getAge()));
         listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(), presenter.getCitizenship()));

@@ -1,7 +1,7 @@
 package com.example.ering.trekinsync.viewholders;
 
+import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +13,10 @@ import android.widget.TextView;
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.DataInputListener;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
+    public CircleImageView profileIcon;
     public TextView profileName;
     public LinearLayout topBackgroundHeader;
     public EditText editProfileName;
@@ -21,6 +24,7 @@ public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
 
     public ProfileHeaderViewHolder(View itemView) {
         super(itemView);
+        profileIcon = itemView.findViewById(R.id.profile_icon);
         profileName = itemView.findViewById(R.id.profile_name);
         topBackgroundHeader = itemView.findViewById(R.id.top_background_container);
         editProfileName = itemView.findViewById(R.id.edit_profile_name);
@@ -40,6 +44,10 @@ public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
 
     public void setHeaderColor(@ColorInt int headerColor) {
         topBackgroundHeader.setBackgroundColor(headerColor);
+    }
+
+    public void setProfileIcon(LayerDrawable icon) {
+        profileIcon.setImageDrawable(icon);
     }
 
     public void setEditMode(boolean editMode) {

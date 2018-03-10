@@ -4,6 +4,9 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.TypedArrayUtils;
@@ -68,6 +71,14 @@ public class EditProfilePresenter {
 
     public @ColorInt int getHeaderColor() {
         return ContextCompat.getColor(context, R.color.colorPrimary);
+    }
+
+    public LayerDrawable getProfileIcon() {
+        Resources r = context.getResources();
+        Drawable[] layers = new Drawable[2];
+        layers[0] = r.getDrawable(R.drawable.placeholder_profile_icon_personal);
+        layers[1] = r.getDrawable(R.drawable.ic_edit_black_opacity_40);
+        return new LayerDrawable(layers);
     }
 
     public void handleSaveProfileButtonClick() {
