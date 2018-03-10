@@ -12,6 +12,11 @@
     <string name="intro_frag_4_title">Language Barriers While Travelling?</string>
     <string name="intro_frag_4_desc">No sweat! Your details can be shared in several languages.</string>
 
+    //Menu
+    <string name="menu_edit_profile">Edit Profile</string>
+    <string name="menu_view_profile">View Profile</string>
+    <string name="menu_more_details">Trek In Sync Details</string>
+
     //shared preferences keys
     <string name="primary_profile_key">primaryProfile</string>
     <string name="app_name_key">com.example.trekinsync.</string>
