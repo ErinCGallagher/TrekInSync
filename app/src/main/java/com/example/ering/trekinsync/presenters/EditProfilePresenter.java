@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.annotation.ColorInt;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.view.View;
 import android.widget.DatePicker;
@@ -60,6 +62,14 @@ public class EditProfilePresenter {
         }
     }
 
+    public String getFullName() {
+        return user.getName() != null ? user.getName() : "";
+    }
+
+    public @ColorInt int getHeaderColor() {
+        return ContextCompat.getColor(context, R.color.colorPrimary);
+    }
+
     public void handleSaveProfileButtonClick() {
         //update primary user shared preferences
         saveProfileToSharedPrefs();
@@ -88,10 +98,6 @@ public class EditProfilePresenter {
     }
 
     /* Section Title Data*/
-
-    public String getGeneralSectionTitle() {
-        return context.getString(R.string.general_section_title);
-    }
 
     public String getHealthSectionTitle() {
         return context.getString(R.string.health_section_title);

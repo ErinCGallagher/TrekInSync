@@ -6,6 +6,7 @@ import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.EditPhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
+import com.example.ering.trekinsync.databinders.ProfileHeaderRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
@@ -33,8 +34,7 @@ public class EditProfileAdapter extends BaseAdapter {
     public void buildRows() {
         listItems.clear();
         //TODO: indicate updates happening on changes, no save necessary
-        //General Info
-        listItems.add(new SectionDividerTitleRowBinder(presenter.getGeneralSectionTitle()));
+        listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor()));
         listItems.add(new LabelDescriptionRowBinder("Birthday",
                 presenter.getFormattedUserBirthday(),
                 R.drawable.ic_date,
