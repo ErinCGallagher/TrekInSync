@@ -49,9 +49,6 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         actionBar =  getSupportActionBar();
-        actionBar.setTitle("");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         setupDrawer();
 
         //create User Utils Singleton
@@ -73,25 +70,23 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         super.onResume();
         if (presenter != null) {
             presenter.updateProfileAndContacts();
+            setUpProfileHeader();
         }
     }
 
     private void setupDrawer() {
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        actionBar.setTitle("");
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
                         menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
+                        mDrawerLayout.closeDrawers(); //close on tap
                         return true;
                     }
                 });
