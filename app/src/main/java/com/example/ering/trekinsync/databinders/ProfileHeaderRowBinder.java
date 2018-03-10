@@ -36,5 +36,6 @@ public class ProfileHeaderRowBinder extends BaseDataBinder<ProfileHeaderViewHold
         holder.setEditMode(isEditMode);
         holder.setTitle(profileName);
         holder.setHeaderColor(headerColor);
+        holder.setTextChangeListener(listener);
     }
 }
