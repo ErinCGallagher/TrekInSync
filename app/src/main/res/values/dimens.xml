@@ -16,5 +16,6 @@
     <dimen name="secondary_label_font">15sp</dimen>
     <dimen name="description_font">19sp</dimen>
     <dimen name="secondary_description_font">17sp</dimen>
+    <dimen name="full_name_header_font">20sp</dimen>
 
 </resources>

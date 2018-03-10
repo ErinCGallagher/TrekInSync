@@ -151,6 +151,20 @@ public class EditProfilePresenter {
 
     /* On Click Listeners */
 
+    /**
+     * Create Data Input Listener for  full name edit text.
+     * @return DataInputListener<String> listener
+     */
+    public DataInputListener<String> getFullNameEditListener() {
+        return new DataInputListener<String>() {
+            @Override
+            public void onInputReceived(String value) {
+                user.setName(value.trim());
+                indicateUserDataModified();
+            }
+        };
+    }
+
     public View.OnClickListener createBirthdayDropDownListener() {
         return new View.OnClickListener() {
             @Override
