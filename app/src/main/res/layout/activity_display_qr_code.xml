@@ -1,114 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ering.trekinsync.activities.DisplayQrCodeActivity"
-    android:gravity="center">
+    android:orientation="vertical"
+    tools:context="com.example.ering.trekinsync.activities.DisplayQrCodeActivity" >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/primaryWhiteFont"/>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/preferences_container"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_margin="15dp"
-        android:background="@drawable/qr_preferences_border"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="QR Code Preferences"
-            android:textSize="17dp"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/preferences_container"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:weightSum="3">
+            android:orientation="vertical"
+            android:background="@drawable/qr_preferences_border">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Share Insurance Information"
-                android:layout_gravity="center_vertical"/>
+                android:text="QR Code Preferences"
+                android:textSize="17dp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end">
-
-                <RadioButton
-                    android:id="@+id/insurance_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Expiry Date"
-                android:layout_gravity="center_vertical"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="end">
+                android:weightSum="3">
 
                 <TextView
-                    android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/qrCodeWhite"
+                    android:layout_weight="2"
+                    android:text="Share Insurance Information"
                     android:layout_gravity="center_vertical"/>
 
-                <ImageButton
-                    android:id="@+id/calendar_button"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/qrCodeWhite"
-                    app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
+                    android:layout_weight="1"
+                    android:gravity="end">
 
+                    <RadioButton
+                        android:id="@+id/insurance_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Expiry Date"
+                    android:layout_gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/qrCodeWhite"
+                        android:layout_gravity="center_vertical"/>
+
+                    <ImageButton
+                        android:id="@+id/calendar_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/qrCodeWhite"
+                        app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/generate_qr_button"
+                android:layout_width="220dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Generate QR Code"/>
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/generate_qr_button"
-            android:layout_width="220dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:text="Generate QR Code"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:indeterminate="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleLarge"
+            android:gravity="center"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/qr_code_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:indeterminate="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleLarge"
-        android:gravity="center"
-        android:visibility="invisible"/>
-
-    <ImageView
-        android:id="@+id/qr_code_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:visibility="gone"/>
-
-</RelativeLayout>
+</LinearLayout>

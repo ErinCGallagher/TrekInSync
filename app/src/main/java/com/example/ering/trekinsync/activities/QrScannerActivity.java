@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class QrScannerActivity extends AppCompatActivity implements ZXingScanner
         super.onCreate(state);
         setContentView(R.layout.activity_qr_code_scanner);
         context = getApplicationContext();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         actionBar =  getSupportActionBar();
         presenter = new QrScannerPresenter(context, this);
 

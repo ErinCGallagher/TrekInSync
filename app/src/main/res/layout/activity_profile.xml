@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ering.trekinsync.activities.ProfileActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                    app:titleTextColor="@color/primaryWhiteFont"/>
+
+        </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/profileRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:importantForAccessibility="auto">
+            android:importantForAccessibility="auto"
+            android:layout_marginTop="?attr/actionBarSize">
         </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
