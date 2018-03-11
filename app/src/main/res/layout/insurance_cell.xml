@@ -25,6 +25,7 @@
                 android:textColor="@color/primaryBlackFont"
                 android:textSize="@dimen/description_font"
                 android:layout_weight="1"
+                android:textIsSelectable="true"
                 tools:text="phone number"/>
 
             <TextView
