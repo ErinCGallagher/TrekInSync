@@ -4,6 +4,8 @@ import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
         profileName = itemView.findViewById(R.id.profile_name);
         topBackgroundHeader = itemView.findViewById(R.id.top_background_container);
         editProfileName = itemView.findViewById(R.id.edit_profile_name);
+        editProfileName.setFilters(new InputFilter[] { alphaFilter });
     }
 
     public static int getLayoutId() {
@@ -76,4 +79,20 @@ public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
+
+    //filter name field with just letters, multi-language support
+    private InputFilter alphaFilter = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            StringBuilder builder = new StringBuilder();
+            for (int i = start; i < end; i++) {
+                char c = source.charAt(i);
+                if (Character.isLetter(c) || Character.isSpaceChar(c)) {
+                    builder.append(c);
+                }
+            }
+            boolean charactersValid = (builder.length() == end - start);
+            return charactersValid ? null : builder.toString();
+        }
+    };
 }

@@ -75,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/description_font"
                 android:inputType="phone"
-                android:digits="0123456789"
                 android:hint="@string/phone_number_hint"
                 android:maxLength="12"
                 tools:ignore="LabelFor" />

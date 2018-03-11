@@ -21,9 +21,7 @@ public class ProfileHeaderRowBinder extends BaseDataBinder<ProfileHeaderViewHold
         this.headerColor = headerColor;
 
         //setup profile icon
-        Drawable[] layers = new Drawable[1];
-        layers[0] = profileIcon;
-        this.profileIcon = new LayerDrawable(layers);
+        this.profileIcon = new LayerDrawable(new Drawable[] { profileIcon });
     }
 
     public ProfileHeaderRowBinder(String profileName, @ColorInt int headerColor,
