@@ -3,6 +3,7 @@ package com.example.ering.trekinsync.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ public class IntroActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TextView doneButton;
     private Context context;
+    private boolean isOnboarding = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +43,35 @@ public class IntroActivity extends AppCompatActivity {
         editor.putBoolean(COMPLETED_ON_BOARDING, true);
         editor.apply();
 
+        //get onboarding intent
+        Bundle bundle = getIntent().getExtras();
+        try {
+            isOnboarding = bundle.getBoolean("Onboarding");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        @StringRes int buttonText = isOnboarding ? R.string.intro_lets_go_button : R.string.intro_done_button;
+        doneButton.setText(buttonText);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditProfileActivity.class);
-                startActivity(intent);
-                finish();
+                if (isOnboarding) {
+                    launchCreateProfile();
+                } else {
+                    backToLanding();
+                }
             }
         });
+    }
+
+    private void launchCreateProfile() {
+        Intent intent = new Intent(context, EditProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void backToLanding() {
+        finish();
     }
 }

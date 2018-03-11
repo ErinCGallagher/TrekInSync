@@ -10,4 +10,5 @@ public interface LandingView {
     void launchProfilePage(User user);
     void launchEditProfilePage(User user);
     void launchCreateProfilePage();
+    void launchAppDetailPages(boolean isOnboarding);
 }

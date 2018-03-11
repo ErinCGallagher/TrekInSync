@@ -146,7 +146,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         try {
             user = bundle.getParcelable("UserObj");
         } catch (Exception e) {
-            //Do Nothing
+            e.printStackTrace();
         }
 
         //setup presenter

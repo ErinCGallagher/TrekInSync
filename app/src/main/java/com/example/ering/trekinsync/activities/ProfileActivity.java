@@ -128,7 +128,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
         try {
             user = bundle.getParcelable("UserObj");
         } catch (Exception e) {
-            //Do Nothing
+            e.printStackTrace();
         }
         return user;
     }

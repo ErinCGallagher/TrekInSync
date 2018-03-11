@@ -3,6 +3,7 @@
 
     //Intro Pages
     <string name="intro_lets_go_button">Let\'s Go</string>
+    <string name="intro_done_button">Done</string>
     <string name="intro_frag_1_title">Travelling? \n Weekend Getaway?</string>
     <string name="intro_frag_1_desc">Are you prepared for an emergency?</string>
     <string name="intro_frag_2_title">Don\'t Worry With <b><i>Trek In Sync</i></b></string>

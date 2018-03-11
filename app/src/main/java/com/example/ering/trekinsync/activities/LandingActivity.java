@@ -57,7 +57,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         //If on boarding has not been completed, launch intro screens
         SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {
-            startActivity(new Intent(this, IntroActivity.class));
+            launchAppDetailPages(true);
             finish();
         } else {
             startLandingPageSetup();
@@ -92,7 +92,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
                         } else if (id == R.id.nav_edit_profile) {
                             presenter.handleNavMenuEditProfile();
                         } else if (id == R.id.nav_details) {
-                            //TODO: intro pages
+                            launchAppDetailPages(false);
                         }
                         menuItem.setChecked(false);
                         mDrawerLayout.closeDrawers();
@@ -172,6 +172,13 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         Intent intent = new Intent(context, EditProfileActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void launchAppDetailPages(boolean isOnboarding) {
+        Intent intent = new Intent(this, IntroActivity.class);
+        intent.putExtra("Onboarding", isOnboarding);
+        startActivity(intent);
     }
 
     @Override
