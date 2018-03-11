@@ -55,7 +55,7 @@ public class LandingPresenter {
     }
 
     public String getSectionTitle() {
-        return "Travel Contacts";
+        return context.getString(R.string.travel_contacts_label);
     }
 
     public User getUser() {

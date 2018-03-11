@@ -97,6 +97,22 @@ public class EditProfilePresenter {
         }
     }
 
+    public String getBirthDateLabel() {
+        return context.getString(R.string.birth_date_label);
+    }
+
+    public String getCitizenshipLabel() {
+        return context.getString(R.string.citizenship_label);
+    }
+
+    public String getBloodTypeLabel() {
+        return context.getString(R.string.blood_type_label);
+    }
+
+    public String getAddNumberButtonLabel() {
+        return context.getString(R.string.add_number_button_title);
+    }
+
     /**
      * Launch back button confirmation dialog to confirm user wants to not save changes
      */

@@ -36,18 +36,18 @@ public class EditProfileAdapter extends BaseAdapter {
         //TODO: indicate updates happening on changes, no save necessary
         listItems.add(new ProfileHeaderRowBinder(presenter.getFullName(), presenter.getHeaderColor(),
                 presenter.getProfileIcon(), presenter.getFullNameEditListener()));
-        listItems.add(new LabelDescriptionRowBinder("Birthday",
+        listItems.add(new LabelDescriptionRowBinder(presenter.getBirthDateLabel(),
                 presenter.getFormattedUserBirthday(),
                 R.drawable.ic_date,
                 presenter.createBirthdayDropDownListener()));
-        listItems.add(new LabelDescriptionRowBinder("Citizenship",
+        listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(),
                 presenter.getUserCitizenship(),
                 R.drawable.ic_keyboard_arrow_down,
                 presenter.createCitizenshipDropDownRowListener()));
 
         //Health info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
-        listItems.add(new LabelDescriptionRowBinder("Blood Type",
+        listItems.add(new LabelDescriptionRowBinder(presenter.getBloodTypeLabel(),
                 presenter.getUserBloodType(),
                 R.drawable.ic_keyboard_arrow_down,
                 presenter.createBloodTypeDropDownListener()));
@@ -62,7 +62,7 @@ public class EditProfileAdapter extends BaseAdapter {
             }
         }
         if (pos < presenter.getMaxEmergencyContacts()) {
-            listItems.add(new AddRowIconTitleCellDataBinder("Add Emergency Contact", presenter.getAddEmergencyContactListener()));
+            listItems.add(new AddRowIconTitleCellDataBinder(presenter.getAddNumberButtonLabel(), presenter.getAddEmergencyContactListener()));
         }
 
         //Insurance Info
