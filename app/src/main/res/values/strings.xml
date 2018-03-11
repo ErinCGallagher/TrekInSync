@@ -19,11 +19,11 @@
     <string name="menu_more_details">Trek In Sync Details</string>
 
     //shared preferences keys
-    <string name="primary_profile_key">primaryProfile</string>
-    <string name="app_name_key">com.example.trekinsync.</string>
-    <string name="created_profile_key">createdProfile</string>
-    <string name="travel_contact_key_names">travelContactKeyNames</string>
-    <string name="cannot_find_key">Not Found</string>
+    <string name="primary_profile_key" translatable="false">primaryProfile</string>
+    <string name="app_name_key" translatable="false">com.example.trekinsync.</string>
+    <string name="created_profile_key" translatable="false">createdProfile</string>
+    <string name="travel_contact_key_names" translatable="false">travelContactKeyNames</string>
+    <string name="cannot_find_key" translatable="false">Not Found</string>
 
     //profile section title strings
     <string name="general_section_title">GENERAL INFO</string>
@@ -42,17 +42,18 @@
     <string name="allergies_label">Allergies</string>
     <string name="medication_label">Medication</string>
     <string name="call_first_label">Call First</string>
+    <string name="travel_contacts_label">Contacts</string>
 
     //profile Alert
     <string name="delete_profile_alert_title">Delete Contact</string>
     <string name="delete_profile_alert_message">Are you sure you want to delete this travel contact?</string>
     <string name="delete_alert_positive">Yes, Delete</string>
-    <string name="delete_alert_Negative">No, Go Back</string>
+    <string name="delete_alert_Negative">Cancel</string>
 
     <string name="save_profile_alert_title">Go Back Without Saving?</string>
-    <string name="save_profile_alert_message">Are you sure you do not want to save your changes?</string>
+    <string name="save_profile_alert_message">Are you sure you to discard your changes?</string>
     <string name="save_alert_positive">Yes, Do Not Save</string>
-    <string name="save_alert_Negative">No, Return</string>
+    <string name="save_alert_Negative">Cancel</string>
 
     //Edit Profile
     <string name="create_profile_action_bar_title">Create Profile</string>
@@ -60,6 +61,8 @@
     <string name="phone_number_relation_label">Relationship:</string>
     <string name="phone_number_type_label">Type:</string>
     <string name="phone_number_hint">Enter Number</string>
+    <string name="add_number_button_title">Add Emergency Contact</string>
+    <string name="add_insurance_button_title">Add Insurance Provider</string>
 
     //QR Code scanning
     <string name="qr_scanning_action_bar_title">Scan Contact QR Code</string>
@@ -67,6 +70,9 @@
 
     //QR Code Generator
     <string name="qr_generator_action_bar_title">Generate QR Code</string>
+    <string name="qr_generator_preferences_title">QR Code Preferences</string>
+    <string name="qr_generator_insurance_desc">Share Insurance Information</string>
+    <string name="qr_generator_expiry_date">Expiry Date</string>
     <string name="qr_generator_button_menu_title">Show</string>
 
     //Country list of keys and associated values in specific language
@@ -114,14 +120,14 @@
     </string-array>
 
     <string-array name="blood_type_values">
-        <item>O Negative</item>
-        <item>O Positive</item>
-        <item>A Negative</item>
-        <item>A Positive</item>
-        <item>B Negative</item>
-        <item>B Positive</item>
-        <item>AB Negative</item>
-        <item>AB Positive</item>
+        <item>O–</item>
+        <item>O+</item>
+        <item>A–</item>
+        <item>A+</item>
+        <item>B–</item>
+        <item>B+</item>
+        <item>AB–</item>
+        <item>AB+</item>
         <item>Do not Know</item>
     </string-array>
 
@@ -161,5 +167,23 @@
         <item>Mobile</item>
         <item>Work</item>
         <item>Other</item>
+    </string-array>
+
+    <string-array name="insurance_keys" translatable="false">
+        <item>CE</item>
+        <item>GR</item>
+        <item>PL</item>
+        <item>PO</item>
+        <item>ME</item>
+        <item>OT</item>
+    </string-array>
+
+    <string-array name="insurance_values">
+        <item>Certificate #</item>
+        <item>Group #</item>
+        <item>Plan #</item>
+        <item>Policy #</item>
+        <item>Member #</item>
+        <item>Other #</item>
     </string-array>
 </resources>

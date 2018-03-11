@@ -1,2 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">TrekInSync</string>
+
+    //Intro Pages
+    <string name="intro_lets_go_button">Allons-y</string>
+    <string name="intro_done_button">Fini</string>
+    <string name="intro_frag_1_title">En voyageant? \n Une Escapade Locale?</string>
+    <string name="intro_frag_1_desc">Êtes-vous prêt pour une urgence?</string>
+    <string name="intro_frag_2_title">Ne t\'inquiète pas avec <b><i>Trek In Sync</i></b></string>
+    <string name="intro_frag_2_desc">Commencez la conversation et restez en sécurité!</string>
+    <string name="intro_frag_3_title">Partage facile</string>
+    <string name="intro_frag_3_desc">Balayage du code QR permet un partage rapide et facile des informations d\'urgence.</string>
+    <string name="intro_frag_4_title">Barrières linguistiques en voyageant?</string>
+    <string name="intro_frag_4_desc">Aucun problème! Vos informations peuvent être partagées en plusieurs langues.</string>
+
+    //Menu
+    <string name="menu_edit_profile">Editer le profil</string>
+    <string name="menu_view_profile">Voir le profil</string>
+    <string name="menu_more_details">Détails de Trek In Sync</string>
+
+    //profile section title strings
+    <string name="general_section_title">INFORMATIONS GÉNÉRALES</string>
+    <string name="health_section_title">INFORMATIONS SUR LA SANTÉ</string>
+    <string name="emergency_contact_section_title">CONTACT D\'URGENCE</string>
+    <string name="insurance_section_title">L\'ASSURANCE</string>
+
+    //profile attribute label strings
+    <string name="personal_profile_action_bar_title">Profil personnel</string>
+    <string name="travel_contact_profile_action_bar_title">Profil de contact de voyage</string>
+    <string name="full_name_label">Nom complet</string>
+    <string name="birth_date_label">Date de naissance</string>
+    <string name="age_label">Âge</string>
+    <string name="citizenship_label">Citoyenneté</string>
+    <string name="blood_type_label">Groupe sanguin</string>
+    <string name="allergies_label">Des allergies</string>
+    <string name="medication_label">Des médicaments</string>
+    <string name="call_first_label">Appelez d\'abord</string>
+    <string name="travel_contacts_label">Contacts</string>
+
+    //profile Alert
+    <string name="delete_profile_alert_title">Effacer le contact</string>
+    <string name="delete_profile_alert_message">Voulez-vous vraiment supprimer ce contact de voyage?</string>
+    <string name="delete_alert_positive">Oui, Effacer</string>
+    <string name="delete_alert_Negative">Annuler</string>
+
+    <string name="save_profile_alert_title">Retournez sans enregistrer?</string>
+    <string name="save_profile_alert_message">Êtes-vous sûr de vouloir annuler vos modifications?</string>
+    <string name="save_alert_positive">Oui</string>
+    <string name="save_alert_Negative">Retourner</string>
+
+    //Edit Profile
+    <string name="create_profile_action_bar_title">Créer un profil</string>
+    <string name="edit_profile_action_bar_title">Editer le profil</string>
+    <string name="phone_number_relation_label">Relation:</string>
+    <string name="phone_number_type_label">Type:</string>
+    <string name="phone_number_hint">entrer un numéro</string>
+    <string name="add_number_button_title">Ajouter un contact d\'urgence</string>
+    <string name="add_insurance_button_title">Ajouter un fournisseur d\'assurance</string>
+
+    //QR Code scanning
+    <string name="qr_scanning_action_bar_title">Lire le code QR</string>
+    <string name="qr_scanning_button_menu_title">Lire le code QR</string>
+
+    //QR Code Generator
+    <string name="qr_generator_action_bar_title">Générer du code QR</string>
+    <string name="qr_generator_preferences_title">Préférences de code QR</string>
+    <string name="qr_generator_insurance_desc">Partager l\'assurance-actions</string>
+    <string name="qr_generator_expiry_date">Date d\'expiration</string>
+    <string name="qr_generator_button_menu_title">Montrer</string>
+
+    <string-array name="citizenship_values">
+        <item>Singapore</item>
+        <item>South Korea</item>
+        <item>Finland</item>
+        <item>Germany</item>
+        <item>Japan</item>
+        <item>Denmark</item>
+        <item>Sweden</item>
+        <item>Italy</item>
+        <item>Canada</item>
+        <item>France</item>
+        <item>Spain</item>
+        <item>Luxembourg</item>
+    </string-array>
+
+    <string-array name="blood_type_values">
+        <item>O–</item>
+        <item>O+</item>
+        <item>A–</item>
+        <item>A+</item>
+        <item>B–</item>
+        <item>B+</item>
+        <item>AB–</item>
+        <item>AB+</item>
+        <item>Ne sait pas</item>
+    </string-array>
+
+    <string-array name="contact_relation_values">
+        <item>Ami</item>
+        <item>Grand-parent</item>
+        <item>Gardien</item>
+        <item>Progéniture</item>
+        <item>Parent</item>
+        <item>Ma moitié</item>
+        <item>sœur ou frère</item>
+        <item>Époux</item>
+        <item>Autre</item>
+    </string-array>
+
+    <string-array name="number_type_values">
+        <item>Accueil</item>
+        <item>Mobile</item>
+        <item>Travail</item>
+        <item>Autre</item>
+    </string-array>
+
+    <string-array name="insurance_values">
+        <item>Certificat #</item>
+        <item>Groupe #</item>
+        <item>Plan #</item>
+        <item>Politique #</item>
+        <item>Membre #</item>
+        <item>Autre #</item>
+    </string-array>
+</resources>

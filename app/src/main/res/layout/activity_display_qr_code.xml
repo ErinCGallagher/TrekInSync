@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="QR Code Preferences"
+                android:text="@string/qr_generator_preferences_title"
                 android:textSize="17dp"
                 android:gravity="center"
                 android:layout_marginBottom="20dp"/>
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Share Insurance Information"
+                    android:text="@string/qr_generator_insurance_desc"
                     android:layout_gravity="center_vertical"/>
 
                 <LinearLayout
@@ -77,7 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Expiry Date"
+                    android:text="@string/qr_generator_expiry_date"
                     android:layout_gravity="center_vertical"/>
 
                 <LinearLayout
