@@ -78,6 +78,20 @@ public class LandingPresenter {
         view.launchProfilePage(selectedContact);
     }
 
+    /* Handle Drawer Menu */
+
+    public void handleNavMenuViewProfile() {
+        if (user != null) {
+            view.launchProfilePage(user);
+        }
+    }
+
+    public void handleNavMenuEditProfile() {
+        if (user != null) {
+            view.launchEditProfilePage(user);
+        }
+    }
+
 
     /* Private Functions */
 

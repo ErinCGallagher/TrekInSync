@@ -85,8 +85,17 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        int id = menuItem.getItemId();
                         menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers(); //close on tap
+                        if (id == R.id.nav_profile) {
+                            presenter.handleNavMenuViewProfile();
+                        } else if (id == R.id.nav_edit_profile) {
+                            presenter.handleNavMenuEditProfile();
+                        } else if (id == R.id.nav_details) {
+                            //TODO: intro pages
+                        }
+                        menuItem.setChecked(false);
+                        mDrawerLayout.closeDrawers();
                         return true;
                     }
                 });
@@ -147,6 +156,13 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
     @Override
     public void launchProfilePage(@NonNull User user) {
         Intent intent = new Intent(context, ProfileActivity.class);
+        intent.putExtra("UserObj", user);
+        startActivity(intent);
+    }
+
+    @Override
+    public void launchEditProfilePage(@NonNull User user) {
+        Intent intent = new Intent(context, EditProfileActivity.class);
         intent.putExtra("UserObj", user);
         startActivity(intent);
     }
