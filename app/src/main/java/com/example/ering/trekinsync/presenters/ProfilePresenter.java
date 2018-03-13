@@ -65,12 +65,16 @@ public class ProfilePresenter {
         if (user.getIsPersonalProfile()) {
             return ContextCompat.getColor(context, R.color.colorPrimary);
         } else {
-            return ContextCompat.getColor(context, R.color.colorSecondary);
+            return ContextCompat.getColor(context, R.color.colorAccent);
         }
     }
 
     public Drawable getProfileIcon() {
-        return context.getResources().getDrawable(R.drawable.placeholder_profile_icon_personal);
+        if (user.getIsPersonalProfile()) {
+            return context.getResources().getDrawable(R.drawable.placeholder_profile_icon_personal);
+        } else {
+            return context.getResources().getDrawable(R.drawable.placeholder_profile_icon_contact);
+        }
     }
 
     public String getFullName() {
