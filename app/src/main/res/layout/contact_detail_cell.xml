@@ -9,6 +9,21 @@
     android:padding="16dp">
 
     <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/sorting_label"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sorting_label_font"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorAccent"
+            tools:text="A"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -26,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/secondary_description_font"
-            android:textColor="@color/primaryBlackFont"
+            android:textColor="@color/primaryGreyFont"
             tools:text="Canadian"/>
     </LinearLayout>
     <LinearLayout

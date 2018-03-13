@@ -14,6 +14,7 @@ import com.example.ering.trekinsync.R;
 public class ContactView extends LinearLayout {
     private TextView contactName;
     private TextView contactDescription;
+    private TextView sortingLabel;
 
     public ContactView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -22,8 +23,9 @@ public class ContactView extends LinearLayout {
 
     private void init(final Context context, AttributeSet attrs) {
         View container = LayoutInflater.from(context).inflate(R.layout.contact_detail_cell, this);
-        contactName =  (TextView) container.findViewById(R.id.contact_name);
-        contactDescription = (TextView) container.findViewById(R.id.contact_description);
+        contactName = container.findViewById(R.id.contact_name);
+        contactDescription = container.findViewById(R.id.contact_description);
+        sortingLabel = container.findViewById(R.id.sorting_label);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ContactDetailView, 0, 0);
@@ -42,5 +44,11 @@ public class ContactView extends LinearLayout {
 
     public void setDescription(String description) {
         contactDescription.setText(description);
+    }
+
+    public void setSortingLabel(String label) {
+        if (label != null) {
+            sortingLabel.setText(label);
+        }
     }
 }

@@ -172,8 +172,13 @@ public class User implements Parcelable {
         this.insuranceInfo = insuranceInfo;
     }
 
-    public String getSortingString() {
+    public String getSortingStringCountry() {
         String key = citizenship + name;
+        return key.replaceAll("\\s","");
+    }
+
+    public String getSortingStringName() {
+        String key = name + citizenship;
         return key.replaceAll("\\s","");
     }
 

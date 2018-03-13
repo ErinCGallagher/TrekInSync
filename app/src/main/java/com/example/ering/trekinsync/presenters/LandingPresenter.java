@@ -24,6 +24,7 @@ public class LandingPresenter {
     private SharedPreferences sharedPref;
     private Context context;
     private LandingView view;
+    private boolean sortContactsByName = true;
 
     /**
      * Create Profile Presenter for Business logic
@@ -42,7 +43,7 @@ public class LandingPresenter {
         this.contacts = retrieveTravelContacts();
         if (this.contacts != null && !contacts.isEmpty()) {
             removeExpiredContacts();
-            sortTravelContacts();
+            sortTravelContactsByName();
         } else {
             //TODO: display no travel contacts UI
         }
@@ -92,6 +93,22 @@ public class LandingPresenter {
         }
     }
 
+    /* Handle Sorting Travel Contacts */
+
+    public String getSortingPrefix(User previousContact, User currentContact) {
+        if (sortContactsByName) {
+            if ((previousContact == null || previousContact.getName() == null) && currentContact != null) {
+                return currentContact.getName().substring(0,1).toUpperCase();
+            } else if (currentContact != null &&
+                    !(previousContact.getName().substring(0,1).equals(currentContact.getName().substring(0,1)))) {
+                return currentContact.getName().substring(0,1).toUpperCase();
+            }
+            return null;
+        }
+        //TODO: implement sort by country
+        return null;
+    }
+
 
     /* Private Functions */
 
@@ -121,11 +138,23 @@ public class LandingPresenter {
     /**
      * sort the contacts by citizenship and then by name.
      */
-    private void sortTravelContacts() {
+    private void sortTravelContactsByCitizenship() {
         Collections.sort(this.contacts, new Comparator<User>(){
             public int compare(User obj1, User obj2) {
                 // ## Ascending order
-                return obj1.getSortingString().compareToIgnoreCase(obj2.getSortingString());
+                return obj1.getSortingStringName().compareToIgnoreCase(obj2.getSortingStringName());
+            }
+        });
+    }
+
+    /**
+     * sort the contacts by name and then by citizenship.
+     */
+    private void sortTravelContactsByName() {
+        Collections.sort(this.contacts, new Comparator<User>(){
+            public int compare(User obj1, User obj2) {
+                // ## Ascending order
+                return obj1.getSortingStringName().compareToIgnoreCase(obj2.getSortingStringName());
             }
         });
     }

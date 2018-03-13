@@ -20,5 +20,6 @@
     <dimen name="secondary_description_font">15sp</dimen>
     <dimen name="full_name_header_font">20sp</dimen>
     <dimen name="section_title_font">18sp</dimen>
+    <dimen name="sorting_label_font">24sp</dimen>
 
 </resources>

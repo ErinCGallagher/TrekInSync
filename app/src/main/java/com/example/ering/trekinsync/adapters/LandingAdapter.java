@@ -33,11 +33,14 @@ public class LandingAdapter extends BaseAdapter {
         listItems.clear();
         //General Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getSectionTitle()));
+        User previousContact = null;
         if (presenter.getTravelContacts() != null && !presenter.getTravelContacts().isEmpty()) {
             for (User contact: presenter.getTravelContacts()) {
                 listItems.add(new ContactCellRowBinder(contact.getName(),
                         UserSingletonUtils.getInstance().getFormattedCountry(contact.getCitizenship()),
+                        presenter.getSortingPrefix(previousContact, contact),
                         clickListener));
+                previousContact = contact;
             }
         } else {
             //TODO display empty contacts view
