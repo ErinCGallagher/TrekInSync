@@ -13,7 +13,7 @@ public class ContactCellViewHolder extends RecyclerView.ViewHolder implements Vi
 
     public ContactCellViewHolder(View itemView, RecyclerViewClickListener clickListener) {
         super(itemView);
-        contactView = (ContactView) itemView.findViewById(R.id.contact_detail_cell);
+        contactView = itemView.findViewById(R.id.contact_detail_cell);
         this.clickListener = clickListener;
         itemView.setOnClickListener(this);
     }
