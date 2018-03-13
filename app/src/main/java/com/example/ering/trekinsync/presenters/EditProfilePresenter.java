@@ -384,13 +384,15 @@ public class EditProfilePresenter {
         Gson gson = new Gson();
 
         User testUser1 = getTestUserObject("Christina Chan", "CAD", false);
-        User testUser2 = getTestUserObject("Laura Brooks", "KOR", false);
+        User testUser2 = getTestUserObject("Laura Brooks", "CAD", false);
         User testUser3 = getTestUserObject("Lexi Flynn", "ITA", false);
+        User testUser4 = getTestUserObject("Shannon Klett", "KOR", false);
 
         List<String> contactKeys = new ArrayList<>();
         contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));
         contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser2));
         contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser3));
+        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser4));
         String json = gson.toJson(contactKeys);
         editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
 
@@ -402,6 +404,10 @@ public class EditProfilePresenter {
 
         String contactJson3 = gson.toJson(testUser3);
         editor.putString(SharedPrefsUtils.getKey(context, testUser3), contactJson3);
+        editor.apply();
+
+        String contactJson4 = gson.toJson(testUser4);
+        editor.putString(SharedPrefsUtils.getKey(context, testUser4), contactJson4);
         editor.apply();
     }
 
