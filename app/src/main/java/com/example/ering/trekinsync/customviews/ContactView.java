@@ -15,6 +15,7 @@ public class ContactView extends LinearLayout {
     private TextView contactName;
     private TextView contactDescription;
     private TextView sortingLabel;
+    private LinearLayout border;
 
     public ContactView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -26,6 +27,8 @@ public class ContactView extends LinearLayout {
         contactName = container.findViewById(R.id.contact_name);
         contactDescription = container.findViewById(R.id.contact_description);
         sortingLabel = container.findViewById(R.id.sorting_label);
+        border = container.findViewById(R.id.border_line);
+        border.setVisibility(GONE);
 
         if (attrs != null) {
             TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ContactDetailView, 0, 0);
@@ -46,9 +49,10 @@ public class ContactView extends LinearLayout {
         contactDescription.setText(description);
     }
 
-    public void setSortingLabel(String label) {
+    public void setSortingLabel(String label, boolean isFirstCell) {
         if (label != null) {
             sortingLabel.setText(label);
+            border.setVisibility(!isFirstCell ? VISIBLE : GONE);
         }
     }
 }

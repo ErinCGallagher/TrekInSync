@@ -12,15 +12,17 @@ public class ContactCellRowBinder extends BaseDataBinder<ContactCellViewHolder> 
     private String contactName;
     private String contactDescription;
     private String sortingPrefix;
+    private boolean firstCell;
     private RecyclerViewClickListener clickListener;
 
     /**
      * creates a view holder for a Contact Cell View.
      */
-    public ContactCellRowBinder(String name, String description, String sortingPrefix, RecyclerViewClickListener clickListener) {
+    public ContactCellRowBinder(String name, String description, String sortingPrefix, boolean firstCell, RecyclerViewClickListener clickListener) {
         this.contactName = name;
         this.contactDescription = description;
         this.sortingPrefix = sortingPrefix;
+        this.firstCell = firstCell;
         this.clickListener = clickListener;
     }
 
@@ -35,6 +37,6 @@ public class ContactCellRowBinder extends BaseDataBinder<ContactCellViewHolder> 
         final ContactView contactView = holder.contactView;
         contactView.setContactName(contactName);
         contactView.setDescription(contactDescription);
-        contactView.setSortingLabel(sortingPrefix);
+        contactView.setSortingLabel(sortingPrefix, firstCell);
     }
 }

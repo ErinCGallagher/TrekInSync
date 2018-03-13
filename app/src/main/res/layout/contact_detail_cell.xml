@@ -6,58 +6,78 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:paddingStart="@dimen/cell_padding"
+    android:paddingEnd="0dp">
 
     <LinearLayout
         android:layout_width="40dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/cell_padding"
+        android:paddingTop="@dimen/cell_padding" >
 
         <TextView
             android:id="@+id/sorting_label"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="-3dp"
             android:textSize="@dimen/sorting_label_font"
-            android:gravity="center_vertical"
             android:textColor="@color/colorAccent"
             tools:text="A"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/contact_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/description_font"
-            android:textColor="@color/primaryBlackFont"
-            tools:text="Full Name"/>
-        <TextView
-            android:id="@+id/contact_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/secondary_description_font"
-            android:textColor="@color/primaryGreyFont"
-            tools:text="Canadian"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="60dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_icon"
-            android:layout_width="@dimen/travel_profile_icon_size"
-            android:layout_height="@dimen/travel_profile_icon_size"
-            android:layout_gravity="center"
-            android:src="@drawable/placeholder_profile_icon_contact"
-            app:civ_border_color="@color/colorAccent"/>
+        <include layout="@layout/border"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/cell_padding"
+            android:paddingTop="@dimen/cell_padding"
+
+            android:paddingEnd="@dimen/cell_padding"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/contact_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/description_font"
+                    android:textColor="@color/primaryBlackFont"
+                    tools:text="Full Name"/>
+                <TextView
+                    android:id="@+id/contact_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/secondary_description_font"
+                    android:textColor="@color/primaryGreyFont"
+                    tools:text="Canadian"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_icon"
+                    android:layout_width="@dimen/travel_profile_icon_size"
+                    android:layout_height="@dimen/travel_profile_icon_size"
+                    android:layout_gravity="center"
+                    android:src="@drawable/placeholder_profile_icon_contact"
+                    app:civ_border_color="@color/colorAccent"/>
+
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
