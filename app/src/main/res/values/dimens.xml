@@ -8,14 +8,17 @@
     //asset sizes
     <dimen name="checkbox_size">25dp</dimen>
     <dimen name="delete_cell_icon_size">20dp</dimen>
+    <dimen name="personal_profile_icon_size">120dp</dimen>
+    <dimen name="travel_profile_icon_size">40dp</dimen>
 
     //font Sizes
     <dimen name="intro_primary_font">28sp</dimen>
     <dimen name="intro_secondary_font">20sp</dimen>
     <dimen name="label_font">13sp</dimen>
     <dimen name="secondary_label_font">15sp</dimen>
-    <dimen name="description_font">19sp</dimen>
-    <dimen name="secondary_description_font">17sp</dimen>
+    <dimen name="description_font">17sp</dimen>
+    <dimen name="secondary_description_font">15sp</dimen>
     <dimen name="full_name_header_font">20sp</dimen>
+    <dimen name="section_title_font">18sp</dimen>
 
 </resources>

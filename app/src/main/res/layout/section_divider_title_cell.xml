@@ -15,9 +15,8 @@
         android:paddingStart="16dp"
         android:paddingEnd="20dp"
         android:paddingBottom="5dp"
-        android:textSize="18sp"
-        android:textColor="@color/colorSecondary"
-        android:textStyle="bold"
+        android:textSize="@dimen/section_title_font"
+        android:textColor="@color/colorAccent"
         tools:text="SECTION DIVIDER TITLE" />
 
 </LinearLayout>
