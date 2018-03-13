@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TrekInSync</string>
-
     //Intro Pages
     <string name="intro_lets_go_button">Let\'s Go</string>
     <string name="intro_done_button">Done</string>
@@ -17,13 +17,6 @@
     <string name="menu_edit_profile">Edit Profile</string>
     <string name="menu_view_profile">View Profile</string>
     <string name="menu_more_details">Trek In Sync Details</string>
-
-    //shared preferences keys
-    <string name="primary_profile_key" translatable="false">primaryProfile</string>
-    <string name="app_name_key" translatable="false">com.example.trekinsync.</string>
-    <string name="created_profile_key" translatable="false">createdProfile</string>
-    <string name="travel_contact_key_names" translatable="false">travelContactKeyNames</string>
-    <string name="cannot_find_key" translatable="false">Not Found</string>
 
     //profile section title strings
     <string name="general_section_title">GENERAL INFO</string>
@@ -75,18 +68,6 @@
     <string name="qr_generator_expiry_date">Expiry Date</string>
     <string name="qr_generator_button_menu_title">Show</string>
 
-    <string-array name="blood_type_keys" translatable="false">
-        <item>O-</item>
-        <item>O+</item>
-        <item>A-</item>
-        <item>A+</item>
-        <item>B-</item>
-        <item>B+</item>
-        <item>AB-</item>
-        <item>AB+</item>
-        <item>NA</item>
-    </string-array>
-
     <string-array name="blood_type_values">
         <item>O–</item>
         <item>O+</item>
@@ -97,18 +78,6 @@
         <item>AB–</item>
         <item>AB+</item>
         <item>Do not Know</item>
-    </string-array>
-
-    <string-array name="contact_relation_keys" translatable="false">
-        <item>FR</item>
-        <item>GR</item>
-        <item>GU</item>
-        <item>OF</item>
-        <item>PA</item>
-        <item>SO</item>
-        <item>SI</item>
-        <item>SP</item>
-        <item>OT</item>
     </string-array>
 
     <string-array name="contact_relation_values">
@@ -123,27 +92,11 @@
         <item>Other</item>
     </string-array>
 
-    <string-array name="number_type_keys" translatable="false">
-        <item>H</item>
-        <item>M</item>
-        <item>W</item>
-        <item>O</item>
-    </string-array>
-
     <string-array name="number_type_values">
         <item>Home</item>
         <item>Mobile</item>
         <item>Work</item>
         <item>Other</item>
-    </string-array>
-
-    <string-array name="insurance_keys" translatable="false">
-        <item>CE</item>
-        <item>GR</item>
-        <item>PL</item>
-        <item>PO</item>
-        <item>ME</item>
-        <item>OT</item>
     </string-array>
 
     <string-array name="insurance_values">
@@ -153,23 +106,6 @@
         <item>Policy #</item>
         <item>Member #</item>
         <item>Other #</item>
-    </string-array>
-
-    //Country list of keys and associated values in specific language
-    //TODO include all countries
-    <string-array name="citizenship_keys" translatable="false">
-        <item>SGP</item>
-        <item>KOR</item>
-        <item>FIN</item>
-        <item>DEU</item>
-        <item>JPN</item>
-        <item>DNK</item>
-        <item>SWE</item>
-        <item>ITA</item>
-        <item>CAD</item>
-        <item>FRA</item>
-        <item>ESP</item>
-        <item>LUX</item>
     </string-array>
 
     <string-array name="citizenship_values">

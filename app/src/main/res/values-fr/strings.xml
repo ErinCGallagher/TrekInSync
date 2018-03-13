@@ -69,21 +69,6 @@
     <string name="qr_generator_expiry_date">Date d\'expiration</string>
     <string name="qr_generator_button_menu_title">Montrer</string>
 
-    <string-array name="citizenship_values">
-        <item>Singapore</item>
-        <item>South Korea</item>
-        <item>Finland</item>
-        <item>Germany</item>
-        <item>Japan</item>
-        <item>Denmark</item>
-        <item>Sweden</item>
-        <item>Italy</item>
-        <item>Canada</item>
-        <item>France</item>
-        <item>Spain</item>
-        <item>Luxembourg</item>
-    </string-array>
-
     <string-array name="blood_type_values">
         <item>O–</item>
         <item>O+</item>
@@ -122,5 +107,20 @@
         <item>Politique #</item>
         <item>Membre #</item>
         <item>Autre #</item>
+    </string-array>
+
+    <string-array name="citizenship_values">
+        <item>Singapore</item>
+        <item>South Korea</item>
+        <item>Finland</item>
+        <item>Germany</item>
+        <item>Japan</item>
+        <item>Denmark</item>
+        <item>Sweden</item>
+        <item>Italy</item>
+        <item>Canada</item>
+        <item>France</item>
+        <item>Spain</item>
+        <item>Luxembourg</item>
     </string-array>
 </resources>
