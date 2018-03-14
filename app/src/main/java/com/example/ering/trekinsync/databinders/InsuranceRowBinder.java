@@ -11,19 +11,15 @@ import java.util.ArrayList;
 public class InsuranceRowBinder extends BaseDataBinder<InsuranceViewHolder> {
     private String label;
     private String phoneNumber;
-    private String checkBoxLabel;
-    private boolean checkBoxState;
     private ArrayList<String> detailsLabels;
     private ArrayList<String> detailsNumbers;
 
     /**
      * creates a view holder for an Insurance cell view
      */
-    public InsuranceRowBinder(String label, String phoneNumber, String checkBoxLabel, boolean checkBoxState, ArrayList<String> detailsLabels, ArrayList<String> detailsNumbers) {
+    public InsuranceRowBinder(String label, String phoneNumber, ArrayList<String> detailsLabels, ArrayList<String> detailsNumbers) {
         this.label = label;
         this.phoneNumber = phoneNumber;
-        this.checkBoxLabel = checkBoxLabel;
-        this.checkBoxState = checkBoxState;
         this.detailsLabels = detailsLabels;
         this.detailsNumbers = detailsNumbers;
     }
@@ -39,8 +35,6 @@ public class InsuranceRowBinder extends BaseDataBinder<InsuranceViewHolder> {
         final InsuranceView insuranceView = holder.insuranceView;
         insuranceView.setLabel(label);
         insuranceView.setPhoneNumber(phoneNumber);
-        insuranceView.setCheckboxLabel(checkBoxLabel);
-        insuranceView.setCheckboxState(checkBoxState);
         insuranceView.setDetailsLabels(detailsLabels);
         insuranceView.setDetailNumbers(detailsNumbers);
     }

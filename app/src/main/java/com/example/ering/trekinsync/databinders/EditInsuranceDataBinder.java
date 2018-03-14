@@ -24,7 +24,7 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
     /**
      * creates a view holder for an Edit Insurance cell view
      */
-    public EditInsuranceDataBinder(InsuranceCompany companyModel, String checkBoxLabel, int companyPosition,
+    public EditInsuranceDataBinder(InsuranceCompany companyModel, int companyPosition,
                                    DataInputListener<InsuranceListenerModel> listener ) {
         this.companyModel = companyModel;
         this.checkBoxLabel = checkBoxLabel;
@@ -44,8 +44,6 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
         final EditInsuranceView editInsuranceView = holder.editInsuranceView;
         editInsuranceView.setLabel(companyModel.getName());
         editInsuranceView.setPhoneNumber(companyModel.getPhoneNumber(), phoneNumberListener);
-        editInsuranceView.setCheckboxLabel(checkBoxLabel);
-        editInsuranceView.setCheckboxState(companyModel.isCallFirst());
         editInsuranceView.setDeleteOnClickListener(deleteClickListener);
 
         PolicyInfo firstPolicy = policies.get(0); //Always 2 policy fields

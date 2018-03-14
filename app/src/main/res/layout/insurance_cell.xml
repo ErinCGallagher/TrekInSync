@@ -37,31 +37,6 @@
                 tools:text="Label" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:minWidth="100dp">
-
-            <TextView
-                android:id="@+id/checkbox_label"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end"
-                android:textAlignment="viewEnd"
-                android:textColor="@color/primaryBlackFont"
-                android:textSize="@dimen/label_font"
-                tools:text="@string/call_first_label"
-                android:layout_weight="1"/>
-
-            <CheckBox
-                android:id="@+id/checkbox"
-                android:layout_width="@dimen/checkbox_size"
-                android:layout_height="@dimen/checkbox_size"
-                android:layout_marginEnd="@dimen/end_align_margin"
-                android:layout_gravity="center"/>
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

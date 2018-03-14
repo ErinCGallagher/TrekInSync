@@ -10,13 +10,11 @@ import java.util.List;
 public class InsuranceCompany implements Parcelable{
     private String name;
     private String phoneNumber;
-    private boolean callFirst = false;
     private PolicyInfo[] policyInfo;
 
-    public InsuranceCompany(String name, String phoneNumber, boolean callFirst, PolicyInfo[] policyInfo) {
+    public InsuranceCompany(String name, String phoneNumber, PolicyInfo[] policyInfo) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.callFirst = callFirst;
         this.policyInfo = policyInfo;
     }
 
@@ -36,14 +34,6 @@ public class InsuranceCompany implements Parcelable{
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isCallFirst() {
-        return callFirst;
-    }
-
-    public void setCallFirst(boolean callFirst) {
-        this.callFirst = callFirst;
-    }
-
     public ArrayList<PolicyInfo> getPolicyInfo() {
         if (policyInfo != null) {
             return new ArrayList<>(Arrays.asList(policyInfo));
@@ -60,7 +50,6 @@ public class InsuranceCompany implements Parcelable{
     protected InsuranceCompany(Parcel in) {
         name = in.readString();
         phoneNumber = in.readString();
-        callFirst = in.readInt() != 0;
         policyInfo = in.createTypedArray(PolicyInfo.CREATOR);
     }
 
@@ -85,11 +74,10 @@ public class InsuranceCompany implements Parcelable{
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(name);
         parcel.writeString(phoneNumber);
-        parcel.writeInt((callFirst ? 1 : 0));
         parcel.writeTypedArray(policyInfo, flags);
     }
 
     public InsuranceCompany clone() {
-        return new InsuranceCompany(name, phoneNumber, callFirst, policyInfo.clone());
+        return new InsuranceCompany(name, phoneNumber, policyInfo.clone());
     }
 }

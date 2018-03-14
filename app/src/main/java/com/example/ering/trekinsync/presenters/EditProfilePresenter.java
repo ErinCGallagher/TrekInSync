@@ -121,10 +121,6 @@ public class EditProfilePresenter {
         return context.getString(R.string.add_number_button_title);
     }
 
-    public String getCallFirstLabel() {
-        return context.getString(R.string.call_first_label);
-    }
-
     /**
      * Launch back button confirmation dialog to confirm user wants to not save changes
      */
@@ -519,7 +515,7 @@ public class EditProfilePresenter {
         policyInfoArray[0] = policyInfo;
         policyInfoArray[1] = policyInfo2;
 
-        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", true, policyInfoArray);
+        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", policyInfoArray);
         InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
         insuranceCompanyArray[0] = insuranceCompany;
 

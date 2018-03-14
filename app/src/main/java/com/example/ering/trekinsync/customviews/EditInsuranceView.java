@@ -25,8 +25,6 @@ public class EditInsuranceView extends LinearLayout {
 
     private TextView labelView;
     private TextView phoneNumber;
-    private TextView checkBoxLabel;
-    private CheckBox checkBox;
     private ImageView deleteIcon;
 
     private Spinner detailsLabel1;
@@ -43,8 +41,6 @@ public class EditInsuranceView extends LinearLayout {
         View container = LayoutInflater.from(context).inflate(R.layout.edit_insurance_cell, this);
         labelView = container.findViewById(R.id.label);
         phoneNumber = container.findViewById(R.id.edit_phone_number);
-        checkBoxLabel = container.findViewById(R.id.checkbox_label);
-        checkBox = container.findViewById(R.id.checkbox);
         deleteIcon = container.findViewById(R.id.delete_icon);
 
         detailsLabel1 = container.findViewById(R.id.details_label1);
@@ -58,8 +54,6 @@ public class EditInsuranceView extends LinearLayout {
             try {
                 setLabel(array.getString(R.styleable.EditInsuranceView_viewEditInsuranceLabel));
                 setPhoneNumber(array.getString(R.styleable.EditInsuranceView_viewEditInsuranceNumber));
-                setCheckboxLabel(array.getString(R.styleable.EditInsuranceView_viewEditCheckboxLabel));
-                setCheckboxState(array.getBoolean(R.styleable.EditInsuranceView_viewEditCheckboxState, false));
 
                 setDetailsLabel1(array.getString(R.styleable.EditInsuranceView_viewEditDetailsLabel1));
                 setDetailsLabel2(array.getString(R.styleable.EditInsuranceView_viewEditDetailsLabel2));
@@ -74,14 +68,6 @@ public class EditInsuranceView extends LinearLayout {
 
     public void setLabel(String label) {
         labelView.setText(label);
-    }
-
-    public void setCheckboxLabel(String checkboxLabelText) {
-        checkBoxLabel.setText(checkboxLabelText);
-    }
-
-    public void setCheckboxState(Boolean state) {
-        checkBox.setChecked(state);
     }
 
     public void setDetailsLabel1(String value, AdapterView.OnItemSelectedListener listener) {

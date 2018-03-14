@@ -79,7 +79,7 @@ public class ProfileAdapter extends BaseAdapter {
                     labelsList.add(info.getName());
                     numbersList.add(info.getNumber());
                 }
-                listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), presenter.getCallFirstLabel(), company.isCallFirst(), labelsList, numbersList));
+                listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), labelsList, numbersList));
             }
         }
     }

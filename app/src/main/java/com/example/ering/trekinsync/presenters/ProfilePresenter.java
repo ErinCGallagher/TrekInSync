@@ -140,10 +140,6 @@ public class ProfilePresenter {
     }
 
     //Insurance Company Section
-    public String getCallFirstLabel() {
-        return context.getString(R.string.call_first_label);
-    }
-
     public InsuranceCompany[] getInsuranceCompanies() {
         //TODO null check
         return user.getInsuranceInfo();

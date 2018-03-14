@@ -6,8 +6,6 @@
     android:layout_height="wrap_content"
     attr:viewInsuranceLabel="Insurance Company"
     attr:viewInsuranceNumber="416-234-2345"
-    attr:viewCheckboxLabel="Call First"
-    attr:viewCheckboxState="false"
     attr:viewDetailsLabel1="Cert #"
     attr:viewDetailsLabel2="Policy #"
     attr:viewDetailsNumber1="1276"

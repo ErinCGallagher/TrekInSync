@@ -17,8 +17,6 @@ import java.util.ArrayList;
 public class InsuranceView extends LinearLayout {
     private TextView labelView;
     private TextView phoneNumber;
-    private TextView checkBoxLabel;
-    private CheckBox checkBox;
 
     //insurance detail fields details
     private LinearLayout[] detailContainerArray;
@@ -42,8 +40,6 @@ public class InsuranceView extends LinearLayout {
         View container = LayoutInflater.from(context).inflate(R.layout.insurance_cell, this);
         labelView = (TextView) container.findViewById(R.id.label);
         phoneNumber = (TextView) container.findViewById(R.id.phone_number);
-        checkBoxLabel = (TextView) container.findViewById(R.id.checkbox_label);
-        checkBox = (CheckBox) container.findViewById(R.id.checkbox);
 
         setUpListOfContainers(container);
         setUpListOfLabels(container);
@@ -54,8 +50,6 @@ public class InsuranceView extends LinearLayout {
             try {
                 setLabel(array.getString(R.styleable.InsuranceView_viewInsuranceLabel));
                 setPhoneNumber(array.getString(R.styleable.InsuranceView_viewInsuranceNumber));
-                setCheckboxLabel(array.getString(R.styleable.InsuranceView_viewCheckboxLabel));
-                setCheckboxState(array.getBoolean(R.styleable.InsuranceView_viewCheckboxState, false));
 
                 ArrayList<String> labelsList = new ArrayList<>();
                 labelsList.add(array.getString(R.styleable.InsuranceView_viewDetailsLabel1));
@@ -78,15 +72,6 @@ public class InsuranceView extends LinearLayout {
 
     public void setPhoneNumber(String phoneNumberText) {
         phoneNumber.setText(phoneNumberText);
-    }
-
-    public void setCheckboxLabel(String checkboxLabelText) {
-        checkBoxLabel.setText(checkboxLabelText);
-    }
-
-    public void setCheckboxState(Boolean state) {
-        checkBox.setChecked(state);
-        checkBox.setEnabled(false);
     }
 
     /**

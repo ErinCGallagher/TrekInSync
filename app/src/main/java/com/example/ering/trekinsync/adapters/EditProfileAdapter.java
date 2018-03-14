@@ -79,7 +79,7 @@ public class EditProfileAdapter extends BaseAdapter {
         int insurancePos = 0;
         for (InsuranceCompany company: presenter.getInsuranceCompanies()) {
             if (company != null) {
-                listItems.add(new EditInsuranceDataBinder(company.clone(), presenter.getCallFirstLabel(), insurancePos, presenter.getInsuranceCompanyListener()));
+                listItems.add(new EditInsuranceDataBinder(company.clone(), insurancePos, presenter.getInsuranceCompanyListener()));
             }
         }
     }

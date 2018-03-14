@@ -7,8 +7,6 @@
     android:layout_height="wrap_content"
     attr:viewEditInsuranceLabel="Insurance Company"
     attr:viewEditInsuranceNumber="416-234-2345"
-    attr:viewEditCheckboxLabel="Call First"
-    attr:viewEditCheckboxState="false"
     attr:viewEditDetailsLabel1="Cert #"
     attr:viewEditDetailsLabel2="Policy #"
     attr:viewEditDetailsNumber1="1276"
