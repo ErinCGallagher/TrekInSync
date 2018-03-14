@@ -16,13 +16,13 @@ public class AddRowIconTitleCellDataBinder extends BaseDataBinder<AddRowIconTitl
     @Override
     public AddRowIconTitleCellViewHolder createViewHolder(ViewGroup parent) {
         View view = getView(AddRowIconTitleCellViewHolder.getLayoutId(), parent);
-        view.setOnClickListener(listener);
         return new AddRowIconTitleCellViewHolder(view);
     }
 
     @Override
     public void bindViewHolder(AddRowIconTitleCellViewHolder holder) {
         holder.setTitle(title);
+        holder.setAddRowButtonListener(listener);
     }
 }
 

@@ -121,6 +121,10 @@ public class EditProfilePresenter {
         return context.getString(R.string.add_number_button_title);
     }
 
+    public String getAddInsuranceCompanyButtonLabel() {
+        return context.getString(R.string.add_insurance_button_title);
+    }
+
     /**
      * Launch back button confirmation dialog to confirm user wants to not save changes
      */
@@ -212,6 +216,10 @@ public class EditProfilePresenter {
 
     public int getMaxEmergencyContacts() {
         return 3;
+    }
+
+    public int getMaxInsuranceCompanies() {
+        return 2;
     }
 
     /* On Click Listeners */
@@ -383,6 +391,33 @@ public class EditProfilePresenter {
                     return;
                 }
                 user.setEmergencyContacts(list.toArray(ec));
+                view.reloadData();
+                indicateUserDataModified();
+            }
+        };
+    }
+
+    /**
+     * detect add emergency contact button click.
+     * @return on click listener
+     */
+    public View.OnClickListener getAddInsuranceCompanyListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PolicyInfo[] policyInfoList = new PolicyInfo[2];
+                policyInfoList[0] = new PolicyInfo("", "");
+                policyInfoList[1] = new PolicyInfo("", "");
+                InsuranceCompany defaultCompany = new InsuranceCompany("","", policyInfoList);
+                InsuranceCompany[] ic = getInsuranceCompanies();
+                List<InsuranceCompany> list = new ArrayList<>(Arrays.asList(ic));
+                try {
+                    list.add(defaultCompany);
+                } catch(Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+                user.setInsuranceInfo(list.toArray(ic));
                 view.reloadData();
                 indicateUserDataModified();
             }

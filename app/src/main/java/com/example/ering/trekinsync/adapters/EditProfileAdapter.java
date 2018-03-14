@@ -66,12 +66,14 @@ public class EditProfileAdapter extends BaseAdapter {
         int contactPos = 0;
         for (EmergencyContact contact : presenter.getEmergencyContacts()) {
             if (contact != null) {
-                listItems.add(new EditPhoneNumberRowBinder(contact.clone(), contactPos, presenter.getEmergencyContactListener()));
+                listItems.add(new EditPhoneNumberRowBinder(contact.clone(), contactPos,
+                        presenter.getEmergencyContactListener()));
                 contactPos++;
             }
         }
         if (contactPos < presenter.getMaxEmergencyContacts()) {
-            listItems.add(new AddRowIconTitleCellDataBinder(presenter.getAddNumberButtonLabel(), presenter.getAddEmergencyContactListener()));
+            listItems.add(new AddRowIconTitleCellDataBinder(presenter.getAddNumberButtonLabel(),
+                    presenter.getAddEmergencyContactListener()));
         }
 
         //Insurance Info
@@ -79,8 +81,14 @@ public class EditProfileAdapter extends BaseAdapter {
         int insurancePos = 0;
         for (InsuranceCompany company: presenter.getInsuranceCompanies()) {
             if (company != null) {
-                listItems.add(new EditInsuranceDataBinder(company.clone(), insurancePos, presenter.getInsuranceCompanyListener()));
+                listItems.add(new EditInsuranceDataBinder(company.clone(), insurancePos,
+                        presenter.getInsuranceCompanyListener()));
+                insurancePos++;
             }
+        }
+        if (insurancePos < presenter.getMaxInsuranceCompanies()) {
+            listItems.add(new AddRowIconTitleCellDataBinder(presenter.getAddInsuranceCompanyButtonLabel(),
+                    presenter.getAddInsuranceCompanyListener()));
         }
     }
 
