@@ -3,6 +3,10 @@ package com.example.ering.trekinsync.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class InsuranceCompany implements Parcelable{
     private String name;
     private String phoneNumber;
@@ -39,13 +43,14 @@ public class InsuranceCompany implements Parcelable{
     public void setCallFirst(boolean callFirst) {
         this.callFirst = callFirst;
     }
-
-    public PolicyInfo[] getPolicyInfo() {
-        return policyInfo;
+    
+    public ArrayList<PolicyInfo> getPolicyInfo() {
+        return new ArrayList<>(Arrays.asList(policyInfo));
     }
 
-    public void setPolicyInfo(PolicyInfo[] policyInfo) {
-        this.policyInfo = policyInfo;
+    public void setPolicyInfo(ArrayList<PolicyInfo> newPolicyInfo) {
+        PolicyInfo[] updatedList = new PolicyInfo[(newPolicyInfo.size())];
+        this.policyInfo = newPolicyInfo.toArray(updatedList);
     }
 
     protected InsuranceCompany(Parcel in) {
