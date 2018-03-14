@@ -54,6 +54,7 @@
     <string name="edit_profile_action_bar_title">Editer le profil</string>
     <string name="phone_number_relation_label">Relation:</string>
     <string name="phone_number_type_label">Type:</string>
+    <string name="insurance_company_name_hint">entrer nom d\'entreprise</string>
     <string name="phone_number_hint">entrer un numéro</string>
     <string name="add_number_button_title">Ajouter un contact d\'urgence</string>
     <string name="add_insurance_button_title">Ajouter un fournisseur d\'assurance</string>

@@ -25,19 +25,22 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/description_font"
                 android:inputType="phone"
-                android:hint="@string/phone_number_hint"
                 android:maxLength="12"
+                android:hint="@string/phone_number_hint"
                 tools:ignore="LabelFor" />
 
-            <TextView
+            <EditText
                 android:id="@+id/label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primaryBlackFont"
-                android:textSize="@dimen/label_font"
+                android:textSize="@dimen/description_font"
                 android:layout_gravity="center_vertical|start"
                 android:textAlignment="viewStart"
-                tools:text="Label" />
+                android:inputType="text"
+                android:maxLength="25"
+                android:hint="@string/insurance_company_name_hint"
+                tools:ignore="LabelFor" />
 
         </LinearLayout>
 
@@ -61,7 +64,7 @@
 
         <Spinner
             android:id="@+id/details_label1"
-            android:layout_width="120dp"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:textColor="@color/primaryBlackFont"
             android:textSize="@dimen/secondary_label_font"
@@ -84,7 +87,7 @@
 
         <Spinner
             android:id="@+id/details_label2"
-            android:layout_width="120dp"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:textColor="@color/primaryBlackFont"
             android:textSize="@dimen/secondary_label_font"

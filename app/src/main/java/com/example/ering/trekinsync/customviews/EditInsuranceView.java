@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,12 +20,13 @@ import android.widget.TextView;
 
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.DataInputListener;
+import com.example.ering.trekinsync.utils.InputFilterUtils;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 
 public class EditInsuranceView extends LinearLayout {
 
-    private TextView labelView;
-    private TextView phoneNumber;
+    private EditText labelView;
+    private EditText phoneNumber;
     private ImageView deleteIcon;
 
     private Spinner detailsLabel1;
@@ -66,8 +68,24 @@ public class EditInsuranceView extends LinearLayout {
         }
     }
 
-    public void setLabel(String label) {
-        labelView.setText(label);
+    public void setLabel(String label, final DataInputListener<String> listener) {
+        setLabel(label);
+        labelView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listener.onInputReceived(labelView.getText().toString().trim());
+            }
+        });
     }
 
     public void setDetailsLabel1(String value, AdapterView.OnItemSelectedListener listener) {
@@ -81,7 +99,7 @@ public class EditInsuranceView extends LinearLayout {
     }
 
     public void setPhoneNumber(String phoneNumberText, final DataInputListener<String> listener) {
-        phoneNumber.setText(phoneNumberText);
+        setPhoneNumber(phoneNumberText);
         phoneNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,6 +163,11 @@ public class EditInsuranceView extends LinearLayout {
     }
 
     /* Private Functions */
+
+    private void setLabel(String label) {
+        labelView.setText(label);
+        labelView.setFilters(new InputFilter[] {InputFilterUtils.getAlphaFilter()});
+    }
 
     private void setPhoneNumber(String phoneNumberText) {
         phoneNumber.setText(phoneNumberText);

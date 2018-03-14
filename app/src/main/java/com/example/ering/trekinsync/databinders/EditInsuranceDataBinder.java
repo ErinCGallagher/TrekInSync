@@ -42,7 +42,7 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
     @Override
     public void bindViewHolder(EditInsuranceViewHolder holder) {
         final EditInsuranceView editInsuranceView = holder.editInsuranceView;
-        editInsuranceView.setLabel(companyModel.getName());
+        editInsuranceView.setLabel(companyModel.getName(), companyNameListener);
         editInsuranceView.setPhoneNumber(companyModel.getPhoneNumber(), phoneNumberListener);
         editInsuranceView.setDeleteOnClickListener(deleteClickListener);
 
@@ -55,6 +55,15 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
         editInsuranceView.setDetail2Listener(secondPolicy != null ? secondPolicy.getNumber() : "", policyNumber2Listener);
 
     }
+
+    private DataInputListener<String> companyNameListener = new DataInputListener<String>() {
+        @Override
+        public void onInputReceived(String value) {
+            companyModel.setName(value);
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+    };
 
     private DataInputListener<String> phoneNumberListener = new DataInputListener<String>() {
         @Override

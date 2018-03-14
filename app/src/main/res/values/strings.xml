@@ -61,6 +61,7 @@
     <string name="phone_number_relation_label">Relationship:</string>
     <string name="phone_number_type_label">Type:</string>
     <string name="phone_number_hint">Enter Number</string>
+    <string name="insurance_company_name_hint">Enter Company Name</string>
     <string name="add_number_button_title">Add Emergency Contact</string>
     <string name="add_insurance_button_title">Add Insurance Provider</string>
 
