@@ -44,8 +44,16 @@ public class ProfileAdapter extends BaseAdapter {
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));
         //TODO: create allergy cell with severity indicator
         listItems.add(new LabelDescriptionRowBinder(presenter.getBloodTypeLabel(), presenter.getBloodType()));
-        listItems.add(new LabelDescriptionRowBinder(presenter.getAllergiesLabel(), presenter.getAllergies()));
-        listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
+
+        //Allergies
+        if (presenter.getAllergies() != null && !presenter.getAllergies().isEmpty()) {
+            listItems.add(new LabelDescriptionRowBinder(presenter.getAllergiesLabel(), presenter.getAllergies()));
+        }
+        
+        //Medication
+        if (presenter.getMedicine() != null & !presenter.getMedicine().isEmpty()) {
+            listItems.add(new LabelDescriptionRowBinder(presenter.getMedicineLabel(), presenter.getMedicine()));
+        }
 
         //Emergency Contact Info
         if (presenter.getEmergencyContacts() != null && presenter.getEmergencyContacts().length > 0) {

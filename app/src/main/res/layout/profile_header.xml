@@ -27,8 +27,7 @@
             android:layout_width="@dimen/personal_profile_icon_size"
             android:layout_height="@dimen/personal_profile_icon_size"
             android:layout_marginTop="-65dp"
-            android:src="@drawable/placeholder_profile_icon_personal"
-            app:civ_border_color="@color/colorGray"/>
+            android:src="@drawable/placeholder_profile_icon_personal"/>
 
         <LinearLayout
             android:layout_width="match_parent"
