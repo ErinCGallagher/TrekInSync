@@ -33,4 +33,14 @@
         <attr name="viewOpenTextDescription" format="string"/>
         <attr name="viewOpenTextLabel" format="string"/>
     </declare-styleable>
+    <declare-styleable name="EditInsuranceView">
+        <attr name="viewEditInsuranceLabel" format="string"/>
+        <attr name="viewEditInsuranceNumber" format="string"/>
+        <attr name="viewEditCheckboxLabel" format="string"/>
+        <attr name="viewEditCheckboxState" format="boolean"/>
+        <attr name="viewEditDetailsLabel1" format="string"/>
+        <attr name="viewEditDetailsLabel2" format="string"/>
+        <attr name="viewEditDetailsNumber1" format="string"/>
+        <attr name="viewEditDetailsNumber2" format="string"/>
+    </declare-styleable>
 </resources>

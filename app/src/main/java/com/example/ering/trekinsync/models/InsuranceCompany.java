@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class InsuranceCompany implements Parcelable{
     private String name;
     private String phoneNumber;
-    private boolean callFirst;
+    private boolean callFirst = false;
     private PolicyInfo[] policyInfo;
 
     public InsuranceCompany(String name, String phoneNumber, boolean callFirst, PolicyInfo[] policyInfo) {
@@ -17,7 +17,7 @@ public class InsuranceCompany implements Parcelable{
     }
 
     public String getName() {
-        return name;
+        return name != null ? name : "";
     }
 
     public void setName(String name) {
@@ -25,7 +25,7 @@ public class InsuranceCompany implements Parcelable{
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNumber != null ? phoneNumber : "";
     }
 
     public void setPhoneNumber(String phoneNumber) {

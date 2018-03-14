@@ -13,7 +13,7 @@ public class PolicyInfo implements Parcelable{
     }
 
     public String getName() {
-        return name;
+        return name != null ? name : "";
     }
 
     public void setName(String name) {
@@ -21,7 +21,7 @@ public class PolicyInfo implements Parcelable{
     }
 
     public String getNumber() {
-        return number;
+        return number != null ? number : "";
     }
 
     public void setNumber(String number) {
