@@ -109,6 +109,14 @@ public class EditProfilePresenter {
         return context.getString(R.string.blood_type_label);
     }
 
+    public String getAllergiesLabel() {
+        return context.getString(R.string.allergies_label);
+    }
+
+    public String getMedicationLabel() {
+        return context.getString(R.string.medication_label);
+    }
+
     public String getAddNumberButtonLabel() {
         return context.getString(R.string.add_number_button_title);
     }
@@ -162,6 +170,22 @@ public class EditProfilePresenter {
      */
     public String getUserBloodType() {
         return UserSingletonUtils.getInstance().getFormattedBloodType(user.getBloodType());
+    }
+
+    /**
+     * Get user allergies.
+     * @return allergies as String
+     */
+    public String getAllergies() {
+        return user.getAllergies();
+    }
+
+    /**
+     * Get user medication.
+     * @return medication as String
+     */
+    public String getMedications() {
+        return user.getMedicine();
     }
 
     //Emergency Contact section
@@ -229,6 +253,34 @@ public class EditProfilePresenter {
                         R.array.blood_type_values,
                         UserSingletonUtils.getInstance().getBloodTypePosition(getUserBloodType()),
                         createBloodTypeSelectionListener());
+            }
+        };
+    }
+
+    /**
+     * Create listener for Allergies text field. Update user data on input.
+     * @return DataInputListener<String> listener
+     */
+    public DataInputListener<String> createAllergiesDataListener() {
+        return new DataInputListener<String>() {
+            @Override
+            public void onInputReceived(String value) {
+                user.setAllergies(value);
+                indicateUserDataModified();
+            }
+        };
+    }
+
+    /**
+     * Create listener for Medications text field. Update user data on input.
+     * @return DataInputListener<String> listener
+     */
+    public DataInputListener<String> createMedicationDataListener() {
+        return new DataInputListener<String>() {
+            @Override
+            public void onInputReceived(String value) {
+                user.setMedicine(value);
+                indicateUserDataModified();
             }
         };
     }

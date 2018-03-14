@@ -29,4 +29,8 @@
         <attr name="viewContactName" format="string"/>
         <attr name="viewContactDescription" format="string"/>
     </declare-styleable>
+    <declare-styleable name="OpenFieldWithLabelView">
+        <attr name="viewOpenTextDescription" format="string"/>
+        <attr name="viewOpenTextLabel" format="string"/>
+    </declare-styleable>
 </resources>

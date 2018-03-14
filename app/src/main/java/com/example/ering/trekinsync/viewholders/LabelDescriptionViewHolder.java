@@ -15,7 +15,7 @@ public class LabelDescriptionViewHolder extends RecyclerView.ViewHolder {
      */
     public LabelDescriptionViewHolder(View itemView) {
         super(itemView);
-        labelDescriptionView = (LabelDescriptionView) itemView.findViewById(R.id.label_description_cell);
+        labelDescriptionView = itemView.findViewById(R.id.label_description_cell);
     }
 
     public static int getLayoutId() {

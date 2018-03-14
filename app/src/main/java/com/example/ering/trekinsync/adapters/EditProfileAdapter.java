@@ -5,6 +5,7 @@ import com.example.ering.trekinsync.databinders.AddRowIconTitleCellDataBinder;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
 import com.example.ering.trekinsync.databinders.EditPhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
+import com.example.ering.trekinsync.databinders.OpenTextWithLabelCellDataBinder;
 import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.ProfileHeaderRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
@@ -51,6 +52,12 @@ public class EditProfileAdapter extends BaseAdapter {
                 presenter.getUserBloodType(),
                 R.drawable.ic_keyboard_arrow_down,
                 presenter.createBloodTypeDropDownListener()));
+        listItems.add(new OpenTextWithLabelCellDataBinder(presenter.getAllergiesLabel(),
+                presenter.getAllergies(),
+                presenter.createAllergiesDataListener()));
+        listItems.add(new OpenTextWithLabelCellDataBinder(presenter.getMedicationLabel(),
+                presenter.getMedications(),
+                presenter.createMedicationDataListener()));
 
         //Emergency Contact Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
