@@ -73,13 +73,15 @@ public class ProfileAdapter extends BaseAdapter {
             listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
 
             for (InsuranceCompany company : presenter.getInsuranceCompanies()) {
-                ArrayList<String> labelsList = new ArrayList<>();
-                ArrayList<String> numbersList = new ArrayList<>();
-                for (PolicyInfo info : company.getPolicyInfo()) {
-                    labelsList.add(info.getName());
-                    numbersList.add(info.getNumber());
+                if (company != null) {
+                    ArrayList<String> labelsList = new ArrayList<>();
+                    ArrayList<String> numbersList = new ArrayList<>();
+                    for (PolicyInfo info : company.getPolicyInfo()) {
+                        labelsList.add(UserSingletonUtils.getInstance().getFormattedInsurancePolicy(info.getName()));
+                        numbersList.add(info.getNumber());
+                    }
+                    listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), labelsList, numbersList));
                 }
-                listItems.add(new InsuranceRowBinder(company.getName(), company.getPhoneNumber(), labelsList, numbersList));
             }
         }
     }

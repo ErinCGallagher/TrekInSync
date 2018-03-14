@@ -191,4 +191,9 @@ public class UserSingletonUtils {
         int insurancePos = insuranceKeyList.indexOf(selectedInsuranceKey);
         return insurancePos != -1 ? insurancePos : 0;
     }
+
+    public String getFormattedInsurancePolicy(String selectedInsurancePolicyKey) {
+        int position = insuranceKeyList.indexOf(selectedInsurancePolicyKey);
+        return insuranceValuesList.get(position != -1 ? position : 0);
+    }
 }
