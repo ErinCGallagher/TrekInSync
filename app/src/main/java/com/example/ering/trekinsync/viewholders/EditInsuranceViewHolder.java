@@ -16,10 +16,10 @@ public class EditInsuranceViewHolder extends RecyclerView.ViewHolder {
      */
     public EditInsuranceViewHolder(View itemView) {
         super(itemView);
-        editInsuranceView = itemView.findViewById(R.id.insurance_cell);
+        editInsuranceView = itemView.findViewById(R.id.edit_insurance_cell);
     }
 
     public static int getLayoutId() {
-        return R.layout.insurance_row_entry;
+        return R.layout.edit_insurance_row_entry;
     }
 }

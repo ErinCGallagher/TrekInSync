@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,9 +40,9 @@ public class EditInsuranceView extends LinearLayout {
     }
 
     private void init(final Context context, AttributeSet attrs) {
-        View container = LayoutInflater.from(context).inflate(R.layout.insurance_cell, this);
+        View container = LayoutInflater.from(context).inflate(R.layout.edit_insurance_cell, this);
         labelView = container.findViewById(R.id.label);
-        phoneNumber = container.findViewById(R.id.phone_number);
+        phoneNumber = container.findViewById(R.id.edit_phone_number);
         checkBoxLabel = container.findViewById(R.id.checkbox_label);
         checkBox = container.findViewById(R.id.checkbox);
         deleteIcon = container.findViewById(R.id.delete_icon);
@@ -81,17 +82,16 @@ public class EditInsuranceView extends LinearLayout {
 
     public void setCheckboxState(Boolean state) {
         checkBox.setChecked(state);
-        checkBox.setEnabled(false);
     }
 
-    public void setDetailsLabel1(String value) {
-        int pos = UserSingletonUtils.getInstance().getInsuranceDetailKeyPosition(value);
-        detailsLabel1.setSelection(pos, true);
+    public void setDetailsLabel1(String value, AdapterView.OnItemSelectedListener listener) {
+        setDetailsLabel1(value);
+        detailsLabel1.setOnItemSelectedListener(listener);
     }
 
-    public void setDetailsLabel2(String value) {
-        int pos = UserSingletonUtils.getInstance().getInsuranceDetailKeyPosition(value);
-        detailsLabel2.setSelection(pos, true);
+    public void setDetailsLabel2(String value, AdapterView.OnItemSelectedListener listener) {
+        setDetailsLabel2(value);
+        detailsLabel2.setOnItemSelectedListener(listener);
     }
 
     public void setPhoneNumber(String phoneNumberText, final DataInputListener<String> listener) {
@@ -109,7 +109,7 @@ public class EditInsuranceView extends LinearLayout {
 
             @Override
             public void afterTextChanged(Editable s) {
-                listener.onInputReceived(detail2.getText().toString().trim());
+                listener.onInputReceived(phoneNumber.getText().toString().trim());
             }
         });
     }
@@ -162,6 +162,16 @@ public class EditInsuranceView extends LinearLayout {
 
     private void setPhoneNumber(String phoneNumberText) {
         phoneNumber.setText(phoneNumberText);
+    }
+
+    private void setDetailsLabel1(String value) {
+        int pos = UserSingletonUtils.getInstance().getInsurancePolicyKeyPosition(value);
+        detailsLabel1.setSelection(pos, true);
+    }
+
+    private void setDetailsLabel2(String value) {
+        int pos = UserSingletonUtils.getInstance().getInsurancePolicyKeyPosition(value);
+        detailsLabel2.setSelection(pos, true);
     }
 
     private void setDetails1(String value) {

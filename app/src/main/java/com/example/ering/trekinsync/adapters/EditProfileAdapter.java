@@ -3,6 +3,7 @@ package com.example.ering.trekinsync.adapters;
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.databinders.AddRowIconTitleCellDataBinder;
 import com.example.ering.trekinsync.databinders.BaseDataBinder;
+import com.example.ering.trekinsync.databinders.EditInsuranceDataBinder;
 import com.example.ering.trekinsync.databinders.EditPhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.LabelDescriptionRowBinder;
 import com.example.ering.trekinsync.databinders.OpenTextWithLabelCellDataBinder;
@@ -10,6 +11,7 @@ import com.example.ering.trekinsync.databinders.PhoneNumberRowBinder;
 import com.example.ering.trekinsync.databinders.ProfileHeaderRowBinder;
 import com.example.ering.trekinsync.databinders.SectionDividerTitleRowBinder;
 import com.example.ering.trekinsync.models.EmergencyContact;
+import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.presenters.EditProfilePresenter;
 
 import java.util.ArrayList;
@@ -61,19 +63,25 @@ public class EditProfileAdapter extends BaseAdapter {
 
         //Emergency Contact Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getEmergencyContactSectionTitle()));
-        int pos = 0;
+        int contactPos = 0;
         for (EmergencyContact contact : presenter.getEmergencyContacts()) {
             if (contact != null) {
-                listItems.add(new EditPhoneNumberRowBinder(contact.clone(), pos, presenter.getEmergencyContactListener()));
-                pos++;
+                listItems.add(new EditPhoneNumberRowBinder(contact.clone(), contactPos, presenter.getEmergencyContactListener()));
+                contactPos++;
             }
         }
-        if (pos < presenter.getMaxEmergencyContacts()) {
+        if (contactPos < presenter.getMaxEmergencyContacts()) {
             listItems.add(new AddRowIconTitleCellDataBinder(presenter.getAddNumberButtonLabel(), presenter.getAddEmergencyContactListener()));
         }
 
         //Insurance Info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getInsuranceSectionTitle()));
+        int insurancePos = 0;
+        for (InsuranceCompany company: presenter.getInsuranceCompanies()) {
+            if (company != null) {
+                listItems.add(new EditInsuranceDataBinder(company.clone(), presenter.getCallFirstLabel(), insurancePos, presenter.getInsuranceCompanyListener()));
+            }
+        }
     }
 
     public void reloadData() {

@@ -21,7 +21,7 @@ public class UserSingletonUtils {
     private static List<String> phoneRelationValuesList;
     private static List<String> phoneTypeKeysList;
     private static List<String> phoneTypeValuesList;
-    private static List<String> insuranceKeysList;
+    private static List<String> insuranceKeyList;
     private static List<String> insuranceValuesList;
 
     public static void init(Context context) {
@@ -50,8 +50,8 @@ public class UserSingletonUtils {
         phoneRelationValuesList = Arrays.asList(context.getResources().getStringArray(R.array.contact_relation_values));
         phoneTypeKeysList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_keys));
         phoneTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_values));
-        insuranceKeysList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_keys));
-        insuranceValuesList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_values));
+        insuranceKeyList = Arrays.asList(context.getResources().getStringArray(R.array.insurance_keys));
+        insuranceValuesList = Arrays.asList(context.getResources().getStringArray(R.array.insurance_values));
     }
 
     /**
@@ -176,8 +176,19 @@ public class UserSingletonUtils {
         return phoneTypeKeysList.get(0);
     }
 
-    public int getInsuranceDetailKeyPosition(String selectedInsuranceKey) {
-        int insurancePos = insuranceKeysList.indexOf(selectedInsuranceKey);
+
+    /* Insurance Company Policy Type */
+
+    public String getInsurancePolicyCode(int InsurancePolicyValuePosition) {
+        if (InsurancePolicyValuePosition < insuranceKeyList.size()) {
+            return insuranceKeyList.get(InsurancePolicyValuePosition);
+        }
+        //if country code is not found, return a default value
+        return insuranceKeyList.get(0);
+    }
+
+    public int getInsurancePolicyKeyPosition(String selectedInsuranceKey) {
+        int insurancePos = insuranceKeyList.indexOf(selectedInsuranceKey);
         return insurancePos != -1 ? insurancePos : 0;
     }
 }

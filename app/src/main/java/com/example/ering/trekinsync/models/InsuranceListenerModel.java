@@ -11,7 +11,7 @@ public class InsuranceListenerModel {
         this.shouldDelete = shouldDelete;
     }
 
-    public InsuranceCompany getContact() {
+    public InsuranceCompany getCompany() {
         return company;
     }
 

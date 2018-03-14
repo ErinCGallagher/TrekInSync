@@ -19,6 +19,7 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
     private String checkBoxLabel;
     private int companyPosition;
     private DataInputListener<InsuranceListenerModel> listener;
+    private ArrayList<PolicyInfo> policies;
 
     /**
      * creates a view holder for an Edit Insurance cell view
@@ -29,6 +30,7 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
         this.checkBoxLabel = checkBoxLabel;
         this.companyPosition = companyPosition;
         this.listener = listener;
+        this.policies = companyModel.getPolicyInfo();
     }
 
     @Override
@@ -41,31 +43,81 @@ public class EditInsuranceDataBinder extends BaseDataBinder<EditInsuranceViewHol
     public void bindViewHolder(EditInsuranceViewHolder holder) {
         final EditInsuranceView editInsuranceView = holder.editInsuranceView;
         editInsuranceView.setLabel(companyModel.getName());
-        editInsuranceView.setPhoneNumber(companyModel.getPhoneNumber(), null);
+        editInsuranceView.setPhoneNumber(companyModel.getPhoneNumber(), phoneNumberListener);
         editInsuranceView.setCheckboxLabel(checkBoxLabel);
         editInsuranceView.setCheckboxState(companyModel.isCallFirst());
+        editInsuranceView.setDeleteOnClickListener(deleteClickListener);
 
-//        PolicyInfo firstPolicy = policyInfo.get(0);
-//        editInsuranceView.setDetailsLabel1(firstPolicy != null ? firstPolicy.getName() : "");
-//        editInsuranceView.setDetail1Listener(firstPolicy != null ? firstPolicy.getNumber() : "", null);
-//
-//        PolicyInfo secondPolicy = policyInfo.get(1);
-//        editInsuranceView.setDetailsLabel1(secondPolicy != null ? secondPolicy.getName() : "");
-//        editInsuranceView.setDetail1Listener(secondPolicy != null ? secondPolicy.getNumber() : "", null);
+        PolicyInfo firstPolicy = policies.get(0); //Always 2 policy fields
+        editInsuranceView.setDetailsLabel1(firstPolicy != null ? firstPolicy.getName() : "", policyName1Listener);
+        editInsuranceView.setDetail1Listener(firstPolicy != null ? firstPolicy.getNumber() : "", policyNumber1Listener);
+
+        PolicyInfo secondPolicy = policies.get(1); //Always 2 policy fields
+        editInsuranceView.setDetailsLabel2(secondPolicy != null ? secondPolicy.getName() : "", policyName2Listener);
+        editInsuranceView.setDetail2Listener(secondPolicy != null ? secondPolicy.getNumber() : "", policyNumber2Listener);
 
     }
 
-//    private AdapterView.OnItemSelectedListener policyNameListener = new AdapterView.OnItemSelectedListener() {
-//        @Override
-//        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//            contactModel.setName(UserSingletonUtils.getInstance().getPhoneRelationCode(position));
-//            //notify listener of model change
-//            listener.onInputReceived(new InsuranceListenerModel(contactModel, contactPosition, false));
-//        }
-//
-//        @Override
-//        public void onNothingSelected(AdapterView<?> parent) {
-//            //spinner dismisses
-//        }
-//    };
+    private DataInputListener<String> phoneNumberListener = new DataInputListener<String>() {
+        @Override
+        public void onInputReceived(String value) {
+            companyModel.setPhoneNumber(value);
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener policyName1Listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            policies.get(0).setName(UserSingletonUtils.getInstance().getInsurancePolicyCode(position));
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            //spinner dismisses
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener policyName2Listener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            policies.get(1).setName(UserSingletonUtils.getInstance().getInsurancePolicyCode(position));
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            //spinner dismisses
+        }
+    };
+
+    private DataInputListener<String> policyNumber1Listener = new DataInputListener<String>() {
+        @Override
+        public void onInputReceived(String value) {
+            policies.get(0).setNumber(value);
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+    };
+
+    private DataInputListener<String> policyNumber2Listener = new DataInputListener<String>() {
+        @Override
+        public void onInputReceived(String value) {
+            policies.get(1).setNumber(value);
+            //notify listener of model change
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, false));
+        }
+    };
+
+
+    private View.OnClickListener deleteClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            listener.onInputReceived(new InsuranceListenerModel(companyModel, companyPosition, true));
+        }
+    };
 }

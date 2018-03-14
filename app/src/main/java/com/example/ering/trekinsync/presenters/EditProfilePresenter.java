@@ -19,6 +19,7 @@ import com.example.ering.trekinsync.interfaces.EditProfileView;
 import com.example.ering.trekinsync.models.EmergencyContactListenerModel;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
+import com.example.ering.trekinsync.models.InsuranceListenerModel;
 import com.example.ering.trekinsync.models.PolicyInfo;
 import com.example.ering.trekinsync.models.User;
 import com.example.ering.trekinsync.utils.ProfileFlow;
@@ -120,6 +121,10 @@ public class EditProfilePresenter {
         return context.getString(R.string.add_number_button_title);
     }
 
+    public String getCallFirstLabel() {
+        return context.getString(R.string.call_first_label);
+    }
+
     /**
      * Launch back button confirmation dialog to confirm user wants to not save changes
      */
@@ -187,12 +192,26 @@ public class EditProfilePresenter {
         return user.getMedicine();
     }
 
-    //Emergency Contact section
+    /**
+     * Get list of emergency contacts
+     * @return Emergency Contact Array
+     */
     public EmergencyContact[] getEmergencyContacts() {
         if (user.getEmergencyContacts() != null) {
             return user.getEmergencyContacts();
         }
         return new EmergencyContact[0];
+    }
+
+    /**
+     * Get list of insurance companies.
+     * @return Insurance Company Array
+     */
+    public InsuranceCompany[] getInsuranceCompanies() {
+        if (user.getInsuranceInfo() != null) {
+            return user.getInsuranceInfo();
+        }
+        return new InsuranceCompany[0];
     }
 
     public int getMaxEmergencyContacts() {
@@ -293,7 +312,7 @@ public class EditProfilePresenter {
             @Override
             public void onInputReceived(EmergencyContactListenerModel value) {
                 //update user model emergency contact details
-                EmergencyContact[] userEmergContacts = user.getEmergencyContacts();
+                EmergencyContact[] userEmergContacts = getEmergencyContacts();
 
                 if (value.isShouldDelete()) { //emergency contact deleted
                     //convert to ArrayList and remove requested contact
@@ -313,6 +332,36 @@ public class EditProfilePresenter {
                         userEmergContacts[value.getPosition()].setName(value.getContact().getName());
                         userEmergContacts[value.getPosition()].setPhoneNumberType(value.getContact().getPhoneNumberType());
                         userEmergContacts[value.getPosition()].setPhoneNumber(value.getContact().getPhoneNumber());
+                    }
+                }
+                indicateUserDataModified();
+            }
+        };
+    }
+
+    public DataInputListener<InsuranceListenerModel> getInsuranceCompanyListener() {
+        return new DataInputListener<InsuranceListenerModel>() {
+            @Override
+            public void onInputReceived(InsuranceListenerModel value) {
+                //update user model emergency contact details
+                InsuranceCompany[] userInsuranceCompanies = getInsuranceCompanies();
+
+                if (value.isShouldDelete()) { //emergency contact deleted
+                    //convert to ArrayList and remove requested contact
+                    List<InsuranceCompany> list = new ArrayList<>(Arrays.asList(userInsuranceCompanies));
+                    try {
+                        list.remove(value.getPosition());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+                    //create new emergency contact list for user
+                    InsuranceCompany[] updatedList = new InsuranceCompany[(userInsuranceCompanies.length - 1)];
+                    user.setInsuranceInfo(list.toArray(updatedList));
+                    view.reloadData();
+                } else {
+                    if (value.getPosition() < userInsuranceCompanies.length) {
+                        userInsuranceCompanies[value.getPosition()] = value.getCompany();
                     }
                 }
                 indicateUserDataModified();

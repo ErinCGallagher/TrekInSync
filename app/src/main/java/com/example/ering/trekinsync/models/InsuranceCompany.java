@@ -43,9 +43,13 @@ public class InsuranceCompany implements Parcelable{
     public void setCallFirst(boolean callFirst) {
         this.callFirst = callFirst;
     }
-    
+
     public ArrayList<PolicyInfo> getPolicyInfo() {
-        return new ArrayList<>(Arrays.asList(policyInfo));
+        if (policyInfo != null) {
+            return new ArrayList<>(Arrays.asList(policyInfo));
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public void setPolicyInfo(ArrayList<PolicyInfo> newPolicyInfo) {
@@ -83,5 +87,9 @@ public class InsuranceCompany implements Parcelable{
         parcel.writeString(phoneNumber);
         parcel.writeInt((callFirst ? 1 : 0));
         parcel.writeTypedArray(policyInfo, flags);
+    }
+
+    public InsuranceCompany clone() {
+        return new InsuranceCompany(name, phoneNumber, callFirst, policyInfo.clone());
     }
 }
