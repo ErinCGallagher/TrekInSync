@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.ering.trekinsync.R;
@@ -34,7 +34,7 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
 
     private ImageButton calendarButton;
     private TextView expiryDate;
-    private RadioButton shareInsuranceInfo;
+    private CheckBox shareInsuranceInfo;
     private Context context;
     private android.support.v7.app.ActionBar actionBar;
 
@@ -47,13 +47,13 @@ public class DisplayQrCodeActivity extends AppCompatActivity implements QrCodeVi
         setSupportActionBar(toolbar);
         actionBar =  getSupportActionBar();
 
-        imageView = (ImageView) findViewById(R.id.qr_code_view);
-        preferencesContainer =  (LinearLayout) findViewById(R.id.preferences_container);
-        generateQRrButton = (Button) findViewById(R.id.generate_qr_button);
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        calendarButton = (ImageButton) findViewById(R.id.calendar_button);
-        expiryDate = (TextView) findViewById(R.id.date);
-        shareInsuranceInfo = (RadioButton) findViewById(R.id.insurance_button);
+        imageView = findViewById(R.id.qr_code_view);
+        preferencesContainer = findViewById(R.id.preferences_container);
+        generateQRrButton = findViewById(R.id.generate_qr_button);
+        progressBar = findViewById(R.id.progress_bar);
+        calendarButton = findViewById(R.id.calendar_button);
+        expiryDate = findViewById(R.id.date);
+        shareInsuranceInfo = findViewById(R.id.insurance_button);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

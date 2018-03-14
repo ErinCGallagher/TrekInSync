@@ -61,7 +61,7 @@
                     android:layout_weight="1"
                     android:gravity="end">
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/insurance_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
