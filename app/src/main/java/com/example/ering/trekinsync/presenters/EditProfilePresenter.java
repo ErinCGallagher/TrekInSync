@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.TypedArrayUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 import com.example.ering.trekinsync.R;
 import com.example.ering.trekinsync.interfaces.DataInputListener;
 import com.example.ering.trekinsync.interfaces.EditProfileView;
-import com.example.ering.trekinsync.models.EmergencyNumberDataListenerModel;
+import com.example.ering.trekinsync.models.EmergencyContactListenerModel;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.models.InsuranceCompany;
 import com.example.ering.trekinsync.models.PolicyInfo;
@@ -287,12 +286,12 @@ public class EditProfilePresenter {
 
     /**
      * Create data input listener for emergency contact rows.
-     * @return DataInputListener of type EmergencyNumberDataListenerModel
+     * @return DataInputListener of type EmergencyContactListenerModel
      */
-    public DataInputListener<EmergencyNumberDataListenerModel> getEmergencyContactListener() {
-        return new DataInputListener<EmergencyNumberDataListenerModel>() {
+    public DataInputListener<EmergencyContactListenerModel> getEmergencyContactListener() {
+        return new DataInputListener<EmergencyContactListenerModel>() {
             @Override
-            public void onInputReceived(EmergencyNumberDataListenerModel value) {
+            public void onInputReceived(EmergencyContactListenerModel value) {
                 //update user model emergency contact details
                 EmergencyContact[] userEmergContacts = user.getEmergencyContacts();
 

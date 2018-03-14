@@ -1,15 +1,13 @@
 package com.example.ering.trekinsync.databinders;
 
 import android.support.annotation.NonNull;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.ering.trekinsync.customviews.EditPhoneNumberView;
 import com.example.ering.trekinsync.interfaces.DataInputListener;
-import com.example.ering.trekinsync.models.EmergencyNumberDataListenerModel;
+import com.example.ering.trekinsync.models.EmergencyContactListenerModel;
 import com.example.ering.trekinsync.models.EmergencyContact;
 import com.example.ering.trekinsync.utils.UserSingletonUtils;
 import com.example.ering.trekinsync.viewholders.EditPhoneNumberViewHolder;
@@ -17,16 +15,15 @@ import com.example.ering.trekinsync.viewholders.EditPhoneNumberViewHolder;
 public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberViewHolder> {
     private EmergencyContact contactModel;
     private int contactPosition;
-    private DataInputListener<EmergencyNumberDataListenerModel> listener;
+    private DataInputListener<EmergencyContactListenerModel> listener;
 
     /**
      * creates a view holder for edit phone number cell with phone number type and relationship.
      */
-    public EditPhoneNumberRowBinder(@NonNull EmergencyContact contactModel, int contactPosition, DataInputListener<EmergencyNumberDataListenerModel> listener) {
+    public EditPhoneNumberRowBinder(@NonNull EmergencyContact contactModel, int contactPosition, DataInputListener<EmergencyContactListenerModel> listener) {
         this.contactModel = contactModel;
         this.contactPosition = contactPosition;
         this.listener = listener;
-        //TODO: implement delete listener
     }
 
     @Override
@@ -49,7 +46,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setName(UserSingletonUtils.getInstance().getPhoneRelationCode(position));
             //notify listener of model change
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
+            listener.onInputReceived(new EmergencyContactListenerModel(contactModel, contactPosition, false));
         }
 
         @Override
@@ -63,7 +60,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             contactModel.setPhoneNumberType(UserSingletonUtils.getInstance().getPhoneTypeCode(position));
             //notify listener of model change
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
+            listener.onInputReceived(new EmergencyContactListenerModel(contactModel, contactPosition, false));
         }
 
         @Override
@@ -77,7 +74,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
         public void onInputReceived(String value) {
             contactModel.setPhoneNumber(value);
             //notify listener of model change
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, false));
+            listener.onInputReceived(new EmergencyContactListenerModel(contactModel, contactPosition, false));
         }
     };
 
@@ -85,7 +82,7 @@ public class EditPhoneNumberRowBinder extends BaseDataBinder<EditPhoneNumberView
     private View.OnClickListener deleteClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            listener.onInputReceived(new EmergencyNumberDataListenerModel(contactModel, contactPosition, true));
+            listener.onInputReceived(new EmergencyContactListenerModel(contactModel, contactPosition, true));
         }
     };
 }

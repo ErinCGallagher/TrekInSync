@@ -1,12 +1,12 @@
 package com.example.ering.trekinsync.models;
 
-public class EmergencyNumberDataListenerModel {
+public class EmergencyContactListenerModel {
 
     private EmergencyContact contact;
     private int position;
     private boolean shouldDelete;
 
-    public EmergencyNumberDataListenerModel(EmergencyContact contact, int position, boolean shouldDelete) {
+    public EmergencyContactListenerModel(EmergencyContact contact, int position, boolean shouldDelete) {
         this.contact = contact;
         this.position = position;
         this.shouldDelete = shouldDelete;
