@@ -78,7 +78,7 @@ public class EditPhoneNumberView extends LinearLayout {
 
             @Override
             public void afterTextChanged(Editable s) {
-                listener.onInputReceived(phoneNumber.getText().toString());
+                listener.onInputReceived(phoneNumber.getText().toString().trim());
             }
         });
     }
