@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.ering.trekinsync.customviews.OpenFieldWithLabelView android:id="@+id/open_text_with_label_cell"
+<com.trekinsync.ering.trekinsync.customviews.OpenFieldWithLabelView android:id="@+id/open_text_with_label_cell"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:attr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,4 +7,4 @@
     attr:viewOpenTextDescription="description"
     attr:viewOpenTextLabel="label">
 
-</com.example.ering.trekinsync.customviews.OpenFieldWithLabelView>
+</com.trekinsync.ering.trekinsync.customviews.OpenFieldWithLabelView>
