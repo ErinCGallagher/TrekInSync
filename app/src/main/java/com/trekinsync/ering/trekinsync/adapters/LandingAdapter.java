@@ -39,7 +39,7 @@ public class LandingAdapter extends BaseAdapter {
                 listItems.add(new ContactCellRowBinder(contact.getName(),
                         UserSingletonUtils.getInstance().getFormattedCountry(contact.getCitizenship()),
                         presenter.getSortingPrefix(previousContact, contact),
-                        previousContact != null ? false : true,
+                        previousContact == null,
                         clickListener));
                 previousContact = contact;
             }

@@ -49,10 +49,13 @@ public class ContactView extends LinearLayout {
         contactDescription.setText(description);
     }
 
-    public void setSortingLabel(String label, boolean isFirstCell) {
-        if (label != null) {
-            sortingLabel.setText(label);
+    public void setSortingLabel(String sortingPrefix, boolean isFirstCell) {
+        if (sortingPrefix != null) {
+            sortingLabel.setText(sortingPrefix);
             border.setVisibility(!isFirstCell ? VISIBLE : GONE);
+        } else {
+            sortingLabel.setText(null);
+            border.setVisibility(GONE);
         }
     }
 }

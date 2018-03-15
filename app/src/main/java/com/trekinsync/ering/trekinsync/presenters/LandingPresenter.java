@@ -103,7 +103,6 @@ public class LandingPresenter {
                     !(previousContact.getName().substring(0,1).equals(currentContact.getName().substring(0,1)))) {
                 return currentContact.getName().substring(0,1).toUpperCase();
             }
-            return null;
         }
         //TODO: implement sort by country
         return null;
