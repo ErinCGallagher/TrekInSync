@@ -33,7 +33,12 @@ public class LandingPresenter {
         this.sharedPref = sharedPref;
         this.context = context;
         this.view = view;
+    }
 
+    /**
+     * Called in onResume
+     */
+    public void updateProfileAndContacts() {
         this.user = retrievePersonalProfileData();
         if (this.user == null ) {
             //launch create profile flow since none exists
@@ -47,11 +52,6 @@ public class LandingPresenter {
         } else {
             //TODO: display no travel contacts UI
         }
-    }
-
-    public void updateProfileAndContacts() {
-        this.user = retrievePersonalProfileData();
-        this.contacts = retrieveTravelContacts();
         view.reloadData();
     }
 
