@@ -87,6 +87,10 @@ public class UserSingletonUtils {
         return countryKeyList.get(0);
     }
 
+    public String getDefaultCountryCode() {
+        return countryKeyList.get(0);
+    }
+
     /**
      * Given blood type key, retrieve translated blood type value.
      * @param selectedBloodTypeKey, selected blood type key
@@ -123,6 +127,10 @@ public class UserSingletonUtils {
     public String getFormattedPhoneRelation(String selectedPhoneRelationKey) {
         int position = phoneRelationKeyList.indexOf(selectedPhoneRelationKey);
         return phoneRelationValuesList.get(position != -1 ? position : 0);
+    }
+
+    public String getDefaultBloodType() {
+        return bloodTypeKeyList.get(0);
     }
 
     /**
@@ -195,5 +203,9 @@ public class UserSingletonUtils {
     public String getFormattedInsurancePolicy(String selectedInsurancePolicyKey) {
         int position = insuranceKeyList.indexOf(selectedInsurancePolicyKey);
         return insuranceValuesList.get(position != -1 ? position : 0);
+    }
+
+    public String getDefaultPolicy() {
+        return insuranceKeyList.get(0);
     }
 }

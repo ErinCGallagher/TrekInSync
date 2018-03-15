@@ -484,8 +484,7 @@ public class EditProfilePresenter {
 
     private void startCreateProfileFlow() {
         this.profileFlow = ProfileFlow.CREATE;
-        this.user = createSharedPrefTestData();
-        createTravelContactTestData();
+        this.user = createEmptyInitProfile();
     }
 
     private void indicateUserDataModified() {
@@ -503,72 +502,35 @@ public class EditProfilePresenter {
     }
 
     /* Test Data creation to be removed */
-
-    //TODO remove once create profile flow completed
-    private User createSharedPrefTestData() {
-        return getTestUserObject("Erin Gallagher", "FIN", true);
-    }
-
-    //TODO remove once add travel contact flow complete
-    private void createTravelContactTestData() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Gson gson = new Gson();
-
-        User testUser1 = getTestUserObject("Christina Chan", "CAD", false);
-        User testUser2 = getTestUserObject("Laura Brooks", "CAD", false);
-        User testUser3 = getTestUserObject("Lexi Flynn", "ITA", false);
-        User testUser4 = getTestUserObject("Shannon Klett", "KOR", false);
-
-        List<String> contactKeys = new ArrayList<>();
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser1));
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser2));
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser3));
-        contactKeys.add(SharedPrefsUtils.getTravelContactKey(testUser4));
-        String json = gson.toJson(contactKeys);
-        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
-
-        String contactJson = gson.toJson(testUser1);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser1), contactJson);
-
-        String contactJson2 = gson.toJson(testUser2);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser2), contactJson2);
-
-        String contactJson3 = gson.toJson(testUser3);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser3), contactJson3);
-        editor.apply();
-
-        String contactJson4 = gson.toJson(testUser4);
-        editor.putString(SharedPrefsUtils.getKey(context, testUser4), contactJson4);
-        editor.apply();
-    }
-
-    //TODO remove once create profile flow completed
-    private User getTestUserObject(String name, String citizenship, boolean isPersonalProfile) {
-        PolicyInfo policyInfo = new PolicyInfo("policy #", "12345");
-        PolicyInfo policyInfo2 = new PolicyInfo("cert #", "098");
+    private User createEmptyInitProfile() {
+        String policyName = UserSingletonUtils.getInstance().getDefaultPolicy();
+        PolicyInfo policyInfo = new PolicyInfo(policyName, "");
+        PolicyInfo policyInfo2 = new PolicyInfo(policyName, "");
         PolicyInfo[] policyInfoArray = new PolicyInfo[2];
         policyInfoArray[0] = policyInfo;
         policyInfoArray[1] = policyInfo2;
 
-        InsuranceCompany insuranceCompany = new InsuranceCompany("Manulife", "416-098-4663", policyInfoArray);
+        InsuranceCompany insuranceCompany = new InsuranceCompany("", "", policyInfoArray);
         InsuranceCompany[] insuranceCompanyArray = new InsuranceCompany[1];
         insuranceCompanyArray[0] = insuranceCompany;
 
         EmergencyContact emergencyContact = new EmergencyContact("PA", "416-747-3625", "M");
-        EmergencyContact emergencyContact2 = new EmergencyContact("SI", "416-888-9865", "W");
-        EmergencyContact[] emergencyContactArray = new EmergencyContact[2];
+        EmergencyContact[] emergencyContactArray = new EmergencyContact[1];
         emergencyContactArray[0] = emergencyContact;
-        emergencyContactArray[1] = emergencyContact2;
 
-        User user = new User(isPersonalProfile,
+        String defaultBloodType = UserSingletonUtils.getInstance().getDefaultBloodType();
+        String defaultName = context.getString(R.string.full_name_hint);
+        String defaultCountryCode = UserSingletonUtils.getInstance().getDefaultCountryCode();
+
+        User user = new User(true,
                 "2018-03-18",
-                name,
+                defaultName,
                 "1994-03-24",
                 23,
-                citizenship,
-                "O-",
-                "scented shit",
-                "none",
+                defaultCountryCode,
+                defaultBloodType,
+                "",
+                "",
                 emergencyContactArray,
                 insuranceCompanyArray);
         return user;
