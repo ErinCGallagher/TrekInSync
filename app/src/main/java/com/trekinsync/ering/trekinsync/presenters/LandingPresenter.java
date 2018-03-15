@@ -33,6 +33,7 @@ public class LandingPresenter {
         this.sharedPref = sharedPref;
         this.context = context;
         this.view = view;
+        this.user = retrievePersonalProfileData();
     }
 
     /**

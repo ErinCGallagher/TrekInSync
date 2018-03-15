@@ -42,12 +42,12 @@ public class FabMenuFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fab_menu_layout, container, false);
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fabCamera = (FloatingActionButton) view.findViewById(R.id.fab_camera);
-        fabBarcode = (FloatingActionButton) view.findViewById(R.id.fab_barcode);
-        fabCameraLabel = (TextView) view.findViewById(R.id.fab_camera_label);
-        fabBarcodeLabel = (TextView) view.findViewById(R.id.fab_barcode_label);
-        dimMenuBackground = (View) view.findViewById(R.id.dim_menu_background);
+        fab = view.findViewById(R.id.fab);
+        fabCamera = view.findViewById(R.id.fab_camera);
+        fabBarcode = view.findViewById(R.id.fab_barcode);
+        fabCameraLabel = view.findViewById(R.id.fab_camera_label);
+        fabBarcodeLabel = view.findViewById(R.id.fab_barcode_label);
+        dimMenuBackground = view.findViewById(R.id.dim_menu_background);
 
         getUserBundle();
         initFabMenu();
