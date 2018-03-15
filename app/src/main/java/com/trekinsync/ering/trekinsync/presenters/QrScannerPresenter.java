@@ -35,10 +35,13 @@ public class QrScannerPresenter {
     public void handleQrCodeScanResults(String results) {
         User userObj = convertToUserObject(results);
 
-        if (userObj != null && SharedPrefsUtils.checkIfContactExists(context, userObj)) {
-            addContactToSharedPrefs(userObj);
-        } else {
-            Toast.makeText(context, "This travel contact already exists on your device.", Toast.LENGTH_LONG).show();
+        if (userObj != null) {
+            boolean doesTravelContactExist = SharedPrefsUtils.checkIfContactExists(context, userObj);
+            if (!doesTravelContactExist) {
+                addContactToSharedPrefs(userObj);
+            } else {
+                Toast.makeText(context, "This travel contact already exists on your device.", Toast.LENGTH_LONG).show();
+            }
         }
         view.returnToLandingActivity();
     }

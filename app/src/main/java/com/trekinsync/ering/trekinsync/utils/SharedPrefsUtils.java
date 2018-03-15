@@ -70,10 +70,11 @@ public class SharedPrefsUtils {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key), Context.MODE_PRIVATE);
         String contactJson = sharedPref.getString(getKey(context, userObj), "false");
 
+        //false response means contact key was not found on device
         if (contactJson.equals("false")) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true; //contact exists
         }
     }
 
@@ -103,7 +104,9 @@ public class SharedPrefsUtils {
         editor.remove(getKey(context, user));
         editor.apply();
 
-        return checkIfContactExists(context, user);
+        boolean contactExists = checkIfContactExists(context, user);
+        //if contact still exists on device return false (failure to remove), otherwise true
+        return !contactExists;
     }
 
     /**
