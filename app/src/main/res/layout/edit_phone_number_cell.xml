@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/description_font"
                 android:inputType="phone"
-                android:hint="@string/phone_number_hint"
+                android:hint="@string/number_hint"
                 android:maxLength="12"
                 tools:ignore="LabelFor" />
 

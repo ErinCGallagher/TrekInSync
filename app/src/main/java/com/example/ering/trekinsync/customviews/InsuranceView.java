@@ -99,8 +99,13 @@ public class InsuranceView extends LinearLayout {
                 detailNumbersArray[i].setText(null);
                 detailContainerArray[i].setVisibility(GONE);
             } else {
-                detailNumbersArray[i].setText(numbersList.get(i));
-                detailContainerArray[i].setVisibility(VISIBLE);
+                if (numbersList.get(i).isEmpty()) {
+                    detailContainerArray[i].setVisibility(GONE);
+                    detailContainerArray[i].setVisibility(GONE);
+                } else {
+                    detailNumbersArray[i].setText(numbersList.get(i));
+                    detailContainerArray[i].setVisibility(VISIBLE);
+                }
             }
         }
     }

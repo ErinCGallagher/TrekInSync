@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/description_font"
                 android:inputType="phone"
-                android:maxLength="12"
-                android:hint="@string/phone_number_hint"
+                android:maxLength="15"
+                android:hint="@string/number_hint"
                 tools:ignore="LabelFor" />
 
             <EditText
@@ -77,7 +77,7 @@
             android:textSize="@dimen/secondary_label_font"
             android:inputType="text"
             android:maxLength="20"
-            tools:text="16748263" />
+            android:hint="@string/number_hint" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +102,7 @@
             android:textSize="@dimen/secondary_label_font"
             android:inputType="text"
             android:maxLength="20"
-            tools:text="987" />
+            android:hint="@string/number_hint" />
     </LinearLayout>
 
 </LinearLayout>
