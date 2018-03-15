@@ -485,6 +485,7 @@ public class EditProfilePresenter {
     private void startCreateProfileFlow() {
         this.profileFlow = ProfileFlow.CREATE;
         this.user = createEmptyInitProfile();
+        setupContactsSharedPrefs();
     }
 
     private void indicateUserDataModified() {
@@ -534,5 +535,14 @@ public class EditProfilePresenter {
                 emergencyContactArray,
                 insuranceCompanyArray);
         return user;
+    }
+
+    private void setupContactsSharedPrefs() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Gson gson = new Gson();
+        List<String> contactKeys = new ArrayList<>();
+        String json = gson.toJson(contactKeys);
+        editor.putString(SharedPrefsUtils.getKey(context, R.string.travel_contact_key_names), json);
+        editor.apply();
     }
 }
