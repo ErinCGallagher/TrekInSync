@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:maxLines="3"
         android:minLines="1"
-        android:maxLength="300"
+        android:maxLength="150"
         android:textSize="@dimen/description_font"
         android:textColor="@color/primaryBlackFont"
         tools:text="Description Description"/>
