@@ -70,7 +70,7 @@ public class SharedPrefsUtils {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key), Context.MODE_PRIVATE);
         String contactJson = sharedPref.getString(getKey(context, userObj), "false");
 
-        if (contactJson == "false") {
+        if (contactJson.equals("false")) {
             return true;
         } else {
             return false;
