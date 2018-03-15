@@ -1,4 +1,4 @@
-Privacy Policy
+﻿Privacy Policy
 Erin Gallagher built the Trek In Sync app as an Open Source app. This SERVICE is provided by Erin Gallagher at no cost and is intended for use as is.
 
 This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
@@ -22,7 +22,7 @@ I want to inform you that whenever you use my Service, in a case of an error in 
 
 Cookies
 
-Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These are sent to your browser from the website that you visit and are stored on your device internal memory.
+Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These are sent to your browser from the App that you visit and are stored on your device internal memory.
 
 This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collection information and to improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
 
@@ -42,7 +42,7 @@ I value your trust in providing us your Personal Information, thus we are strivi
 
 Links to Other Sites
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these apps and libraries. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
 
 Children’s Privacy
 
