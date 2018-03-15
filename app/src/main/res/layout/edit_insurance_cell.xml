@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/primaryBlackFont"
             android:textSize="@dimen/secondary_label_font"
+            android:inputType="text"
             android:maxLength="20"
             tools:text="16748263" />
     </LinearLayout>
@@ -99,6 +100,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/primaryBlackFont"
             android:textSize="@dimen/secondary_label_font"
+            android:inputType="text"
             android:maxLength="20"
             tools:text="987" />
     </LinearLayout>

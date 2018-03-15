@@ -183,10 +183,12 @@ public class EditInsuranceView extends LinearLayout {
 
     private void setDetails1(String value) {
         detail1.setText(value);
+        detail1.setFilters(new InputFilter[] {InputFilterUtils.getAlphaNumericFilter()});
     }
 
     private void setDetails2(String value) {
         detail2.setText(value);
+        detail2.setFilters(new InputFilter[] {InputFilterUtils.getAlphaNumericFilter()});
     }
 
     private void initSpinnerAdapters() {
