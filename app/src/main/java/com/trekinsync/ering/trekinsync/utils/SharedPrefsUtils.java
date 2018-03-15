@@ -67,7 +67,7 @@ public class SharedPrefsUtils {
      */
     public static boolean checkIfContactExists(Context context, User userObj) {
         //TODO: don't instantiate shared preferences twice
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key), Context.MODE_PRIVATE);
         String contactJson = sharedPref.getString(getKey(context, userObj), "false");
 
         if (contactJson == "false") {
@@ -85,7 +85,7 @@ public class SharedPrefsUtils {
      * @return true if contact is removed successfully, otherwise false
      */
     public static boolean removeTravelContact(Context context, User user) {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Type listType = new TypeToken<List<String>>() {}.getType();
         Gson gson = new Gson();
@@ -111,7 +111,7 @@ public class SharedPrefsUtils {
      * @return a User object otherwise null if error parsing
      */
     public static User convertSharedPrefsToUserModel(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPref.getString(SharedPrefsUtils.getKey(context, R.string.primary_profile_key), "");
         User userObj = null;
@@ -129,7 +129,7 @@ public class SharedPrefsUtils {
      * @return List of User object retrieved from shared preferences
      */
     public static List<User> convertSharedPrefsToTravelContacts(Context context) {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
 
         Type listType = new TypeToken<List<String>>() {}.getType();
         Gson gson = new Gson();

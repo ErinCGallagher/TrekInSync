@@ -48,7 +48,7 @@ public class EditProfilePresenter {
         this.context = context;
         this.view = view;
         this.user = user;
-        this.sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        this.sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
 
         if (user == null) {
             startCreateProfileFlow();
@@ -492,7 +492,7 @@ public class EditProfilePresenter {
     }
 
     private void saveProfileToSharedPrefs() {
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(SharedPrefsUtils.getKey(context, R.string.created_profile_key), "true");
         Gson gson = new Gson();

@@ -55,7 +55,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         UserSingletonUtils.init(context);
 
         //If on boarding has not been completed, launch intro screens
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean(IntroActivity.COMPLETED_ON_BOARDING, false)) {
             launchAppDetailPages(true);
             finish();
@@ -103,7 +103,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
 
     private void startLandingPageSetup() {
         //setup presenter
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         presenter = new LandingPresenter(sharedPref, context, this);
 
         //setup adapter

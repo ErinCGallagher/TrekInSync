@@ -75,7 +75,7 @@ public class QrScannerPresenter {
 
     private void addContactToSharedPrefs(User userObj) {
         //TODO: don't instantiate shared preferences twice
-        SharedPreferences sharedPref = context.getSharedPreferences("com.example.trekinsync.userData",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Type listType = new TypeToken<List<String>>() {}.getType();
         Gson gson = new Gson();
