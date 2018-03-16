@@ -1,9 +1,14 @@
 package com.trekinsync.ering.trekinsync.utils;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.support.annotation.DrawableRes;
 
 import com.trekinsync.ering.trekinsync.R;
+import com.trekinsync.ering.trekinsync.models.IconModel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,6 +28,8 @@ public class UserSingletonUtils {
     private static List<String> phoneTypeValuesList;
     private static List<String> insuranceKeyList;
     private static List<String> insuranceValuesList;
+
+    private static List<IconModel> iconList;
 
     public static void init(Context context) {
         if (instance == null) {
@@ -52,6 +59,20 @@ public class UserSingletonUtils {
         phoneTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.number_type_values));
         insuranceKeyList = Arrays.asList(context.getResources().getStringArray(R.array.insurance_keys));
         insuranceValuesList = Arrays.asList(context.getResources().getStringArray(R.array.insurance_values));
+        iconList = generateIconList();
+    }
+
+    public List<IconModel> getProfileIconList() {
+        return iconList;
+    }
+
+    public @DrawableRes int getSelectedDrawable(int iconId) {
+        for (IconModel icon: iconList) {
+            if (iconId == icon.getId()) {
+                return icon.getDrawable();
+            }
+        }
+        return R.drawable.placeholder_profile_icon_personal;
     }
 
     /**
@@ -207,5 +228,15 @@ public class UserSingletonUtils {
 
     public String getDefaultPolicy() {
         return insuranceKeyList.get(0);
+    }
+
+
+    /* Private Methods */
+
+    private List<IconModel> generateIconList() {
+        List<IconModel> list = new ArrayList<>();
+        list.add(new IconModel(R.drawable.placeholder_profile_icon_personal, 0));
+        list.add(new IconModel(R.drawable.placeholder_profile_icon_contact, 1));
+        return list;
     }
 }

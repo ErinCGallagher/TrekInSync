@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.DatePicker;
@@ -19,6 +20,7 @@ import com.trekinsync.ering.trekinsync.interfaces.DataInputListener;
 import com.trekinsync.ering.trekinsync.interfaces.EditProfileView;
 import com.trekinsync.ering.trekinsync.models.EmergencyContactListenerModel;
 import com.trekinsync.ering.trekinsync.models.EmergencyContact;
+import com.trekinsync.ering.trekinsync.models.IconModel;
 import com.trekinsync.ering.trekinsync.models.InsuranceCompany;
 import com.trekinsync.ering.trekinsync.models.InsuranceListenerModel;
 import com.trekinsync.ering.trekinsync.models.PolicyInfo;
@@ -77,7 +79,7 @@ public class EditProfilePresenter {
     public LayerDrawable getProfileIcon() {
         Resources r = context.getResources();
         Drawable[] layers = new Drawable[2];
-        layers[0] = r.getDrawable(R.drawable.placeholder_profile_icon_personal);
+        layers[0] = r.getDrawable(UserSingletonUtils.getInstance().getSelectedDrawable(user.getIcon()));
         layers[1] = r.getDrawable(R.drawable.ic_edit_black_opacity_40);
         return new LayerDrawable(layers);
     }
@@ -233,8 +235,9 @@ public class EditProfilePresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IconSelectionAdapter adapter = new IconSelectionAdapter(context, getProfileIconList(), 0);
-                view.launchPopUp("Select Profile Icon", adapter, 0, createIconSelectionListener());
+                List<IconModel> iconList = UserSingletonUtils.getInstance().getProfileIconList();
+                IconSelectionAdapter adapter = new IconSelectionAdapter(context, iconList, user.getIcon());
+                view.launchPopUp("Select Profile Icon", adapter, createIconSelectionListener());
             }
         };
     }
@@ -519,13 +522,6 @@ public class EditProfilePresenter {
         this.userDataModified = true;
     }
 
-    private List<Drawable> getProfileIconList() {
-        List<Drawable> list = new ArrayList<>();
-        list.add(context.getResources().getDrawable(R.drawable.placeholder_profile_icon_personal));
-        list.add(context.getResources().getDrawable(R.drawable.placeholder_profile_icon_contact));
-        return list;
-    }
-
     private void saveProfileToSharedPrefs() {
         SharedPreferences sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -566,6 +562,7 @@ public class EditProfilePresenter {
                 defaultBloodType,
                 "",
                 "",
+                0,
                 emergencyContactArray,
                 insuranceCompanyArray);
         return user;

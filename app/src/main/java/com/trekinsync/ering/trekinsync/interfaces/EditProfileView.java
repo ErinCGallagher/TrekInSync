@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public interface EditProfileView {
     void launchPopUp(String title, @ArrayRes int itemsId, int checkedItem, DialogInterface.OnClickListener listener);
-    void launchPopUp(String title, IconSelectionAdapter adapter, int checkedItem, DialogInterface.OnClickListener listener);
+    void launchPopUp(String title, IconSelectionAdapter adapter, DialogInterface.OnClickListener listener);
     void launchDatePicker(Date birthDate, DatePickerDialog.OnDateSetListener listener);
     void reloadData();
     void launchProfileView(User user);

@@ -73,10 +73,10 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
-    public void launchPopUp(String title, IconSelectionAdapter adapter, int checkedItem, DialogInterface.OnClickListener listener) {
+    public void launchPopUp(String title, IconSelectionAdapter adapter, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
-        builder.setSingleChoiceItems(adapter,checkedItem, listener);
+        builder.setAdapter(adapter,listener);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

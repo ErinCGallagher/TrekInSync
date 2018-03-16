@@ -18,13 +18,14 @@ public class User implements Parcelable {
     private String bloodType;
     private String allergies;
     private String medicine;
+    private int icon;
     private EmergencyContact[] emergencyContacts;
     private InsuranceCompany[] insuranceInfo;
 
     private static final String DATE_PATTERN_DISPLAY = "MMM d, yyyy";
     private static final String DATE_PATTERN_STORAGE = "yyyy-MM-dd";
 
-    public User(boolean isPersonalProfile, String contactExpiryDate, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
+    public User(boolean isPersonalProfile, String contactExpiryDate, String name, String birthDate, int age, String citizenship, String bloodType, String allergies, String medicine, int icon, EmergencyContact[] emergencyContact, InsuranceCompany[] insuranceInfo) {
         this.isPersonalProfile = isPersonalProfile;
         this.contactExpiryDate = contactExpiryDate;
         this.name = name;
@@ -34,6 +35,7 @@ public class User implements Parcelable {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.medicine = medicine;
+        this.icon = icon;
         this.emergencyContacts = emergencyContact;
         this.insuranceInfo = insuranceInfo;
     }
@@ -156,6 +158,14 @@ public class User implements Parcelable {
         this.medicine = medicine;
     }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
     public EmergencyContact[] getEmergencyContacts() {
         return emergencyContacts;
     }
@@ -192,6 +202,7 @@ public class User implements Parcelable {
         bloodType = in.readString();
         allergies = in.readString();
         medicine = in.readString();
+        icon = in.readInt();
         emergencyContacts = in.createTypedArray(EmergencyContact.CREATOR);
         insuranceInfo = in.createTypedArray(InsuranceCompany.CREATOR);
     }
@@ -224,6 +235,7 @@ public class User implements Parcelable {
         parcel.writeString(bloodType);
         parcel.writeString(allergies);
         parcel.writeString(medicine);
+        parcel.writeInt(icon);
         parcel.writeTypedArray(emergencyContacts, flags);
         parcel.writeTypedArray(insuranceInfo, flags);
     }

@@ -3,6 +3,7 @@ package com.trekinsync.ering.trekinsync.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Layout;
@@ -14,11 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.trekinsync.ering.trekinsync.R;
+import com.trekinsync.ering.trekinsync.models.IconModel;
 
 import java.util.List;
 
-public class IconSelectionAdapter extends ArrayAdapter<Drawable> {
-    private final List<Drawable> list;
+public class IconSelectionAdapter extends ArrayAdapter<IconModel> {
+    private final List<IconModel> list;
     private final Context context;
     private final int selected;
 
@@ -28,7 +30,7 @@ public class IconSelectionAdapter extends ArrayAdapter<Drawable> {
     }
 
 
-    public IconSelectionAdapter(Context context, List<Drawable> list, int selected) {
+    public IconSelectionAdapter(Context context, List<IconModel> list, int selected) {
         super(context, R.layout.custom_icon_spinner_item, list);
         this.context = context;
         this.list = list;
@@ -55,7 +57,8 @@ public class IconSelectionAdapter extends ArrayAdapter<Drawable> {
         }
 
         ViewHolder holder = (ViewHolder) view.getTag();
-        holder.icon.setImageDrawable(list.get(position));
+        @DrawableRes int drawable = list.get(position).getDrawable();
+        holder.icon.setImageDrawable(context.getResources().getDrawable(drawable));
         return view;
     }
 }
