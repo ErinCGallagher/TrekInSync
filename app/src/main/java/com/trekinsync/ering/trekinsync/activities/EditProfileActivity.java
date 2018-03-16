@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ArrayRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +18,15 @@ import android.view.MenuItem;
 
 import com.trekinsync.ering.trekinsync.R;
 import com.trekinsync.ering.trekinsync.adapters.EditProfileAdapter;
+import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
 import com.trekinsync.ering.trekinsync.interfaces.EditProfileView;
 import com.trekinsync.ering.trekinsync.models.User;
 import com.trekinsync.ering.trekinsync.presenters.EditProfilePresenter;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class EditProfileActivity extends AppCompatActivity implements EditProfileView {
 
@@ -61,10 +65,18 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     @Override
     public void launchPopUp(String title, @ArrayRes int itemsId, int checkedItem, DialogInterface.OnClickListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         builder.setTitle(title);
         builder.setSingleChoiceItems(itemsId, checkedItem, listener);
+        List<Drawable> list = new ArrayList<>();
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
+    @Override
+    public void launchPopUp(String title, IconSelectionAdapter adapter, int checkedItem, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setSingleChoiceItems(adapter,checkedItem, listener);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

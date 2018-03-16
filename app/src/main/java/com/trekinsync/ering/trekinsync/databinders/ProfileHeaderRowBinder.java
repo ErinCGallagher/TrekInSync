@@ -13,7 +13,8 @@ public class ProfileHeaderRowBinder extends BaseDataBinder<ProfileHeaderViewHold
     private String profileName;
     private int headerColor;
     private LayerDrawable profileIcon;
-    private DataInputListener<String> listener;
+    private DataInputListener<String> nameListener;
+    private View.OnClickListener iconListener;
     private boolean isEditMode = false;
 
     public ProfileHeaderRowBinder(String profileName, @ColorInt int headerColor, Drawable profileIcon) {
@@ -25,11 +26,13 @@ public class ProfileHeaderRowBinder extends BaseDataBinder<ProfileHeaderViewHold
     }
 
     public ProfileHeaderRowBinder(String profileName, @ColorInt int headerColor,
-                                  LayerDrawable profileIcon, DataInputListener<String> listener) {
+                                  LayerDrawable profileIcon, DataInputListener<String> nameListener,
+                                  View.OnClickListener iconListener) {
         this.profileName = profileName;
         this.headerColor = headerColor;
         this.profileIcon = profileIcon;
-        this.listener = listener;
+        this.nameListener = nameListener;
+        this.iconListener = iconListener;
         this.isEditMode = true;
     }
 
@@ -44,7 +47,8 @@ public class ProfileHeaderRowBinder extends BaseDataBinder<ProfileHeaderViewHold
         holder.setEditMode(isEditMode);
         holder.setTitle(profileName);
         holder.setHeaderColor(headerColor);
-        holder.setTextChangeListener(listener);
+        holder.setProfileIconListener(iconListener);
+        holder.setTextChangeListener(nameListener);
         holder.setProfileIcon(profileIcon);
     }
 }

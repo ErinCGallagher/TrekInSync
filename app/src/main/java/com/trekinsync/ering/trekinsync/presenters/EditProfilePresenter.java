@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.trekinsync.ering.trekinsync.R;
+import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
 import com.trekinsync.ering.trekinsync.interfaces.DataInputListener;
 import com.trekinsync.ering.trekinsync.interfaces.EditProfileView;
 import com.trekinsync.ering.trekinsync.models.EmergencyContactListenerModel;
@@ -223,6 +224,20 @@ public class EditProfilePresenter {
     }
 
     /* On Click Listeners */
+
+    /**
+     * Create On Click Listener for profile icon selection that opens a dialog spinner.
+     * @return View.OnClickListener
+     */
+    public View.OnClickListener createProfileIconClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IconSelectionAdapter adapter = new IconSelectionAdapter(context, getProfileIconList(), 0);
+                view.launchPopUp("Select Profile Icon", adapter, 0, createIconSelectionListener());
+            }
+        };
+    }
 
     /**
      * Create Data Input Listener for  full name edit text.
@@ -450,6 +465,18 @@ public class EditProfilePresenter {
         };
     }
 
+    private DialogInterface.OnClickListener createIconSelectionListener() {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //TODO: update user profile icon
+                indicateUserDataModified();
+                view.reloadData();
+                dialog.dismiss();
+            }
+        };
+    }
+
     /**
      * Create Alert spinner for country with citizenship selection.
      * @return DialogInterface.OnClickListener
@@ -490,6 +517,13 @@ public class EditProfilePresenter {
 
     private void indicateUserDataModified() {
         this.userDataModified = true;
+    }
+
+    private List<Drawable> getProfileIconList() {
+        List<Drawable> list = new ArrayList<>();
+        list.add(context.getResources().getDrawable(R.drawable.placeholder_profile_icon_personal));
+        list.add(context.getResources().getDrawable(R.drawable.placeholder_profile_icon_contact));
+        return list;
     }
 
     private void saveProfileToSharedPrefs() {

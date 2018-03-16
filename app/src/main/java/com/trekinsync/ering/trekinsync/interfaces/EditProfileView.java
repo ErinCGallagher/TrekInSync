@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.annotation.ArrayRes;
 
+import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
 import com.trekinsync.ering.trekinsync.models.User;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 public interface EditProfileView {
     void launchPopUp(String title, @ArrayRes int itemsId, int checkedItem, DialogInterface.OnClickListener listener);
+    void launchPopUp(String title, IconSelectionAdapter adapter, int checkedItem, DialogInterface.OnClickListener listener);
     void launchDatePicker(Date birthDate, DatePickerDialog.OnDateSetListener listener);
     void reloadData();
     void launchProfileView(User user);

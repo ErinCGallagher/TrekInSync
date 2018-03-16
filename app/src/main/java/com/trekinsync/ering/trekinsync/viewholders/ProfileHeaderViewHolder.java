@@ -61,6 +61,10 @@ public class ProfileHeaderViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    public void setProfileIconListener(View.OnClickListener listener) {
+        profileIcon.setOnClickListener(listener);
+    }
+
     public void setTextChangeListener(final DataInputListener<String> listener) {
         editProfileName.addTextChangedListener(new TextWatcher() {
             @Override
