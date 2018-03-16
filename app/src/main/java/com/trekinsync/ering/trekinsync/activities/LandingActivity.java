@@ -127,6 +127,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         profileIcon = findViewById(R.id.profile_icon);
 
         profileName.setText(presenter.getUserName());
+        profileIcon.setImageDrawable(presenter.getProfileIcon());
         profileIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

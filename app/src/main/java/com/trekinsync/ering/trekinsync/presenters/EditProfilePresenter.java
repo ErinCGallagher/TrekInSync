@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.DatePicker;
@@ -79,7 +78,7 @@ public class EditProfilePresenter {
     public LayerDrawable getProfileIcon() {
         Resources r = context.getResources();
         Drawable[] layers = new Drawable[2];
-        layers[0] = r.getDrawable(UserSingletonUtils.getInstance().getSelectedDrawable(user.getIcon()));
+        layers[0] = r.getDrawable(UserSingletonUtils.getInstance().getSelectedPersonalProfileDrawable(user.getIcon()));
         layers[1] = r.getDrawable(R.drawable.ic_edit_black_opacity_40);
         return new LayerDrawable(layers);
     }
@@ -235,7 +234,7 @@ public class EditProfilePresenter {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<IconModel> iconList = UserSingletonUtils.getInstance().getProfileIconList();
+                List<IconModel> iconList = UserSingletonUtils.getInstance().getPersonalProfileIconList();
                 IconSelectionAdapter adapter = new IconSelectionAdapter(context, iconList, user.getIcon());
                 view.launchPopUp("Select Profile Icon", adapter, createIconSelectionListener());
             }
@@ -472,7 +471,7 @@ public class EditProfilePresenter {
         return new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //TODO: update user profile icon
+                user.setIcon(which);
                 indicateUserDataModified();
                 view.reloadData();
                 dialog.dismiss();

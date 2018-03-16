@@ -2,6 +2,8 @@ package com.trekinsync.ering.trekinsync.presenters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.text.format.DateUtils;
 import android.widget.Toast;
 
@@ -9,6 +11,7 @@ import com.trekinsync.ering.trekinsync.R;
 import com.trekinsync.ering.trekinsync.interfaces.LandingView;
 import com.trekinsync.ering.trekinsync.models.User;
 import com.trekinsync.ering.trekinsync.utils.SharedPrefsUtils;
+import com.trekinsync.ering.trekinsync.utils.UserSingletonUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,6 +110,11 @@ public class LandingPresenter {
         }
         //TODO: implement sort by country
         return null;
+    }
+
+    public Drawable getProfileIcon() {
+        @DrawableRes int drawable = UserSingletonUtils.getInstance().getSelectedPersonalProfileDrawable(user.getIcon());
+        return context.getResources().getDrawable(drawable);
     }
 
 

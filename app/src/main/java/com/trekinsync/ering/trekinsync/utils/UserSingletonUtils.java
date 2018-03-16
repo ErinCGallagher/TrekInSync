@@ -62,11 +62,11 @@ public class UserSingletonUtils {
         iconList = generateIconList();
     }
 
-    public List<IconModel> getProfileIconList() {
+    public List<IconModel> getPersonalProfileIconList() {
         return iconList;
     }
 
-    public @DrawableRes int getSelectedDrawable(int iconId) {
+    public @DrawableRes int getSelectedPersonalProfileDrawable(int iconId) {
         for (IconModel icon: iconList) {
             if (iconId == icon.getId()) {
                 return icon.getDrawable();

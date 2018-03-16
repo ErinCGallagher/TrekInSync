@@ -3,6 +3,7 @@ package com.trekinsync.ering.trekinsync.presenters;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
 import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,7 +72,8 @@ public class ProfilePresenter {
 
     public Drawable getProfileIcon() {
         if (user.getIsPersonalProfile()) {
-            return context.getResources().getDrawable(R.drawable.placeholder_profile_icon_personal);
+            @DrawableRes int drawable = UserSingletonUtils.getInstance().getSelectedPersonalProfileDrawable(user.getIcon());
+            return context.getResources().getDrawable(drawable);
         } else {
             return context.getResources().getDrawable(R.drawable.placeholder_profile_icon_contact);
         }
