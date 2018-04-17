@@ -30,7 +30,7 @@
 
     <com.hbb20.CountryCodePicker
         android:id="@+id/citizenshipPicker"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:ccp_showFullName="true"
