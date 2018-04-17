@@ -71,6 +71,7 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         if (presenter != null) {
             presenter.updateProfileAndContacts();
             setUpProfileHeader();
+            refreshFabMenuData();
         }
     }
 
@@ -202,6 +203,19 @@ public class LandingActivity extends AppCompatActivity implements RecyclerViewCl
         fragment.setArguments(bundle);
         //add fragment to activity
         fragmentTransaction.add(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void refreshFabMenuData() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FabMenuFragment fragment = new FabMenuFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("UserObj", presenter.getUser());
+        fragment.setArguments(bundle);
+
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
 }
