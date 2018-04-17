@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.support.annotation.DrawableRes;
 
+import com.hbb20.CCPCountry;
+import com.hbb20.CountryCodePicker;
 import com.trekinsync.ering.trekinsync.R;
 import com.trekinsync.ering.trekinsync.models.IconModel;
 
@@ -49,8 +51,6 @@ public class UserSingletonUtils {
     }
 
     private void initStringLists() {
-        countryKeyList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_keys));
-        countryValuesList = Arrays.asList(context.getResources().getStringArray(R.array.citizenship_values));
         bloodTypeKeyList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_keys));
         bloodTypeValuesList = Arrays.asList(context.getResources().getStringArray(R.array.blood_type_values));
         phoneRelationKeyList = Arrays.asList(context.getResources().getStringArray(R.array.contact_relation_keys));
@@ -77,39 +77,27 @@ public class UserSingletonUtils {
 
     /**
      * Given a country key, find the associated translated value.
-     * @param selectedCountryKey, selected country key
+     * @param code, selected country key
      * @return selected translated country value
      */
-    public String getFormattedCountry(String selectedCountryKey) {
-        int position = countryKeyList.indexOf(selectedCountryKey);
-        return countryValuesList.get(position != -1 ? position : 0);
-    }
-
-    /**
-     * Given a country value, find the position in the list.
-     * @param selectedCountryValue, selected country value
-     * @return position of given country value
-     */
-    public int getCountryPosition(String selectedCountryValue) {
-        int countryPos = countryValuesList.indexOf(selectedCountryValue);
-        return countryPos != -1 ? countryPos : 0;
-    }
-
-    /**
-     * Given a country value position, retrieve the associate country key.
-     * @param countryValuePosition, selected country value position
-     * @return the country key associated with the country value
-     */
-    public String getCountryCode(int countryValuePosition) {
-        if (countryValuePosition < countryKeyList.size()) {
-            return countryKeyList.get(countryValuePosition);
+    public String getCountryName(String code) {
+        if (code != null && !code.isEmpty()) {
+            CCPCountry countryName = CCPCountry.getCountryForNameCodeFromLibraryMasterList(context, CountryCodePicker.Language.ENGLISH, code);
+            return countryName != null ? countryName.getName() : getDefaultCountryName();
+        } else{
+            return getDefaultCountryName();
         }
-        //if country code is not found, return a default value
-        return countryKeyList.get(0);
     }
+
 
     public String getDefaultCountryCode() {
-        return countryKeyList.get(0);
+        CCPCountry defaultCountry = CCPCountry.getLibraryMasterCountriesEnglish().get(0);
+        return defaultCountry.getNameCode();
+    }
+
+    public String getDefaultCountryName() {
+        CCPCountry defaultCountry = CCPCountry.getLibraryMasterCountriesEnglish().get(0);
+        return defaultCountry.getName();
     }
 
     /**

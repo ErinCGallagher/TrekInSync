@@ -104,8 +104,7 @@ public class ProfilePresenter {
     }
 
     public String getCitizenship() {
-        return user.getCitizenship() != null ?
-                UserSingletonUtils.getInstance().getFormattedCountry(user.getCitizenship()) : "";
+        return UserSingletonUtils.getInstance().getCountryName(user.getCitizenship());
     }
 
     //Health Section

@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.hbb20.CCPCountry;
+import com.hbb20.CountryCodePicker;
 import com.trekinsync.ering.trekinsync.R;
 import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
 import com.trekinsync.ering.trekinsync.interfaces.DataInputListener;
@@ -42,15 +44,17 @@ public class EditProfilePresenter {
     private User user;
     private ProfileFlow profileFlow;
     private boolean userDataModified;
+    private CountryCodePicker citizenshipPicker;
 
     /**
      * Create Profile Presenter for Business logic
      */
-    public EditProfilePresenter(Context context, EditProfileView view, User user) {
+    public EditProfilePresenter(Context context, EditProfileView view, User user, CountryCodePicker citizenshipPicker) {
         this.context = context;
         this.view = view;
         this.user = user;
         this.sharedPref = context.getSharedPreferences(context.getString(R.string.app_name_key),Context.MODE_PRIVATE);
+        this.citizenshipPicker = citizenshipPicker;
 
         if (user == null) {
             startCreateProfileFlow();
@@ -167,7 +171,7 @@ public class EditProfilePresenter {
      * @return String country
      */
     public String getUserCitizenship() {
-        return UserSingletonUtils.getInstance().getFormattedCountry(user.getCitizenship());
+        return UserSingletonUtils.getInstance().getCountryName(user.getCitizenship());
     }
 
     /**
@@ -268,14 +272,13 @@ public class EditProfilePresenter {
      * Create listener for Citizenship row click. Launch Alert spinner on click.
      * @return OnClickListener
      */
-    public View.OnClickListener createCitizenshipDropDownRowListener() {
+    public View.OnClickListener createCitizenshipDropDownListener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.launchPopUp("Select Country with Citizenship",
-                        R.array.citizenship_values,
-                        UserSingletonUtils.getInstance().getCountryPosition(getUserCitizenship()),
-                        createCountrySelectionListener());
+                //not using the country pick UI provided by the library
+                citizenshipPicker.launchCountrySelectionDialog();
+                citizenshipPicker.setOnCountryChangeListener(createCountrySelectionListener());
             }
         };
     }
@@ -483,14 +486,13 @@ public class EditProfilePresenter {
      * Create Alert spinner for country with citizenship selection.
      * @return DialogInterface.OnClickListener
      */
-    private DialogInterface.OnClickListener createCountrySelectionListener() {
-        return new DialogInterface.OnClickListener() {
+    private CountryCodePicker.OnCountryChangeListener createCountrySelectionListener() {
+        return new CountryCodePicker.OnCountryChangeListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                user.setCitizenship(UserSingletonUtils.getInstance().getCountryCode(which));
+            public void onCountrySelected() {
+                user.setCitizenship(citizenshipPicker.getSelectedCountryNameCode());
                 indicateUserDataModified();
                 view.reloadData();
-                dialog.dismiss();
             }
         };
     }

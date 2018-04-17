@@ -37,7 +37,7 @@ public class LandingAdapter extends BaseAdapter {
         if (presenter.getTravelContacts() != null && !presenter.getTravelContacts().isEmpty()) {
             for (User contact: presenter.getTravelContacts()) {
                 listItems.add(new ContactCellRowBinder(contact.getName(),
-                        UserSingletonUtils.getInstance().getFormattedCountry(contact.getCitizenship()),
+                        UserSingletonUtils.getInstance().getCountryName(contact.getCitizenship()),
                         presenter.getSortingPrefix(previousContact, contact),
                         previousContact == null,
                         clickListener));
