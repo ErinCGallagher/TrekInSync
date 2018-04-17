@@ -157,35 +157,4 @@
         <item>Other #</item>
     </string-array>
 
-    //Country list of keys and associated values in specific language
-    //TODO include all countries
-    <string-array name="citizenship_keys" translatable="false">
-        <item>SGP</item>
-        <item>KOR</item>
-        <item>FIN</item>
-        <item>DEU</item>
-        <item>JPN</item>
-        <item>DNK</item>
-        <item>SWE</item>
-        <item>ITA</item>
-        <item>CAD</item>
-        <item>FRA</item>
-        <item>ESP</item>
-        <item>LUX</item>
-    </string-array>
-
-    <string-array name="citizenship_values">
-        <item>Singapore</item>
-        <item>South Korea</item>
-        <item>Finland</item>
-        <item>Germany</item>
-        <item>Japan</item>
-        <item>Denmark</item>
-        <item>Sweden</item>
-        <item>Italy</item>
-        <item>Canada</item>
-        <item>France</item>
-        <item>Spain</item>
-        <item>Luxembourg</item>
-    </string-array>
 </resources>
