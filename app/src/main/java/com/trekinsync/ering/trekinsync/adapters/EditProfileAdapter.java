@@ -45,7 +45,7 @@ public class EditProfileAdapter extends BaseAdapter {
         listItems.add(new LabelDescriptionRowBinder(presenter.getCitizenshipLabel(),
                 presenter.getUserCitizenship(),
                 R.drawable.ic_keyboard_arrow_down,
-                presenter.createCitizenshipDropDownRowListener()));
+                presenter.createCitizenshipDropDownListener()));
 
         //Health info
         listItems.add(new SectionDividerTitleRowBinder(presenter.getHealthSectionTitle()));

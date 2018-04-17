@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hbb20.CountryCodePicker;
 import com.trekinsync.ering.trekinsync.R;
 import com.trekinsync.ering.trekinsync.adapters.EditProfileAdapter;
 import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
@@ -35,6 +36,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     private EditProfilePresenter presenter;
     private EditProfileAdapter adapter;
     private RecyclerView profileDetailsList;
+    private CountryCodePicker citizenshipPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,8 +163,10 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             e.printStackTrace();
         }
 
+        citizenshipPicker = findViewById(R.id.citizenshipPicker);
+
         //setup presenter
-        presenter = new EditProfilePresenter(context, this, user);
+        presenter = new EditProfilePresenter(context, this, user, citizenshipPicker);
 
         String actionBarTitle = presenter.getActionBarTitle();
         actionBar.setTitle(actionBarTitle);
