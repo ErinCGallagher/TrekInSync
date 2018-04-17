@@ -13,6 +13,7 @@ import com.trekinsync.ering.trekinsync.models.IconModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class UserSingletonUtils {
 
@@ -82,7 +83,7 @@ public class UserSingletonUtils {
      */
     public String getCountryName(String code) {
         if (code != null && !code.isEmpty()) {
-            CCPCountry countryName = CCPCountry.getCountryForNameCodeFromLibraryMasterList(context, CountryCodePicker.Language.ENGLISH, code);
+            CCPCountry countryName = CCPCountry.getCountryForNameCodeFromLibraryMasterList(context, getDeviceLanguage(), code);
             return countryName != null ? countryName.getName() : getDefaultCountryName();
         } else{
             return getDefaultCountryName();
@@ -96,8 +97,21 @@ public class UserSingletonUtils {
     }
 
     public String getDefaultCountryName() {
-        CCPCountry defaultCountry = CCPCountry.getLibraryMasterCountriesEnglish().get(0);
+        CCPCountry defaultCountry = CCPCountry.getLibraryMasterCountryList(context, getDeviceLanguage()).get(0);
         return defaultCountry.getName();
+    }
+
+    public CountryCodePicker.Language getDeviceLanguage() {
+        String language = Locale.getDefault().getLanguage();
+        if (language.equals(Locale.FRENCH.getLanguage())) {
+            return CountryCodePicker.Language.FRENCH;
+        } else if (language.equals(Locale.CHINESE.getLanguage())) {
+            return CountryCodePicker.Language.CHINESE_SIMPLIFIED;
+        } else if (language.equals("es")) {
+            return CountryCodePicker.Language.SPANISH;
+        } else {
+            return CountryCodePicker.Language.ENGLISH;
+        }
     }
 
     /**

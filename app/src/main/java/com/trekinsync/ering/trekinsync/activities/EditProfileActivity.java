@@ -23,6 +23,7 @@ import com.trekinsync.ering.trekinsync.adapters.IconSelectionAdapter;
 import com.trekinsync.ering.trekinsync.interfaces.EditProfileView;
 import com.trekinsync.ering.trekinsync.models.User;
 import com.trekinsync.ering.trekinsync.presenters.EditProfilePresenter;
+import com.trekinsync.ering.trekinsync.utils.UserSingletonUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -163,7 +164,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             e.printStackTrace();
         }
 
+        //setup country picker
         citizenshipPicker = findViewById(R.id.citizenshipPicker);
+        citizenshipPicker.changeDefaultLanguage(UserSingletonUtils.getInstance().getDeviceLanguage());
 
         //setup presenter
         presenter = new EditProfilePresenter(context, this, user, citizenshipPicker);
